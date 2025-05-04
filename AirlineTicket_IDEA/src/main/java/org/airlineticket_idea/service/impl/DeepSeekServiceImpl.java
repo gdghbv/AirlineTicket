@@ -1,0 +1,9 @@
+package org.airlineticket_idea.service.impl;
+
+
+import org.airlineticket_idea.service.DeepSeekService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class DeepSeekServiceImpl implements DeepSeekService {
+}

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/config/WebMBVConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/AirportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/DeepSeekController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/interceptors/LoginProtectedInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/ChatRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/ChatResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/DeepSeekService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/DeepSeekServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/JwtHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/MD5Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/ResultCodeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/AirlineTicketIdeaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/config/WebMBVConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/controller/AirportController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/controller/CustomerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/controller/DeepSeekController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/interceptors/LoginProtectedInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/mapper/AirlineMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/mapper/AirplaneMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/mapper/AirportMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/mapper/CustomerMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/mapper/OrderMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/pojo/Airline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/pojo/Airplane.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/pojo/Airport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/pojo/ChatRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/pojo/ChatResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/pojo/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/pojo/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/AirlineService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/AirplaneService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/AirportService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/DeepSeekService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/impl/AirlineServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/impl/AirplaneServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/impl/AirportServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/impl/CustomerServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/impl/DeepSeekServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/service/impl/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/utils/JwtHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/utils/MD5Util.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/utils/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/justworking/airlineticket_idea/utils/ResultCodeEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/justworking/airlineticket_idea/mapper/AirlineMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/justworking/airlineticket_idea/mapper/AirplaneMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/justworking/airlineticket_idea/mapper/AirportMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/justworking/airlineticket_idea/mapper/CustomerMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/justworking/airlineticket_idea/mapper/OrderMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/justworking/airlineticket_idea/AirlineTicketIdeaApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="D:\WorkPlace\Maven\apache-maven-3.9.9" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="D:\WorkPlace\Maven\apache-maven-3.9.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2wdmnLVHW86bTUJbfzxhBZxOHha" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AirlineticketIdeaApplication.executor": "Run",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Projects/AirlineTicket/airlineticket_idea/src/main/java/org/airlineticket_idea/pojo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\AirlineTicket\airlineticket_idea\src\main\java\org\airlineticket_idea\pojo" />
+      <recent name="D:\Projects\AirlineTicket\airlineticket_idea\src\main\java\org\airlineticket_idea\controller" />
+      <recent name="D:\Projects\AirlineTicket\airlineticket_idea\src\main\java\org\airlineticket_idea" />
+      <recent name="D:\Projects\AirlineTicket\airlineticket_idea\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\AirlineTicket\airlineticket_idea\src\main\java\org\airlineticket_idea" />
+      <recent name="D:\Projects\AirlineTicket\airlineticket_idea\src\main" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.airlineticket_idea.service.impl" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AirlineticketIdeaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="AirlineTicket_IDEA" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.airlineticket_idea.AirlineticketIdeaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="" />
+      <created>1746379990573</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746379990573</updated>
+      <workItem from="1746379991631" duration="924000" />
+      <workItem from="1746380931298" duration="1021000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

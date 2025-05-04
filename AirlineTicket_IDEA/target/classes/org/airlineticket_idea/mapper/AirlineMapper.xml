@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.airlineticket_idea.mapper.AirlineMapper">
+
+    <resultMap id="BaseResultMap" type="org.airlineticket_idea.pojo.Airline">
+            <id property="airlineId" column="airline_id" />
+            <result property="airplaneId" column="airplane_id" />
+            <result property="arrivalairportId" column="arrivalAirport_id" />
+            <result property="departureairportId" column="departureAirport_id" />
+            <result property="boardingGate" column="boarding_gate" />
+            <result property="price" column="price" />
+            <result property="departureTime" column="departure_time" />
+            <result property="arrivalTime" column="arrival_time" />
+            <result property="date" column="date" />
+            <result property="firstSeat" column="first_seat" />
+            <result property="secondSeat" column="second_seat" />
+            <result property="thirdSeat" column="third_seat" />
+            <result property="duration" column="duration" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        airline_id,airplane_id,arrivalAirport_id,departureAirport_id,boarding_gate,price,
+        departure_time,arrival_time,date,first_seat,second_seat,
+        third_seat,duration
+    </sql>
+</mapper>

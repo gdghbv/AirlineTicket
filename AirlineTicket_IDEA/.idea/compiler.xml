@@ -2,13 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Annotation profile for AirlineTicket_IDEA" enabled="true">
+      <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$PROJECT_DIR$/../../../WorkPlace/Maven/apache-maven-3.9.9/mvn_repo/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
         <module name="AirlineTicket_IDEA" />
       </profile>
     </annotationProcessing>
