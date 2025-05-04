@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.justworking.airlineticket_idea.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="org.justworking.airlineticket_idea.pojo.Order">
+            <id property="orderid" column="orderId" />
+            <result property="flightid" column="flightId" />
+            <result property="orderstat" column="orderStat" />
+            <result property="spending" column="spending" />
+            <result property="bookingtime" column="bookingTime" />
+            <result property="airlineid" column="airlineId" />
+            <result property="istravled" column="isTravled" />
+            <result property="seatid" column="seatId" />
+            <result property="seattype" column="seatType" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        orderId,flightId,orderStat,spending,bookingTime,airlineId,
+        isTravled,seatId,seatType
+    </sql>
+</mapper>

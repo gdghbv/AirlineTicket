@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.justworking.airlineticket_idea.mapper.CustomerMapper">
+
+    <resultMap id="BaseResultMap" type="org.justworking.airlineticket_idea.pojo.Customer">
+            <id property="customerid" column="customerId" />
+            <result property="username" column="userName" />
+            <result property="password" column="password" />
+            <result property="email" column="email" />
+            <result property="phone" column="phone" />
+            <result property="milspoints" column="milsPoints" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        customerId,userName,password,email,phone,milsPoints
+    </sql>
+</mapper>
