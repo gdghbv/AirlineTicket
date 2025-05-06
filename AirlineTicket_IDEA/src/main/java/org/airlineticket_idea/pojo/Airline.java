@@ -14,13 +14,14 @@ import lombok.Data;
 @TableName(value ="airline")
 @Data
 public class Airline {
+    @TableId(value = "airline_id")
     private String airlineId;
 
     private String airplaneId;
 
-    private String arrivalairportId;
+    private String arrivalAirportId;
 
-    private String departureairportId;
+    private String departureAirportId;
 
     private String boardingGate;
 
@@ -39,4 +40,8 @@ public class Airline {
     private Integer thirdSeat;
 
     private String duration;
+
+    private String departure;
+
+    private String arrival;
 }

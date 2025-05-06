@@ -5,19 +5,35 @@
 <mapper namespace="org.airlineticket_idea.mapper.OrderMapper">
 
     <resultMap id="BaseResultMap" type="org.airlineticket_idea.pojo.Order">
-            <id property="orderid" column="orderId" />
-            <result property="flightid" column="flightId" />
-            <result property="orderstat" column="orderStat" />
+            <id property="orderId" column="order_id" />
+
+            <result property="orderStat" column="order_stat" />
             <result property="spending" column="spending" />
-            <result property="bookingtime" column="bookingTime" />
-            <result property="airlineid" column="airlineId" />
-            <result property="istraveled" column="isTraveled" />
-            <result property="seatid" column="seatId" />
-            <result property="seattype" column="seatType" />
+            <result property="bookingTime" column="booking_time" />
+            <result property="airlineId" column="airline_id" />
+            <result property="isTraveled" column="is_traveled" />
+            <result property="seatId" column="seat_id" />
+            <result property="seatType" column="seat_type" />
+        <result property="customerId" column="customer_id"/>
+        <result property="citizenId" column="citizen_id"/>
+        <result property="citizenName" column="customer_name"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        orderId,flightId,orderStat,spending,bookingTime,airlineId,
-        isTraveled,seatId,seatType
+        order_id,order_stat,spending,booking_time,airline_id,
+        is_traveled,seat_id,seat_type,customer_id,citizen_id,citizen_name
     </sql>
+    <select id="selectOrderListWithPage" resultType="java.util.Map">
+        SELECT o.*,
+        a.*,
+        dep.airport_name AS departure_airport_name,
+        arr.airport_name AS arrival_airport_name
+        FROM `order` o
+        LEFT JOIN airline a ON o.airline_id = a.airline_id
+        LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
+        LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
+        <!-- 完全移除 <where> 标签，直接拼接条件 -->
+        ${ew.customSqlSegment}
+    </select>
+
 </mapper>

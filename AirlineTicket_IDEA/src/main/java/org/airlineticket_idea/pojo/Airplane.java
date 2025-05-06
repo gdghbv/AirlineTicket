@@ -12,6 +12,7 @@ import lombok.Data;
 @TableName(value ="airplane")
 @Data
 public class Airplane {
+    @TableId(value = "airplane_id")
     private String airplaneId;
 
     private String airplaneName;

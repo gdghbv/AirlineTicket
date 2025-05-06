@@ -21,10 +21,14 @@ spring:
 # mybatis-plus的配置
 mybatis-plus:
     type-aliases-package: org.airlineticket_idea.pojo
-
+    configuration:
+        map-underscore-to-camel-case: true
 
 #jwt配置
 jwt:
     token:
         tokenExpiration: 120 #有效时间,单位分钟
         tokenSignKey: justworking1234  #当前程序签名秘钥 自定义
+deepseek:
+    api:
+        key: sk-d72585005bbf46eab454fd157c6d3450

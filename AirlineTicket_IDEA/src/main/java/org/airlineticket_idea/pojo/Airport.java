@@ -12,6 +12,7 @@ import lombok.Data;
 @TableName(value ="airport")
 @Data
 public class Airport {
+    @TableId(value = "airport_id")
     private String airportId;
 
     private String airportName;

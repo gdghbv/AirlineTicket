@@ -70,22 +70,6 @@
                   <option name="className" value="Airline" />
                   <option name="tableName" value="airline" />
                 </TableUIInfo>
-                <TableUIInfo>
-                  <option name="className" value="Airplane" />
-                  <option name="tableName" value="airplane" />
-                </TableUIInfo>
-                <TableUIInfo>
-                  <option name="className" value="Airport" />
-                  <option name="tableName" value="airport" />
-                </TableUIInfo>
-                <TableUIInfo>
-                  <option name="className" value="Customer" />
-                  <option name="tableName" value="customer" />
-                </TableUIInfo>
-                <TableUIInfo>
-                  <option name="className" value="Order" />
-                  <option name="tableName" value="order" />
-                </TableUIInfo>
               </list>
             </option>
             <option name="templatesName" value="mybatis-plus3" />
