@@ -14,21 +14,24 @@ import lombok.Data;
 @TableName(value ="order")
 @Data
 public class Order {
-    private String orderid;
+    @TableId(value = "order_id")
+    private String orderId;
 
-    private String flightid;
-
-    private String orderstat;
+    private String orderStat;
 
     private BigDecimal spending;
 
-    private Date bookingtime;
+    private Date bookingTime;
 
-    private String airlineid;
+    private String airlineId;
 
-    private String istraveled;
+    private String isTraveled;
 
-    private String seatid;
+    private String seatId;
 
-    private String seattype;
+    private String seatType;
+
+    private String customerId;
+    private String citizenId;
+    private String citizenName;
 }

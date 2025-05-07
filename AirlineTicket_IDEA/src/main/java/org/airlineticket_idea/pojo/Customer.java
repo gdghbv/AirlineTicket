@@ -1,7 +1,5 @@
 package org.airlineticket_idea.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -12,6 +10,7 @@ import lombok.Data;
 @TableName(value ="customer")
 @Data
 public class Customer {
+    @TableId(value = "customer_id")
     private String customerId;
 
     private String userName;

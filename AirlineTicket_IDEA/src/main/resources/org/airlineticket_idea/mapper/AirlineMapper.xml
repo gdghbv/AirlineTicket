@@ -7,8 +7,8 @@
     <resultMap id="BaseResultMap" type="org.airlineticket_idea.pojo.Airline">
             <id property="airlineId" column="airline_id" />
             <result property="airplaneId" column="airplane_id" />
-            <result property="arrivalairportId" column="arrivalAirport_id" />
-            <result property="departureairportId" column="departureAirport_id" />
+            <result property="arrivalAirportId" column="arrival_airport_id" />
+            <result property="departureAirportId" column="departure_airport_id" />
             <result property="boardingGate" column="boarding_gate" />
             <result property="price" column="price" />
             <result property="departureTime" column="departure_time" />
@@ -18,11 +18,50 @@
             <result property="secondSeat" column="second_seat" />
             <result property="thirdSeat" column="third_seat" />
             <result property="duration" column="duration" />
+        <result property="departure" column="departure"/>
+        <result property="arrival" column="arrival"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        airline_id,airplane_id,arrivalAirport_id,departureAirport_id,boarding_gate,price,
+        airline_id,airplane_id,arrival_airport_id,departure_airport_id,boarding_gate,price,
         departure_time,arrival_time,date,first_seat,second_seat,
-        third_seat,duration
+        third_seat,duration,departure,arrival
     </sql>
+<select id="selectAirlineListWithAirport" resultType="org.airlineticket_idea.pojo.vo.AirlineVO">
+SELECT a.*,
+       dep.airport_name AS departure_airport_name,
+       arr.airport_name AS arrival_airport_name,
+       dep.address AS departure_airport_address,
+       arr.address AS arrival_airport_address,
+       dep.phone AS departure_airport_phone,
+       arr.phone AS arrival_airport_phone
+FROM airline a
+         LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
+         LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
+</select>
+
+    <select id="selectAirlineListWithPage" resultType="java.util.Map">
+        SELECT a.*,
+        dep.airport_name AS departure_airport_name,
+        arr.airport_name AS arrival_airport_name,
+        dep.address AS departure_airport_address,
+        arr.address AS arrival_airport_address,
+        dep.phone AS departure_airport_phone,
+        arr.phone AS arrival_airport_phone
+        FROM airline a
+        LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
+        LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
+        <where>
+        <if test="pageKeywords.departureKeyword != null and pageKeywords.departureKeyword.length() > 0">
+            AND departure LIKE CONCAT('%', #{pageKeywords.departureKeyword}, '%')
+        </if>
+        <if test="pageKeywords.arrivalKeyword != null and pageKeywords.arrivalKeyword.length() > 0">
+            AND arrival LIKE CONCAT('%', #{pageKeywords.arrivalKeyword}, '%')
+        </if>
+        <if test="pageKeywords.dateKeyword != null">
+            AND date = #{pageKeywords.dateKeyword}
+        </if>
+        </where>
+    </select>
+
 </mapper>
