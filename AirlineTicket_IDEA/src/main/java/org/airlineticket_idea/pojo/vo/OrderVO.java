@@ -3,22 +3,18 @@ package org.airlineticket_idea.pojo.vo;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 @Data
 public class OrderVO {
     private String orderId;
-
-    private String flightId;
 
     private String orderStat;
 
     private BigDecimal spending;
 
-    private Date bookingTime;
+    private LocalDateTime bookingTime;
 
     private String airlineId;
-
-    private String isTraveled;
 
     private String seatId;
 
@@ -27,5 +23,6 @@ public class OrderVO {
     private String customerId;
     private String citizenId;
     private String citizenName;
-
+    //前端传入是否使用优惠，
+    private boolean useDiscount;
 }

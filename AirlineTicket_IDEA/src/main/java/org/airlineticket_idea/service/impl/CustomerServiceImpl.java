@@ -49,6 +49,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
             return Result.build(null, ResultCodeEnum.USERNAME_USED);
         }
         customer.setPassword(MD5Util.encrypt(customer.getPassword()));
+        customer.setMilsPoints(-1);
         customerMapper.insert(customer);
         return Result.ok(null);
     }
@@ -114,30 +115,6 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         return Result.ok(null);
     }
 
-    @Override
-    public Result getHistoryOrder(String token, PageKeywords pageKeywords) {
-        // 1. Token 验证
-        if (jwtHelper.isExpiration(token)) {
-            return Result.build(null, ResultCodeEnum.NOTLOGIN);
-        }
 
-        // 2. 构建查询条件
-        String userId = jwtHelper.getUserId(token);
-        LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Order::getCustomerId, userId);
-
-        // 3. 执行分页查询（关键修改：接收返回值）
-        IPage<Map<String, Object>> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
-        IPage<Map<String, Object>> resultPage = orderMapper.selectOrderListWithPage(page, queryWrapper);
-
-        // 4. 返回结果
-        return Result.ok(Map.of(
-                "pageData", resultPage.getRecords(),
-                "pageNum", resultPage.getCurrent(),
-                "pageSize", resultPage.getSize(),
-                "totalPage", resultPage.getPages(),
-                "totalSize", resultPage.getTotal()
-        ));
-    }
 }
 

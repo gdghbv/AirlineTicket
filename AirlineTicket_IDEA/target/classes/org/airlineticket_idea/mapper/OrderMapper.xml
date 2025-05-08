@@ -11,7 +11,6 @@
             <result property="spending" column="spending" />
             <result property="bookingTime" column="booking_time" />
             <result property="airlineId" column="airline_id" />
-            <result property="isTraveled" column="is_traveled" />
             <result property="seatId" column="seat_id" />
             <result property="seatType" column="seat_type" />
         <result property="customerId" column="customer_id"/>
@@ -21,7 +20,7 @@
 
     <sql id="Base_Column_List">
         order_id,order_stat,spending,booking_time,airline_id,
-        is_traveled,seat_id,seat_type,customer_id,citizen_id,citizen_name
+      seat_id,seat_type,customer_id,citizen_id,citizen_name
     </sql>
     <select id="selectOrderListWithPage" resultType="java.util.Map">
         SELECT o.*,

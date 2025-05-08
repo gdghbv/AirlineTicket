@@ -1,17 +1,17 @@
 package org.airlineticket_idea.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.math.BigDecimal;
-import java.util.Date;
 import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @TableName order
  */
-@TableName(value ="order")
+@TableName(value = "`order`")
 @Data
 public class Order {
     @TableId(value = "order_id")
@@ -21,11 +21,9 @@ public class Order {
 
     private BigDecimal spending;
 
-    private Date bookingTime;
+    private LocalDateTime bookingTime;
 
     private String airlineId;
-
-    private String isTraveled;
 
     private String seatId;
 

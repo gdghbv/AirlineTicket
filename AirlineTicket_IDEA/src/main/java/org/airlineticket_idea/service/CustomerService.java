@@ -22,5 +22,5 @@ public interface CustomerService extends IService<Customer> {
 
     Result modifyUserInfo(String token, Customer customer);
 
-    Result getHistoryOrder(String token, PageKeywords pageKeywords);
+
 }

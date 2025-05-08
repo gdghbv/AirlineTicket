@@ -2,8 +2,10 @@ package org.airlineticket_idea.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.airlineticket_idea.pojo.Customer;
+import org.airlineticket_idea.pojo.Order;
 import org.airlineticket_idea.pojo.vo.PageKeywords;
 import org.airlineticket_idea.service.CustomerService;
+import org.airlineticket_idea.service.OrderService;
 import org.airlineticket_idea.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    OrderService orderService;
     //注册
     @PostMapping("/register")
     public Result register(@RequestBody Customer customer){
@@ -47,14 +51,22 @@ public Result getCustomerAirline(@RequestBody PageKeywords pageKeywords){
     //客户查询自己的历史订单
 @PostMapping("/getHistoryOrder")
     public Result getHistoryOrder(@RequestHeader String token,@RequestBody PageKeywords pageKeywords){
-        Result result=customerService.getHistoryOrder(token,pageKeywords);
+        Result result=orderService.getHistoryOrder(token,pageKeywords);
         return result;
 }
     //客户购买订单
-
+@PostMapping("/buyTicket")
+    public Result buyTicket(@RequestHeader String token,@RequestBody Order order,boolean useDiscount){
+        Result result=orderService.buyTicket(token,order,useDiscount);
+        return result;
+}
     //客户对订单进行退款
-
-    //客户删除自己的历史订单
+@PutMapping("/refundTicket")
+    public Result refundTicket(@RequestHeader String token,@RequestBody Order order){
+        Result result = orderService.refundTicket(token,order);
+        return result;
+}
+//客户进行用户的注册，添加积分系统(即是把积分从-1修改为0则可以开始正常积分的获取)
 }
 
 
