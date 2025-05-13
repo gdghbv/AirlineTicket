@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 public class Order {
     @TableId(value = "order_id")
-    private String orderId;
+    private Integer orderId;
 
     private String orderStat;
 
@@ -23,13 +23,13 @@ public class Order {
 
     private LocalDateTime bookingTime;
 
-    private String airlineId;
+    private Integer airlineId;
 
     private String seatId;
 
     private String seatType;
 
-    private String customerId;
+    private Integer customerId;
     private String citizenId;
     private String citizenName;
 }

@@ -9,6 +9,6 @@ public class PageKeywords {
     private String departureKeyword;
     private String arrivalKeyword;
     private Date dateKeyword;
-    private int pageNum=1;
-    private int pageSize=10;
+    private Integer pageNum=1;
+    private Integer pageSize=10;
 }

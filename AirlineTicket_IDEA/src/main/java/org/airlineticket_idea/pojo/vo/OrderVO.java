@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 @Data
 public class OrderVO {
-    private String orderId;
+    private Integer orderId;
 
     private String orderStat;
 
@@ -14,13 +14,13 @@ public class OrderVO {
 
     private LocalDateTime bookingTime;
 
-    private String airlineId;
+    private Integer airlineId;
 
     private String seatId;
 
     private String seatType;
 
-    private String customerId;
+    private Integer customerId;
     private String citizenId;
     private String citizenName;
     //前端传入是否使用优惠，

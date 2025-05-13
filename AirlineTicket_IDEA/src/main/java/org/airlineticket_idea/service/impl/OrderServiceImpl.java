@@ -51,7 +51,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         }
 
         // 2. 构建查询条件
-        String userId = jwtHelper.getUserId(token);
+        int userId = jwtHelper.getUserId(token).intValue();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getCustomerId, userId);
 
@@ -75,7 +75,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         if (jwtHelper.isExpiration(token)) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
-        String userId = jwtHelper.getUserId(token);
+        int userId = jwtHelper.getUserId(token).intValue();
         order.setCustomerId(userId);
         //设置为现在的的日期时间
         order.setBookingTime(LocalDateTime.now());
@@ -136,7 +136,7 @@ customerMapper.updateById(customer);
         if (jwtHelper.isExpiration(token)) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
-        String userId = jwtHelper.getUserId(token);
+       int userId = jwtHelper.getUserId(token).intValue();
 
         Order newOrder=orderMapper.selectById(order.getOrderId());
 
@@ -163,6 +163,18 @@ customerMapper.updateById(customer);
         int num=(seatNum/10)+1;
         String seatId=seatType+word+num;
         return seatId;
+    }
+
+    @Override
+    public Result memberRegister(String token) {
+        if (jwtHelper.isExpiration(token)) {
+            return Result.build(null, ResultCodeEnum.NOTLOGIN);
+        }
+        int userId = jwtHelper.getUserId(token).intValue();
+         Customer customer=customerMapper.selectById(userId);
+         customer.setMilsPoints(0);
+         customerMapper.updateById(customer);
+         return Result.build(null,200,"会员注册成功");
     }
 }
 

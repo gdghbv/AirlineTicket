@@ -8,10 +8,10 @@ import java.util.Date;
 @Data
 public class AirlineVO {
     // 航班表原有字段
-    private String airlineId;
-    private String airplaneId;
-    private String arrivalAirportId;
-    private String departureAirportId;
+    private Integer airlineId;
+    private Integer airplaneId;
+    private Integer arrivalAirportId;
+    private Integer departureAirportId;
     private String boardingGate;
     private BigDecimal price;
     private Date departureTime;

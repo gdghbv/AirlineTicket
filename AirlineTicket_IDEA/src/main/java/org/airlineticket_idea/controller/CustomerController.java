@@ -67,6 +67,11 @@ public Result getCustomerAirline(@RequestBody PageKeywords pageKeywords){
         return result;
 }
 //客户进行用户的注册，添加积分系统(即是把积分从-1修改为0则可以开始正常积分的获取)
+    @PutMapping("/memberRegister")
+    public Result memberRegister(@RequestHeader String token){
+        Result result  =orderService.memberRegister(token);
+        return result;
+    }
 }
 
 

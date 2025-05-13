@@ -63,7 +63,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
             return Result.build(null, ResultCodeEnum.USERNAME_ERROR);
         }
         if (!StringUtils.isEmpty(customer.getPassword()) && MD5Util.encrypt(customer.getPassword()).equals(loginCustomer.getPassword())) {
-            String token = jwtHelper.createToken(loginCustomer.getCustomerId());
+            String token = jwtHelper.createToken(Long.valueOf(loginCustomer.getCustomerId()));
             Map data = new HashMap();
             data.put("token", token);
             return Result.ok(data);
@@ -95,7 +95,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         if (expiration) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
-        String userId = jwtHelper.getUserId(token);
+        int userId = jwtHelper.getUserId(token).intValue();
         Customer data = customerMapper.selectById(userId);
         data.setPassword("******");
         return Result.ok(data);
@@ -107,7 +107,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         if (expiration) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
-        String userId = jwtHelper.getUserId(token);
+        int userId = jwtHelper.getUserId(token).intValue();
         Customer data = customerMapper.selectById(userId);
         data.setEmail(customer.getEmail());
         data.setPhone(customer.getPhone());

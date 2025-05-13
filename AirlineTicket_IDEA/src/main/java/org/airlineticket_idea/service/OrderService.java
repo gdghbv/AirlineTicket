@@ -17,4 +17,6 @@ public interface OrderService extends IService<Order> {
 
     Result refundTicket(String token, Order order);
     String getSeatId(int seatNum,String seatType);
+
+    Result memberRegister(String token);
 }

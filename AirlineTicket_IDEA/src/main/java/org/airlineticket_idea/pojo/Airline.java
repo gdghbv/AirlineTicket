@@ -15,13 +15,13 @@ import lombok.Data;
 @Data
 public class Airline {
     @TableId(value = "airline_id")
-    private String airlineId;
+    private Integer airlineId;
 
-    private String airplaneId;
+    private Integer airplaneId;
 
-    private String arrivalAirportId;
+    private Integer arrivalAirportId;
 
-    private String departureAirportId;
+    private Integer departureAirportId;
 
     private String boardingGate;
 

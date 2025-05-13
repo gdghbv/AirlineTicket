@@ -13,7 +13,7 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
-            url: jdbc:mysql:///airline_reservations
+            url: jdbc:mysql:///airline_reservations?useAffectedRows=true&rewriteBatchedStatements=true
             username: root
             password: 1234
             driver-class-name: com.mysql.cj.jdbc.Driver
@@ -23,6 +23,10 @@ mybatis-plus:
     type-aliases-package: org.airlineticket_idea.pojo
     configuration:
         map-underscore-to-camel-case: true
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    global-config:
+        db-config:
+            id-type: auto  # 删除或改为 auto
 
 #jwt配置
 jwt:
@@ -32,3 +36,5 @@ jwt:
 deepseek:
     api:
         key: sk-d72585005bbf46eab454fd157c6d3450
+
+

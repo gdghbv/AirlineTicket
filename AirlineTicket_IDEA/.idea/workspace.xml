@@ -5,25 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/258fcf3c-8b7b-4ad9-895f-b026e3a1aa37.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/258fcf3c-8b7b-4ad9-895f-b026e3a1aa37.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Airline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Airline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Airplane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Airplane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Airport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/OrderVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/AirlineVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/AirlineVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/OrderVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/OrderVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/PageKeywords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/PageKeywords.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/CustomerServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/ResultCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/ResultCodeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/JwtHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/utils/JwtHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/OrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/OrderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/AirlineticketIdeaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/AirlineticketIdeaApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/config/WebMBVConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/config/WebMBVConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/DeepSeekController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/DeepSeekController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/interceptors/LoginProtectedInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/interceptors/LoginProtectedInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirplaneMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirplaneMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirportMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirportMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/CustomerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/CustomerMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/OrderMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/OrderMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/OrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/OrderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airplane.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airplane.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatRequest$Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatRequest$Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse$Choice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse$Choice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Customer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/OrderVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/CustomerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/OrderVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/OrderVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/PageKeywords.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/PageKeywords.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirlineService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirlineService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirplaneService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirplaneService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirportService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirlineServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirlineServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirplaneServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirplaneServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirportServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirportServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/CustomerServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/DeepSeekServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/DeepSeekServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/OrderServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/ResultCodeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/ResultCodeEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/JwtHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/JwtHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/MD5Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/MD5Util.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/org/airlineticket_idea/AirlineticketIdeaApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,33 +103,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.AirlineticketIdeaApplicationTests.testGetSeatId.executor": "Run",
-    "JUnit.AirlineticketIdeaApplicationTests.testSelectWithAirport.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.AirlineticketIdeaApplication.executor": "Run",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projects/AirlineTicket/airlineticket_idea/src/main/java/org/airlineticket_idea/pojo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.AirlineticketIdeaApplicationTests.testGetSeatId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AirlineticketIdeaApplicationTests.testSelectWithAirport.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AirlineTicket_IDEA [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AirlineticketIdeaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/AirlineTicket/airlineticket_idea/src/main/java/org/airlineticket_idea/pojo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
@@ -111,7 +152,7 @@
       <recent name="org.airlineticket_idea.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AirlineticketIdeaApplicationTests.testGetSeatId">
+  <component name="RunManager" selected="Spring Boot.AirlineticketIdeaApplication">
     <configuration name="AirlineticketIdeaApplicationTests.testGetSeatId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AirlineTicket_IDEA" />
       <extension name="coverage">
@@ -181,6 +222,15 @@
       <workItem from="1746635245395" duration="722000" />
       <workItem from="1746641670686" duration="4599000" />
       <workItem from="1746685765817" duration="5636000" />
+      <workItem from="1746699172423" duration="11000" />
+      <workItem from="1746701904849" duration="488000" />
+      <workItem from="1746731966022" duration="71000" />
+      <workItem from="1746990146721" duration="822000" />
+      <workItem from="1747052628602" duration="949000" />
+      <workItem from="1747053591049" duration="1558000" />
+      <workItem from="1747055164214" duration="7117000" />
+      <workItem from="1747070201736" duration="1069000" />
+      <workItem from="1747159951116" duration="2237000" />
     </task>
     <servers />
   </component>

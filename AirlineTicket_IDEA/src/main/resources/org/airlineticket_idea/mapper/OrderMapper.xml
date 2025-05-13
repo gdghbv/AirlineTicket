@@ -6,7 +6,6 @@
 
     <resultMap id="BaseResultMap" type="org.airlineticket_idea.pojo.Order">
             <id property="orderId" column="order_id" />
-
             <result property="orderStat" column="order_stat" />
             <result property="spending" column="spending" />
             <result property="bookingTime" column="booking_time" />

@@ -19,7 +19,7 @@ public class JwtHelper {
     private  String tokenSignKey;  //当前程序签名秘钥
 
     //生成token字符串
-    public  String createToken(String userId) {
+    public  String createToken(Long userId) {
         System.out.println("tokenExpiration = " + tokenExpiration);
         System.out.println("tokenSignKey = " + tokenSignKey);
         String token = Jwts.builder()
@@ -34,11 +34,12 @@ public class JwtHelper {
     }
 
     //从token字符串获取userid
-    public  String getUserId(String token) {
+    public  Long getUserId(String token) {
         if(StringUtils.isEmpty(token)) return null;
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(tokenSignKey).parseClaimsJws(token);
         Claims claims = claimsJws.getBody();
-        return (String) claims.get("userId");
+        Integer userId = (Integer) claims.get("userId");
+        return userId.longValue();
 
     }
 
