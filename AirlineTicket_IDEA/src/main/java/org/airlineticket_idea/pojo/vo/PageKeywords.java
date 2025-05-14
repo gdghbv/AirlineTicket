@@ -2,7 +2,8 @@ package org.airlineticket_idea.pojo.vo;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
+
 
 @Data
 public class PageKeywords {

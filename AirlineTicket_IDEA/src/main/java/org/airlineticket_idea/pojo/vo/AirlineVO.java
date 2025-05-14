@@ -3,6 +3,7 @@ package org.airlineticket_idea.pojo.vo;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.Date;
 
 @Data
@@ -14,8 +15,8 @@ public class AirlineVO {
     private Integer departureAirportId;
     private String boardingGate;
     private BigDecimal price;
-    private Date departureTime;
-    private Date arrivalTime;
+    private Time departureTime;
+    private Time arrivalTime;
     private Date date;
     private Integer firstSeat;
     private Integer secondSeat;

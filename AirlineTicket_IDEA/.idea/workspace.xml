@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/mapper/AirlineMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/mapper/AirlineMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/AirlineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/AirlineMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/DeepSeekController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/CustomerServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/../接口文档.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +87,9 @@
     ]
   }
 }</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
@@ -183,6 +192,12 @@
       <workItem from="1747191793172" duration="177000" />
       <workItem from="1747197062672" duration="1117000" />
       <workItem from="1747201478834" duration="1818000" />
+      <workItem from="1747203655831" duration="137000" />
+      <workItem from="1747205429296" duration="695000" />
+      <workItem from="1747208096199" duration="1924000" />
+      <workItem from="1747231709035" duration="1169000" />
+      <workItem from="1747233593465" duration="186000" />
+      <workItem from="1747241987971" duration="3209000" />
     </task>
     <servers />
   </component>

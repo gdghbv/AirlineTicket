@@ -2,6 +2,7 @@ package org.airlineticket_idea.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,6 +10,7 @@ import org.airlineticket_idea.mapper.AirlineMapper;
 import org.airlineticket_idea.mapper.OrderMapper;
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
+import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.pojo.vo.PageKeywords;
 import org.airlineticket_idea.service.CustomerService;
 import org.airlineticket_idea.mapper.CustomerMapper;
@@ -19,6 +21,9 @@ import org.airlineticket_idea.utils.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +79,25 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
     @Override
     public Result getCustomerAirline(PageKeywords pageKeywords) {
         IPage<Map> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
-        airlineMapper.selectAirlineListWithPage(page, pageKeywords);
+        QueryWrapper<AirlineVO> queryWrapper = new QueryWrapper<>();
+        if (pageKeywords.getDepartureKeyword() != null && pageKeywords.getDepartureKeyword().length() > 0) {
+            queryWrapper.like("a.departure", pageKeywords.getDepartureKeyword());
+        }
+        if (pageKeywords.getArrivalKeyword() != null && pageKeywords.getArrivalKeyword().length() > 0) {
+            queryWrapper.like("a.arrival", pageKeywords.getArrivalKeyword());
+        }
+        if (pageKeywords.getDateKeyword() != null) {
+            queryWrapper.eq("a.date", pageKeywords.getDateKeyword());
+        }
+        // 排除起飞时间距离当前时间不足3小时的航班
+        queryWrapper.and(wrapper -> wrapper.eq("a.date", LocalDate.now())
+                .gt("a.departure_time", LocalTime.now().plusHours(3))
+                .or()
+                .gt("a.date", LocalDate.now())
+        );
+        // 排序
+        queryWrapper.orderByAsc("a.date", "a.departure_time");
+        airlineMapper.selectAirlineListWithPage(page, pageKeywords, queryWrapper);
         List<Map> record = page.getRecords();
         Map data = new HashMap();
         data.put("pageData", record);
@@ -82,9 +105,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         data.put("pageSize", page.getSize());
         data.put("totalPage", page.getPages());
         data.put("totalSize", page.getTotal());
-        Map pageInfo = new HashMap();
-        pageInfo.put("pageInfo", data);
-        return Result.ok(pageInfo);
+        return Result.ok(data);
 
     }
 
@@ -109,7 +130,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         int userId = jwtHelper.getUserId(token).intValue();
         Customer data = customerMapper.selectById(userId);
         data.setEmail(customer.getEmail());
-        data.setPhone(customer.getPhone());
+        data.setUserName(customer.getUserName());
         customerMapper.updateById(data);
         return Result.ok(null);
     }

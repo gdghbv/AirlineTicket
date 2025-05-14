@@ -51,19 +51,7 @@ FROM airline a
         FROM airline a
         LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
         LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
-        <where>
-        <if test="pageKeywords.departureKeyword != null and pageKeywords.departureKeyword.length() > 0">
-            AND departure LIKE CONCAT('%', #{pageKeywords.departureKeyword}, '%')
-        </if>
-        <if test="pageKeywords.arrivalKeyword != null and pageKeywords.arrivalKeyword.length() > 0">
-            AND arrival LIKE CONCAT('%', #{pageKeywords.arrivalKeyword}, '%')
-        </if>
-        <if test="pageKeywords.dateKeyword != null">
-            AND date = #{pageKeywords.dateKeyword}
-        </if>
-        </where>
-            AND (a.departure_time >DATE_ADD(NOW(), INTERBAL 3 HOUR) OR a.date >DATE_FORMAT(NOW(), '%Y-%m-%d'))
-            ORDER BY  a.date,a.departure_time
+    ${ew.customSqlSegment}
     </select>
 
 </mapper>

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.Date;
 import lombok.Data;
 
@@ -27,9 +28,9 @@ public class Airline {
 
     private BigDecimal price;
 
-    private Date departureTime;
+    private Time departureTime;
 
-    private Date arrivalTime;
+    private Time arrivalTime;
 
     private Date date;
 
