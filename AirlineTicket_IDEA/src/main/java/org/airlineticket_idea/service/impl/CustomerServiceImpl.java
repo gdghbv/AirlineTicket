@@ -35,8 +35,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
     private CustomerMapper customerMapper;
     @Autowired
     private AirlineMapper airlineMapper;
-    @Autowired
-    private OrderMapper orderMapper;
+
     @Autowired
     private JwtHelper jwtHelper;
 

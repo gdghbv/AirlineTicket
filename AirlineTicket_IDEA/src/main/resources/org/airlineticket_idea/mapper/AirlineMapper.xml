@@ -62,6 +62,8 @@ FROM airline a
             AND date = #{pageKeywords.dateKeyword}
         </if>
         </where>
+            AND (a.departure_time >DATE_ADD(NOW(), INTERBAL 3 HOUR) OR a.date >DATE_FORMAT(NOW(), '%Y-%m-%d'))
+            ORDER BY  a.date,a.departure_time
     </select>
 
 </mapper>

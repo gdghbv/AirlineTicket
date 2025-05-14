@@ -5,10 +5,12 @@ import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
 import org.airlineticket_idea.pojo.vo.PageKeywords;
 import org.airlineticket_idea.service.CustomerService;
+import org.airlineticket_idea.service.DeepSeekService;
 import org.airlineticket_idea.service.OrderService;
 import org.airlineticket_idea.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/customer")
@@ -18,6 +20,17 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    private DeepSeekService deepSeekService;
+//咨询ai
+    @PostMapping("/ask")
+    public Mono<Result<String>> askAI(@RequestBody String question) {
+
+        System.out.println("接受到了AI请求，正在返回");
+        System.out.println(question);
+        return deepSeekService.getAIResponse(question);
+    }
     //注册
     @PostMapping("/register")
     public Result register(@RequestBody Customer customer){
