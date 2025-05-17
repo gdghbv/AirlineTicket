@@ -50,7 +50,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         queryWrapper.eq(Customer::getPhone, customer.getPhone());
         long count = customerMapper.selectCount(queryWrapper);
         if (count > 0) {
-            return Result.build(null, ResultCodeEnum.USERNAME_USED);
+            return Result.build(null, ResultCodeEnum.PHONE_USED);
         }
         customer.setPassword(MD5Util.encrypt(customer.getPassword()));
         customer.setMilsPoints(-1);
@@ -64,7 +64,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         queryWrapper.eq(Customer::getPhone, customer.getPhone());
         Customer loginCustomer = customerMapper.selectOne(queryWrapper);
         if (loginCustomer == null) {
-            return Result.build(null, ResultCodeEnum.USERNAME_ERROR);
+            return Result.build(null, ResultCodeEnum.PHONE_ERROR);
         }
         if (!StringUtils.isEmpty(customer.getPassword()) && MD5Util.encrypt(customer.getPassword()).equals(loginCustomer.getPassword())) {
             String token = jwtHelper.createToken(Long.valueOf(loginCustomer.getCustomerId()));
@@ -76,38 +76,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         }
     }
 
-    @Override
-    public Result getCustomerAirline(PageKeywords pageKeywords) {
-        IPage<Map> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
-        QueryWrapper<AirlineVO> queryWrapper = new QueryWrapper<>();
-        if (pageKeywords.getDepartureKeyword() != null && pageKeywords.getDepartureKeyword().length() > 0) {
-            queryWrapper.like("a.departure", pageKeywords.getDepartureKeyword());
-        }
-        if (pageKeywords.getArrivalKeyword() != null && pageKeywords.getArrivalKeyword().length() > 0) {
-            queryWrapper.like("a.arrival", pageKeywords.getArrivalKeyword());
-        }
-        if (pageKeywords.getDateKeyword() != null) {
-            queryWrapper.eq("a.date", pageKeywords.getDateKeyword());
-        }
-        // 排除起飞时间距离当前时间不足3小时的航班
-        queryWrapper.and(wrapper -> wrapper.eq("a.date", LocalDate.now())
-                .gt("a.departure_time", LocalTime.now().plusHours(3))
-                .or()
-                .gt("a.date", LocalDate.now())
-        );
-        // 排序
-        queryWrapper.orderByAsc("a.date", "a.departure_time");
-        airlineMapper.selectAirlineListWithPage(page, pageKeywords, queryWrapper);
-        List<Map> record = page.getRecords();
-        Map data = new HashMap();
-        data.put("pageData", record);
-        data.put("pageNum", page.getCurrent());
-        data.put("pageSize", page.getSize());
-        data.put("totalPage", page.getPages());
-        data.put("totalSize", page.getTotal());
-        return Result.ok(data);
 
-    }
 
     @Override
     public Result getUserInfo(String token) {

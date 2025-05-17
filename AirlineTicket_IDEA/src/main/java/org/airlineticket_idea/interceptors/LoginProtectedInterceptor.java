@@ -29,3 +29,4 @@ public class LoginProtectedInterceptor implements HandlerInterceptor {
         return false;
     }
 }
+

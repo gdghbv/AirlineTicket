@@ -16,7 +16,6 @@ public interface CustomerService extends IService<Customer> {
 
     Result login(Customer customer);
 
-    Result getCustomerAirline(PageKeywords pageKeywords);
 
     Result getUserInfo(String token);
 

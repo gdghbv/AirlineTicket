@@ -2,6 +2,7 @@ package org.airlineticket_idea.service;
 
 import org.airlineticket_idea.pojo.Airport;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.airlineticket_idea.utils.Result;
 
 /**
 * @author 35461
@@ -10,4 +11,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AirportService extends IService<Airport> {
 
+    Result register(Airport airport);
+
+    Result login(Airport airport);
+
+
+    Result admin();
 }

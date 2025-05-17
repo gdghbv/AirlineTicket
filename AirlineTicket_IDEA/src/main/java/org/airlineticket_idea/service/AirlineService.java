@@ -2,6 +2,8 @@ package org.airlineticket_idea.service;
 
 import org.airlineticket_idea.pojo.Airline;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.utils.Result;
 
 /**
 * @author 35461
@@ -10,4 +12,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AirlineService extends IService<Airline> {
 
+    Result getAirlines(PageKeywords pageKeywords);
+
+    Result addAirline(Airline airline);
+
+    Result updateAirline(Airline airline);
+
+    Result deleteAirline(Integer id);
 }

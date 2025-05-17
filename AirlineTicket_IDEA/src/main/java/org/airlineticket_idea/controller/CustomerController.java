@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
 import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.service.AirlineService;
 import org.airlineticket_idea.service.CustomerService;
 import org.airlineticket_idea.service.DeepSeekService;
 import org.airlineticket_idea.service.OrderService;
@@ -20,7 +21,8 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     OrderService orderService;
-
+     @Autowired
+     AirlineService airlineService;
     @Autowired
     private DeepSeekService deepSeekService;
 //咨询ai
@@ -45,8 +47,8 @@ public class CustomerController {
     }
     //根据分页条件和关键词来获取客户的航班信息
     @PostMapping("/getAirline")
-public Result getCustomerAirline(@RequestBody PageKeywords pageKeywords){
-    Result result = customerService.getCustomerAirline(pageKeywords);
+public Result getAirlines(@RequestBody PageKeywords pageKeywords){
+    Result result = airlineService.getAirlines(pageKeywords);
         return result;
     }
     //查询个人的客户信息
