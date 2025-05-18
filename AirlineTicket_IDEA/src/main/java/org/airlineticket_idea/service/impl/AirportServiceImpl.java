@@ -4,7 +4,6 @@ import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.airlineticket_idea.pojo.Airport;
-import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.service.AirportService;
 import org.airlineticket_idea.mapper.AirportMapper;
 import org.airlineticket_idea.utils.JwtHelper;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,6 +59,40 @@ private JwtHelper jwtHelper;
         } else {
             return Result.build(null, ResultCodeEnum.PASSWORD_ERROR);
         }
+    }
+
+    @Override
+    public Result admin(String token) {
+        Airport airport = airportMapper.selectById(jwtHelper.getUserId(token));
+        LambdaQueryWrapper<Airport> queryWrapper = new LambdaQueryWrapper();
+        queryWrapper.eq(Airport::getAirportId, airport.getAirportId());
+
+        List<Airport> list =airportMapper.selectList(queryWrapper);
+        return Result.ok(list);
+    }
+
+    @Override
+    public Result updateAdmin(Airport airport) {
+        airportMapper.updateById(airport);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result deleteAdmin(Integer id) {
+        airportMapper.deleteById(id);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result updateUser(Airport airport) {
+        airportMapper.updateById(airport);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result deleteUser(Integer id) {
+        airportMapper.deleteById(id);
+        return Result.ok(null);
     }
 
 

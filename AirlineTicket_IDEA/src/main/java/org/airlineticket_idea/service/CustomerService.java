@@ -2,7 +2,7 @@ package org.airlineticket_idea.service;
 
 import org.airlineticket_idea.pojo.Customer;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.pojo.dto.UserKeywords;
 import org.airlineticket_idea.utils.Result;
 
 /**
@@ -22,4 +22,5 @@ public interface CustomerService extends IService<Customer> {
     Result modifyUserInfo(String token, Customer customer);
 
 
+    Result users(UserKeywords userKeywords);
 }

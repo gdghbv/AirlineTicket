@@ -16,5 +16,15 @@ public interface AirportService extends IService<Airport> {
     Result login(Airport airport);
 
 
-    Result admin();
+    Result admin(String token);
+
+    Result updateAdmin(Airport airport);
+
+    Result deleteAdmin(Integer id);
+
+    Result updateUser(Airport airport);
+
+    Result deleteUser(Integer id);
+
+
 }

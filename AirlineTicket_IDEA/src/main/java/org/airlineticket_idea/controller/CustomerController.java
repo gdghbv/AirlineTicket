@@ -1,9 +1,8 @@
 package org.airlineticket_idea.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
-import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.airlineticket_idea.service.AirlineService;
 import org.airlineticket_idea.service.CustomerService;
 import org.airlineticket_idea.service.DeepSeekService;

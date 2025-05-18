@@ -2,7 +2,7 @@ package org.airlineticket_idea.service;
 
 import org.airlineticket_idea.pojo.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.airlineticket_idea.utils.Result;
 
 /**

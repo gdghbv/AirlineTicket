@@ -16,4 +16,8 @@
     <sql id="Base_Column_List">
         customer_id,user_name,password,email,phone,mils_points
     </sql>
+    <select id="selectListWithPageAndSelector" resultType="org.airlineticket_idea.pojo.Customer">
+        SELECT * FROM customer
+        ${ew.customSqlSegment}
+    </select>
 </mapper>

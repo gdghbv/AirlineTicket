@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
-import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.airlineticket_idea.service.AirlineService;
 import org.airlineticket_idea.mapper.AirlineMapper;
 import org.airlineticket_idea.utils.Result;

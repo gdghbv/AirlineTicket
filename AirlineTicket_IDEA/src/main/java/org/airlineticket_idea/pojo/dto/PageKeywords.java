@@ -1,4 +1,4 @@
-package org.airlineticket_idea.pojo.vo;
+package org.airlineticket_idea.pojo.dto;
 
 import lombok.Data;
 

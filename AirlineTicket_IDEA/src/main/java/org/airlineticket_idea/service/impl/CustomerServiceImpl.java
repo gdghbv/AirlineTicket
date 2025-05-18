@@ -7,11 +7,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.airlineticket_idea.mapper.AirlineMapper;
-import org.airlineticket_idea.mapper.OrderMapper;
 import org.airlineticket_idea.pojo.Customer;
-import org.airlineticket_idea.pojo.Order;
-import org.airlineticket_idea.pojo.vo.AirlineVO;
-import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.pojo.dto.UserKeywords;
 import org.airlineticket_idea.service.CustomerService;
 import org.airlineticket_idea.mapper.CustomerMapper;
 import org.airlineticket_idea.utils.JwtHelper;
@@ -21,9 +18,6 @@ import org.airlineticket_idea.utils.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,8 +32,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         implements CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
-    @Autowired
-    private AirlineMapper airlineMapper;
+
 
     @Autowired
     private JwtHelper jwtHelper;
@@ -77,7 +70,6 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
     }
 
 
-
     @Override
     public Result getUserInfo(String token) {
         boolean expiration = jwtHelper.isExpiration(token);
@@ -102,6 +94,34 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
         data.setUserName(customer.getUserName());
         customerMapper.updateById(data);
         return Result.ok(null);
+    }
+
+    @Override
+    public Result users(UserKeywords userKeywords) {
+        IPage<Map> page = new Page<>(userKeywords.getPageNum(), userKeywords.getPageSize());
+        LambdaQueryWrapper<Customer> queryWrapper = new LambdaQueryWrapper<>();
+        if (userKeywords.getEmailKeywords() != null && userKeywords.getEmailKeywords().length() > 0) {
+           queryWrapper.like(Customer::getEmail, userKeywords.getEmailKeywords());
+        }
+        if (userKeywords.getPhoneKeywords() != null && userKeywords.getPhoneKeywords().length() > 0) {
+             queryWrapper.like(Customer::getPhone, userKeywords.getPhoneKeywords());
+        }
+        if (userKeywords.getIdKeywords() != null && userKeywords.getIdKeywords() > 0) {
+             queryWrapper.eq(Customer::getCustomerId, userKeywords.getIdKeywords());
+        }
+        if (userKeywords.getNameKeywords() != null && userKeywords.getNameKeywords().length() > 0) {
+                queryWrapper.like(Customer::getUserName, userKeywords.getNameKeywords());
+        }
+        customerMapper.selectListWithPageAndSelector(page,  queryWrapper);
+        List<Map> records = page.getRecords();
+        Map data = new HashMap();
+        data.put("pageData", records);
+        data.put("pageNum", page.getPages());
+        data.put("totalPage", page.getPages());
+        data.put("totalSize", page.getTotal());
+        return Result.ok(data);
+
+
     }
 
 

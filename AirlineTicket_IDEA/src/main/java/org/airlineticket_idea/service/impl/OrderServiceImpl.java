@@ -12,7 +12,7 @@ import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
-import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.airlineticket_idea.service.OrderService;
 import org.airlineticket_idea.utils.JwtHelper;
 import org.airlineticket_idea.utils.Result;

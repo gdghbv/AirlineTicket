@@ -19,6 +19,8 @@ public class Airplane {
 
     private String location;
 
+    private Integer belongedAirportId;
+
     private Integer firstSeat;
 
     private Integer secondSeat;

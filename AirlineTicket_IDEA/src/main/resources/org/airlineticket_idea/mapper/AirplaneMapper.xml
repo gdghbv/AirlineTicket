@@ -12,10 +12,14 @@
             <result property="firstSeat" column="first_seat" />
             <result property="secondSeat" column="second_seat" />
             <result property="thirdSeat" column="third_seat" />
+        <result property="belongedAirportId" column="belonged_airport_id"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         airplane_id,airplane_name,status,location,first_seat,second_seat,
         third_seat
     </sql>
+    <select id="selectAirplanesListWithPage">
+
+    </select>
 </mapper>

@@ -1,10 +1,15 @@
 package org.airlineticket_idea.controller;
 
 import org.airlineticket_idea.pojo.Airline;
+import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Airport;
-import org.airlineticket_idea.pojo.vo.PageKeywords;
+import org.airlineticket_idea.pojo.dto.PlaneKeywords;
+import org.airlineticket_idea.pojo.dto.UserKeywords;
+import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.airlineticket_idea.service.AirlineService;
+import org.airlineticket_idea.service.AirplaneService;
 import org.airlineticket_idea.service.AirportService;
+import org.airlineticket_idea.service.CustomerService;
 import org.airlineticket_idea.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +23,10 @@ public class AirportController {
     private AirportService airportService;
     @Autowired
     private AirlineService airlineService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private AirplaneService airplaneService;
 
     //机场注册
     @PostMapping("/register")
@@ -57,11 +66,11 @@ public class AirportController {
         Result result = airlineService.deleteAirline(id);
         return result;
     }
-    //todo 下面是正在进行的接口
+    //todo 下面是已经完成，但是还没测试的接口
     //机场查询所有同一机场的管理员信息接口
     @GetMapping("/admin")
-    public Result admin(){
-        Result result = airportService.admin();
+    public Result admin(@RequestHeader String token){
+        Result result = airportService.admin(token);
         return result;
     }
     //机场修改管理员信息接口
@@ -79,8 +88,8 @@ public class AirportController {
 
     //机场查询所有用户的接口，可以根据id、name、phone来查询用户信息
     @GetMapping("/users")
-    public Result users(){
-        Result result = airportService.users();
+    public Result users(@RequestBody UserKeywords userKeywords){
+        Result result = customerService.users(userKeywords);
         return result;
     }
     //机场修改用户信息接口
@@ -97,25 +106,26 @@ public class AirportController {
     }
     //机场查询飞机接口
     @GetMapping("/planes")
-    public Result planes(){
-        Result result = airportService.planes();
+    public Result planes(@RequestBody PlaneKeywords planeKeywords,@RequestHeader String token){
+        Result result = airplaneService.planes(planeKeywords,token);
         return result;
     }
     //机场添加飞机接口
     @PostMapping("/addPlane")
-    public Result addPlane(@RequestBody Airport airport){
-        Result result = airportService.addPlane(airport);
+    public Result addPlane(@RequestBody Airplane  airplane){
+        Result result =airplaneService.addPlane(airplane);
         return result;
     }
     //机场修改飞机接口
     @PutMapping("/updatePlane")
-    public Result updatePlane(@RequestBody Airport airport){
-        Result result = airportService.updatePlane(airport);
+    public Result updatePlane(@RequestBody Airplane airplane){
+        Result result = airplaneService.updatePlane(airplane);
         return result;
     }
     //机场删除飞机接口
     @DeleteMapping("/deletePlane")
     public Result deletePlane(@RequestParam("id")Integer id){
-        Result result = airportService.deletePlane(id);
+        Result result = airplaneService.deletePlane(id);
         return result;
+}
 }
