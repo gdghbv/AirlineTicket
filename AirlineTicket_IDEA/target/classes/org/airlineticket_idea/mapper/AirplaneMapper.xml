@@ -19,5 +19,7 @@
         airplane_id,airplane_name,status,location,first_seat,second_seat,
         third_seat
     </sql>
-    <select id="selectAirplanesListWithPage"></select>
+    <select id="selectAirplanesListWithPage">
+
+    </select>
 </mapper>
