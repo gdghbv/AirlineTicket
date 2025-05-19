@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/config/WebMBVConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/config/WebMBVConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirplaneServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirplaneServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/config/WebMBVConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/config/WebMBVConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirplaneMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirplaneMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/CustomerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/CustomerMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirplaneService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirplaneService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirplaneServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirplaneServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/CustomerServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/stores/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/stores/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/vite.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +55,7 @@
     &quot;JUnit.AirlineticketIdeaApplicationTests.testGetSeatId.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.AirlineticketIdeaApplicationTests.testSelectWithAirport.executor&quot;: &quot;Run&quot;,
     &quot;Maven.AirlineTicket_IDEA [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AirlineTicket_IDEA [package].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -209,6 +203,8 @@
       <workItem from="1747594247260" duration="14000" />
       <workItem from="1747596800936" duration="138000" />
       <workItem from="1747624639009" duration="2686000" />
+      <workItem from="1747651080560" duration="1250000" />
+      <workItem from="1747660234791" duration="1131000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import axios from 'axios'
+import request from '../utils/request'
 
 export const useChatStore = defineStore('chat', () => {
   const messages = ref([])
@@ -17,7 +18,7 @@ export const useChatStore = defineStore('chat', () => {
         content: question
       })
       
-      const response = await axios.post('/api/dickSeek/ask', question, {
+      const response = await axios.post('/dickSeek/ask', question, {
         headers: {
           'Content-Type': 'text/plain'
         }
