@@ -23,4 +23,8 @@ public interface CustomerService extends IService<Customer> {
 
 
     Result users(UserKeywords userKeywords);
+
+    Result updateUser(Customer customer);
+
+    Result deleteUser(Integer id);
 }

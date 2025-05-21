@@ -20,7 +20,7 @@ public interface AirplaneService extends IService<Airplane> {
     Result planes(PlaneKeywords planeKeywords, String token);
 
 
-    Result addPlane(Airplane airplane);
+    Result addPlane(Airplane airplane,String token);
 
     Result updatePlane(Airplane airplane);
 

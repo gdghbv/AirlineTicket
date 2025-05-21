@@ -1,22 +1,10 @@
 @import './base.css';
 
-:root {
-  --main-font-size: 16px;
-  --main-btn-radius: 18px;
-  --main-btn-font-size: 1.08rem;
-  --main-btn-padding: 13px 0;
-}
-
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
-}
-
-body, #app {
-  font-size: var(--main-font-size);
-  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
 }
 
 a,
@@ -44,65 +32,4 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}
-
-/* 全局内容区留白和卡片优化 */
-.page-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 36px 28px 36px 28px;
-  box-sizing: border-box;
-}
-.main-card, .card-pop {
-  border-radius: var(--main-radius);
-  box-shadow: var(--main-shadow);
-  background: #fff;
-  padding: 32px 28px 24px 28px;
-  margin-bottom: 24px;
-}
-/* 优化按钮细节 */
-.main-btn, .order-btn, .register-btn, .login-btn, .nav-btn, .pagination-bar button, .order-nav-btns button, .auth-btns button {
-  border-radius: var(--main-btn-radius);
-  font-size: var(--main-btn-font-size);
-  padding: var(--main-btn-padding);
-  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-  font-weight: 600;
-  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
-  color: #fff;
-  border: none;
-  box-shadow: 0 2px 8px #fc5c7d22;
-  cursor: pointer;
-  transition: background 0.22s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.22s, transform 0.15s;
-  outline: none;
-}
-.main-btn:hover, .order-btn:hover, .register-btn:hover, .login-btn:hover, .nav-btn:hover, .pagination-bar button:hover:not(:disabled), .order-nav-btns button:hover, .auth-btns button:hover {
-  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
-  box-shadow: 0 4px 16px 0 #fc5c7d33;
-  transform: translateY(-2px) scale(1.03);
-}
-.main-btn:active, .order-btn:active, .register-btn:active, .login-btn:active, .nav-btn:active, .pagination-bar button:active:not(:disabled), .order-nav-btns button:active, .auth-btns button:active {
-  background: #6a82fb;
-  box-shadow: 0 1px 4px #6a82fb33;
-  transform: scale(0.98);
-}
-/* 优化输入框 */
-input, .main-input {
-  border-radius: var(--main-radius);
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1.5px solid #e3eaf7;
-  background: rgba(255,255,255,0.7);
-  transition: border 0.2s, box-shadow 0.2s;
-  outline: none;
-  box-shadow: 0 1.5px 6px 0 rgba(0,0,0,0.03);
-}
-input:focus, .main-input:focus {
-  border: 1.5px solid var(--main-color);
-  background: #fff;
-  box-shadow: 0 0 0 2px #fc5c7d33;
-}
-/* 统一动画曲线和时长 */
-.fade-in-page, .card-pop, .fade-in-title, .fade-slide-enter-active, .fade-slide-leave-active, .expand-enter-active, .expand-leave-active {
-  transition-timing-function: cubic-bezier(.68,-0.55,.27,1.55) !important;
-  transition-duration: 0.5s !important;
 }

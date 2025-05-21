@@ -1,10 +1,9 @@
 <template>
-  <NavBar />
   <div class="register-root fade-in-page">
     <div class="register-card card-pop">
       <div class="register-left">
-        <div class="register-graphic animated-slide-in">
-          <svg width="120" height="120" viewBox="0 0 120 120">
+        <div class="register-graphic" ref="planeArea">
+          <svg id="plane-svg" width="120" height="120" viewBox="0 0 120 120">
             <defs>
               <linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#43e97b"/>
@@ -14,92 +13,180 @@
             <circle cx="60" cy="60" r="55" fill="url(#lg2)" opacity="0.7"/>
             <circle cx="60" cy="60" r="40" fill="#fff" opacity="0.15"/>
             <circle cx="60" cy="60" r="25" fill="#fff" opacity="0.08"/>
+            <!-- 飞机SVG -->
+            <g id="plane-group">
+              <polygon points="60,30 65,60 60,55 55,60" fill="#1976d2"/>
+              <rect x="57" y="60" width="6" height="18" rx="2" fill="#1976d2"/>
+              <rect x="54" y="78" width="12" height="4" rx="2" fill="#43e97b"/>
+            </g>
           </svg>
           <div class="register-title">欢迎注册</div>
           <div class="register-desc">开启智能出行新体验</div>
         </div>
       </div>
       <div class="register-right animated-slide-in-right">
-        <form class="register-form" @submit.prevent="handleRegister">
-          <div class="form-title">创建账号</div>
-          <transition name="input-focus">
-            <div class="form-group role-group">
-              <label>注册身份</label>
-              <div class="role-switch">
-                <label :class="['role-option', role === 'customer' ? 'active' : '']">
-                  <input type="radio" value="customer" v-model="role" />
-                  <span class="role-label">客户注册</span>
-                </label>
-                <label :class="['role-option', role === 'airport' ? 'active' : '']">
-                  <input type="radio" value="airport" v-model="role" />
-                  <span class="role-label">机场注册</span>
-                </label>
-              </div>
-            </div>
-          </transition>
-          <transition name="input-focus">
-            <div class="form-group" key="phone">
-              <label>手机号</label>
-              <input v-model="phone" type="tel" required pattern="^1[3-9]\d{9}$" placeholder="请输入手机号" />
-            </div>
-          </transition>
-          <transition name="input-focus">
-            <div class="form-group" key="password">
-              <label>密码</label>
-              <input v-model="password" type="password" required placeholder="请输入密码" />
-            </div>
-          </transition>
-          <transition name="input-focus">
-            <div class="form-group" key="confirm">
-              <label>确认密码</label>
-              <input v-model="confirm" type="password" required placeholder="请再次输入密码" />
-            </div>
-          </transition>
-          <button class="register-btn animated-bounce-in" type="submit">
-            <span class="btn-icon">✨</span> 注册
-          </button>
-          <div class="to-login">已有账号？<router-link to="/login">登录</router-link></div>
-        </form>
+        <el-card class="register-el-card">
+          <div class="form-title">
+            <el-icon style="vertical-align: middle; font-size: 22px; color: #43e97b;"><i-ep-user /></el-icon>
+            用户注册
+          </div>
+          <el-radio-group v-model="userType" class="user-type-group">
+            <el-radio-button label="customer">顾客用户</el-radio-button>
+            <el-radio-button label="airport">机场用户</el-radio-button>
+          </el-radio-group>
+          <el-form :model="form" :rules="rules" ref="registerFormRef" label-width="100px" class="register-form">
+            <el-form-item label="手机号" prop="phone">
+              <el-input v-model="form.phone" maxlength="20" prefix-icon="i-ep-phone" />
+            </el-form-item>
+            <el-form-item v-if="userType==='customer'" label="用户名" prop="userName">
+              <el-input v-model="form.userName" maxlength="20" prefix-icon="i-ep-user" />
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+              <el-input v-model="form.password" type="password" maxlength="20" prefix-icon="i-ep-lock" />
+            </el-form-item>
+            <template v-if="userType==='airport'">
+              <el-form-item label="邮箱" prop="email">
+                <el-input v-model="form.email" maxlength="40" prefix-icon="i-ep-message" />
+              </el-form-item>
+              <el-form-item label="机场ID" prop="airportId">
+                <el-input v-model="form.airportId" maxlength="10" prefix-icon="i-ep-office-building" />
+              </el-form-item>
+              <el-form-item label="机场地址" prop="address">
+                <el-input v-model="form.address" maxlength="50" prefix-icon="i-ep-location" />
+              </el-form-item>
+              <el-form-item label="机场名称" prop="airportName">
+                <el-input v-model="form.airportName" maxlength="30" prefix-icon="i-ep-takeaway-box" />
+              </el-form-item>
+            </template>
+            <el-form-item>
+              <el-button type="primary" @click="onRegister" :loading="loading" class="register-btn">注册</el-button>
+            </el-form-item>
+            <el-form-item>
+              <span>已有账号？<router-link to="/login">去登录</router-link></span>
+            </el-form-item>
+          </el-form>
+        </el-card>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import NavBar from '@/components/NavBar.vue'
-const phone = ref('')
-const password = ref('')
-const confirm = ref('')
-const role = ref('customer')
+import { ElMessage } from 'element-plus'
+import { CustomerRegister, AirportRegister } from '@/api/index'
+import { User as IepUser, Phone as IepPhone, Lock as IepLock, Message as IepMessage, OfficeBuilding as IepOfficeBuilding, Location as IepLocation, TakeawayBox as IepTakeawayBox } from '@element-plus/icons-vue'
+
 const router = useRouter()
-function handleRegister() {
-  if (password.value !== confirm.value) {
-    alert('两次输入的密码不一致')
-    return
+const userType = ref('customer')
+const loading = ref(false)
+const form = ref({
+  phone: '',
+  userName: '',
+  password: '',
+  email: '',
+  airportId: '',
+  address: '',
+  airportName: ''
+})
+const rules = ref({
+  phone: [
+    { required: true, message: '请输入手机号', trigger: 'blur' },
+    { pattern: /^1\d{10}$/, message: '请输入正确的手机号', trigger: 'blur' }
+  ],
+  userName: [
+    { required: true, message: '请输入用户名', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 4, message: '密码至少4位', trigger: 'blur' }
+  ],
+  email: [
+    { required: true, message: '请输入邮箱', trigger: 'blur' },
+    { type: 'email', message: '请输入正确的邮箱格式', trigger: 'blur' }
+  ],
+  airportId: [
+    { required: true, message: '请输入机场ID', trigger: 'blur' }
+  ],
+  address: [
+    { required: true, message: '请输入机场地址', trigger: 'blur' }
+  ],
+  airportName: [
+    { required: true, message: '请输入机场名称', trigger: 'blur' }
+  ]
+})
+const registerFormRef = ref()
+const planeArea = ref(null)
+
+watch(userType, (val) => {
+  // 切换用户类型时清空表单
+  form.value = {
+    phone: '',
+    userName: '',
+    password: '',
+    email: '',
+    airportId: '',
+    address: '',
+    airportName: ''
   }
-  // 这里写注册逻辑
-  alert(`注册成功（身份：${role.value}，手机号：${phone.value}，请替换为实际逻辑）`)
-  router.push('/login')
+})
+
+const onRegister = () => {
+  registerFormRef.value.validate(async (valid) => {
+    if (!valid) return
+    loading.value = true
+    try {
+      if (userType.value === 'customer') {
+        await CustomerRegister({
+          phone: form.value.phone,
+          userName: form.value.userName,
+          password: form.value.password
+        })
+        ElMessage.success('顾客注册成功，请登录')
+        router.push('/login')
+      } else {
+        await AirportRegister({
+          phone: form.value.phone,
+          email: form.value.email,
+          password: form.value.password,
+          airportId: form.value.airportId,
+          address: form.value.address,
+          airportName: form.value.airportName
+        })
+        ElMessage.success('机场用户注册成功，请登录')
+        router.push('/login')
+      }
+    } catch (e) {
+      // 错误提示已由拦截器处理
+    } finally {
+      loading.value = false
+    }
+  })
 }
 </script>
 
 <style scoped>
 .register-root {
-  min-height: 100vh;
-  background: linear-gradient(120deg, #f8fafc 0%, #e0ffe7 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0ffe7 100%);
   font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  z-index: 10;
 }
 .register-card {
   display: flex;
-  width: 720px;
-  min-height: 420px;
+  width: 820px;
+  max-width: 95vw;
+  min-height: 480px;
   border-radius: 32px;
-  box-shadow: 0 8px 32px 0 #6a82fb22, 0 1.5px 6px 0 #fc5c7d11;
+  box-shadow: 0 8px 32px 0 #43e97b22, 0 1.5px 6px 0 #38f9d711;
   background: rgba(255,255,255,0.97);
   overflow: hidden;
   backdrop-filter: blur(18px) saturate(180%);
@@ -157,8 +244,6 @@ function handleRegister() {
   0% { opacity: 0; transform: translateX(40px); }
   100% { opacity: 1; transform: translateX(0); }
 }
-.animated-fade-in { animation: fade-in 1.2s; }
-.animated-slide-in { animation: fade-in 1.2s; }
 .animated-slide-in-right { animation: fade-in-right 1.2s; }
 .animated-bounce-in { animation: bounce-in 0.7s; }
 @keyframes bounce-in {
@@ -166,14 +251,11 @@ function handleRegister() {
   60% { transform: scale(1.05); opacity: 1; }
   100% { transform: scale(1); }
 }
-.register-form {
-  width: 90%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.register-el-card {
+  width: 100%;
+  box-shadow: none;
   background: transparent;
-  padding: 24px 0 18px 0; /* 上下内边距，避免标题和底部文字贴边 */
+  border: none;
 }
 .form-title {
   font-size: 1.5rem;
@@ -184,31 +266,13 @@ function handleRegister() {
   letter-spacing: 1px;
   padding-top: 8px;
 }
-.form-group {
+.user-type-group {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  position: relative;
+  justify-content: center;
+  margin-bottom: 18px;
 }
-label {
-  font-size: 15px;
-  color: #5a5a7a;
-  font-weight: 500;
-}
-input, select {
-  padding: 12px 14px;
-  border: 1.5px solid #e3eaf7;
-  border-radius: 14px;
-  font-size: 16px;
-  background: rgba(255,255,255,0.7);
-  transition: border 0.2s, box-shadow 0.2s;
-  outline: none;
-  box-shadow: 0 1.5px 6px 0 rgba(0,0,0,0.03);
-}
-input:focus, select:focus {
-  border: 1.5px solid #43e97b;
-  background: #fff;
-  box-shadow: 0 0 0 2px #38f9d733;
+.register-form {
+  margin-top: 10px;
 }
 .register-btn {
   width: 100%;
@@ -230,73 +294,8 @@ input:focus, select:focus {
 }
 .register-btn:hover {
   background: linear-gradient(90deg, #6a82fb 0%, #43e97b 100%);
-  box-shadow: 0 4px 16px 0 #fc5c7d33;
+  box-shadow: 0 4px 16px 0 #43e97b33;
   transform: translateY(-2px) scale(1.03);
-}
-.btn-icon {
-  font-size: 20px;
-}
-.to-login {
-  margin-top: 18px;
-  text-align: right;
-  font-size: 15px;
-  padding-bottom: 8px; /* 底部留白 */
-}
-.to-login a {
-  color: #11998e;
-  text-decoration: underline;
-  margin-left: 4px;
-  font-weight: 500;
-}
-::-webkit-input-placeholder { color: #b0b8c9; }
-::-moz-placeholder { color: #b0b8c9; }
-:-ms-input-placeholder { color: #b0b8c9; }
-::placeholder { color: #b0b8c9; }
-.role-group {
-  margin-bottom: 10px;
-  margin-top: 0;
-}
-.role-switch {
-  display: flex;
-  gap: 18px;
-  margin-top: 4px;
-}
-.role-option {
-  display: flex;
-  align-items: center;
-  background: rgba(245,247,255,0.7);
-  border-radius: 18px;
-  padding: 7px 22px 7px 14px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  color: #11998e;
-  border: 1.5px solid transparent;
-  transition: background 0.2s, border 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1.5px 6px 0 rgba(67,233,123,0.04);
-  position: relative;
-  user-select: none;
-}
-.role-option input[type="radio"] {
-  display: none;
-}
-.role-option.active {
-  background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
-  color: #fff;
-  border: 1.5px solid #11998e;
-  box-shadow: 0 2px 8px 0 #11998e22;
-}
-.role-option.active .role-label {
-  font-weight: 700;
-}
-.role-option:hover:not(.active) {
-  background: #e0ffe7;
-  color: #38ef7d;
-  border: 1.5px solid #38ef7d44;
-}
-.role-label {
-  margin-left: 2px;
-  letter-spacing: 1px;
 }
 .fade-in-page {
   animation: fade-in-page 0.8s cubic-bezier(.68,-0.55,.27,1.55);
@@ -304,5 +303,19 @@ input:focus, select:focus {
 @keyframes fade-in-page {
   0% { opacity: 0; transform: translateY(40px) scale(0.98); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 900px) {
+  .register-card {
+    flex-direction: column;
+    width: 98vw;
+    min-width: 0;
+    border-radius: 18px;
+  }
+  .register-left, .register-right {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    min-height: 180px;
+  }
 }
 </style>

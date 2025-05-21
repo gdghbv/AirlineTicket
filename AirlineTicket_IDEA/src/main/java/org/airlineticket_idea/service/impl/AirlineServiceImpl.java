@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.airlineticket_idea.mapper.AirplaneMapper;
 import org.airlineticket_idea.pojo.Airline;
+import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.airlineticket_idea.service.AirlineService;
@@ -29,6 +31,8 @@ public class AirlineServiceImpl extends ServiceImpl<AirlineMapper, Airline>
     implements AirlineService{
 @Autowired
 private AirlineMapper airlineMapper;
+@Autowired
+private AirplaneMapper airplaneMapper;
     @Override
     public Result getAirlines(PageKeywords pageKeywords) {
         IPage<Map> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
@@ -50,7 +54,7 @@ private AirlineMapper airlineMapper;
         );
         // 排序
         queryWrapper.orderByAsc("a.date", "a.departure_time");
-        airlineMapper.selectAirlineListWithPage(page, pageKeywords, queryWrapper);
+        airlineMapper.selectAirlineListWithPage(page, queryWrapper);
         List<Map> record = page.getRecords();
         Map data = new HashMap();
         data.put("pageData", record);
@@ -63,7 +67,11 @@ private AirlineMapper airlineMapper;
 
     @Override
     public Result addAirline(Airline airline) {
-        airlineMapper.insert(airline);
+       Airplane airplane = airplaneMapper.selectById(airline.getAirplaneId());
+       airline.setFirstSeat(airplane.getFirstSeat());
+       airline.setSecondSeat(airplane.getSecondSeat());
+       airline.setThirdSeat(airplane.getThirdSeat());
+       airlineMapper.insert(airline);
         return Result.ok(null);
     }
 

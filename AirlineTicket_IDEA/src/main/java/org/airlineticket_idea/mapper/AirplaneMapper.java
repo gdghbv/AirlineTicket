@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.airlineticket_idea.pojo.Airplane;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.airlineticket_idea.pojo.dto.PlaneKeywords;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import java.util.Map;
 */
 public interface AirplaneMapper extends BaseMapper<Airplane> {
 
-    void selectAirplanesListWithPage(IPage<Map> page,  LambdaQueryWrapper<Airplane> queryWrapper);
+    IPage<Map> selectAirplanesListWithPage(IPage page,  @Param("ew") LambdaQueryWrapper<Airplane> queryWrapper);
 }
 
 

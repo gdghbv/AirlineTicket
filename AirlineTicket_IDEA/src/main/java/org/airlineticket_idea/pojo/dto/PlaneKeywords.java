@@ -7,7 +7,7 @@ public class PlaneKeywords {
   private Integer idKeyword;
   private String nameKeyword;
   private String statusKeyword;
-  private String belongedAirportId;
+
   private String locationKeyword;
   private Integer pageNum=1;
   private Integer pageSize =10;

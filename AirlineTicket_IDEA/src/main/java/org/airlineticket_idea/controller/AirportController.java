@@ -3,6 +3,7 @@ package org.airlineticket_idea.controller;
 import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Airport;
+import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.dto.PlaneKeywords;
 import org.airlineticket_idea.pojo.dto.UserKeywords;
 import org.airlineticket_idea.pojo.dto.PageKeywords;
@@ -40,6 +41,13 @@ public class AirportController {
         Result result = airportService.login(airport);
         return result;
     }
+    //获取管理员个人信息
+    @GetMapping("/getUserInfo")
+    public Result getUserInfo(@RequestHeader String token){
+        Result result=airportService.getUserInfo(token);
+        return result;
+    }
+
 //机场查看航班
     @PostMapping("/airlines")
     public Result airlines(@RequestBody PageKeywords pageKeywords){
@@ -66,7 +74,7 @@ public class AirportController {
         Result result = airlineService.deleteAirline(id);
         return result;
     }
-    //todo 下面是已经完成，但是还没测试的接口
+
     //机场查询所有同一机场的管理员信息接口
     @GetMapping("/admin")
     public Result admin(@RequestHeader String token){
@@ -87,33 +95,35 @@ public class AirportController {
     }
 
     //机场查询所有用户的接口，可以根据id、name、phone来查询用户信息
-    @GetMapping("/users")
-    public Result users(@RequestBody UserKeywords userKeywords){
+    @PostMapping("/users")
+    public Result users(@RequestBody(required = false) UserKeywords userKeywords){
         Result result = customerService.users(userKeywords);
         return result;
     }
+
     //机场修改用户信息接口
     @PutMapping("/updateUser")
-    public Result updateUser(@RequestBody Airport airport){
-        Result result = airportService.updateUser(airport);
+    public Result updateUser(@RequestBody Customer  customer){
+        Result result = customerService.updateUser(customer);
         return result;
     }
     //机场删除用户信息接口
     @DeleteMapping("/deleteUser")
     public Result deleteUser(@RequestParam("id")Integer id){
-        Result result = airportService.deleteUser(id);
+        Result result =customerService.deleteUser(id);
         return result;
     }
     //机场查询飞机接口
-    @GetMapping("/planes")
+    @PostMapping("/planes")
     public Result planes(@RequestBody PlaneKeywords planeKeywords,@RequestHeader String token){
         Result result = airplaneService.planes(planeKeywords,token);
         return result;
     }
     //机场添加飞机接口
     @PostMapping("/addPlane")
-    public Result addPlane(@RequestBody Airplane  airplane){
-        Result result =airplaneService.addPlane(airplane);
+    public Result addPlane(@RequestBody Airplane  airplane,@RequestHeader String token){
+
+        Result result =airplaneService.addPlane(airplane,token);
         return result;
     }
     //机场修改飞机接口

@@ -19,7 +19,12 @@
         airplane_id,airplane_name,status,location,first_seat,second_seat,
         third_seat
     </sql>
-    <select id="selectAirplanesListWithPage">
+    <select id="selectAirplanesListWithPage" resultType="java.util.Map">
+         SELECT DISTINCT  ap.*,
+                a.airport_name as belonged_airport_name
+                FROM airplane ap
+                LEFT JOIN airport a ON ap.belonged_airport_id = a.airport_id
+         ${ew.customSqlSegment}
 
     </select>
 </mapper>

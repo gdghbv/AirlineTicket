@@ -124,6 +124,18 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
 
     }
 
+    @Override
+    public Result updateUser(Customer customer) {
+        customerMapper.updateById(customer);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result deleteUser(Integer id) {
+        customerMapper.deleteById(id);
+        return Result.ok(null);
+    }
+
 
 }
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.airlineticket_idea.mapper.AirportMapper;
 import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Airport;
 import org.airlineticket_idea.pojo.dto.PlaneKeywords;
@@ -30,6 +31,8 @@ public class AirplaneServiceImpl extends ServiceImpl<AirplaneMapper, Airplane>
     @Autowired
     private AirplaneMapper airplaneMapper;
     @Autowired
+    private AirportMapper   airportMapper;
+    @Autowired
     private JwtHelper jwtHelper;
     @Override
     public Result planes(PlaneKeywords planeKeywords, String token) {
@@ -49,11 +52,12 @@ public class AirplaneServiceImpl extends ServiceImpl<AirplaneMapper, Airplane>
         if(planeKeywords.getIdKeyword()!=null&& planeKeywords.getIdKeyword()>0){
               queryWrapper.eq(Airplane::getAirplaneId,planeKeywords.getIdKeyword());
         }
+
         queryWrapper.orderByDesc(Airplane::getAirplaneId);
         airplaneMapper.selectAirplanesListWithPage(page,queryWrapper);
-
+        List<Map> records = page.getRecords();
         Map data = new HashMap();
-        data.put("pageData", page.getRecords());
+        data.put("pageData", records);
         data.put("pageNum", page.getPages());
         data.put("totalPage", page.getPages());
         data.put("totalSize", page.getTotal());
@@ -62,7 +66,9 @@ public class AirplaneServiceImpl extends ServiceImpl<AirplaneMapper, Airplane>
     }
 
     @Override
-    public Result addPlane(Airplane airplane) {
+    public Result addPlane(Airplane airplane,String token) {
+        Airport airport = airportMapper.selectById(jwtHelper.getUserId(token));
+        airplane.setBelongedAirportId(airport.getAirportId());
         airplaneMapper.insert(airplane);
         return Result.ok(null);
     }

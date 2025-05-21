@@ -84,15 +84,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-input, select, textarea {
-  font-size: var(--main-font-size);
-  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-}
-
-.home-root, .order-root, .register-root, .login-root, .user-center-root {
-  min-height: 100vh;
-  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
-  box-sizing: border-box;
-  padding: 36px 0 36px 0;
-}

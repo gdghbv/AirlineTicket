@@ -2,6 +2,7 @@ package org.airlineticket_idea.service;
 
 import org.airlineticket_idea.pojo.Airport;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.utils.Result;
 
 /**
@@ -22,9 +23,9 @@ public interface AirportService extends IService<Airport> {
 
     Result deleteAdmin(Integer id);
 
-    Result updateUser(Airport airport);
 
     Result deleteUser(Integer id);
 
 
+    Result getUserInfo(String token);
 }
