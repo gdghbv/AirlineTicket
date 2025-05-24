@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootTest
@@ -42,5 +43,13 @@ class AirlineticketIdeaApplicationTests {
 	   System.out.println(orderService.getSeatId(13,"A"));
 	   System.out.println(orderService.getSeatId(14,"A"));
    }
-
+ @Test
+	public void getAirlineDiscount(){
+		AirlineVO airlineVO=new AirlineVO();
+		airlineVO.setFirstSeatPrice(BigDecimal.valueOf(1500));
+		airlineVO.setSecondSeatPrice(BigDecimal.valueOf(1300));
+		airlineVO.setThirdSeatPrice(BigDecimal.valueOf(1000));
+		orderService.calculatePrice("eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDexMLAwMzU00FEqLU4t8kxRsjKpBQDl71jcLwAAAA.giplYjRZ542wsWPyMzwn1C0rCvzhmLtAiBmZLJPSaLsBUm9baqcorfB-vO_VIsyL1ed65cYGEuKPMlQq8lCVuQ",airlineVO);
+	 System.out.println(airlineVO);
+ }
 }

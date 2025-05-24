@@ -35,7 +35,7 @@ private AirlineMapper airlineMapper;
 private AirplaneMapper airplaneMapper;
     @Override
     public Result getAirlines(PageKeywords pageKeywords) {
-        IPage<Map> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
+        IPage<AirlineVO> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
         QueryWrapper<AirlineVO> queryWrapper = new QueryWrapper<>();
         if (pageKeywords.getDepartureKeyword() != null && pageKeywords.getDepartureKeyword().length() > 0) {
             queryWrapper.like("a.departure", pageKeywords.getDepartureKeyword());
@@ -55,7 +55,7 @@ private AirplaneMapper airplaneMapper;
         // 排序
         queryWrapper.orderByAsc("a.date", "a.departure_time");
         airlineMapper.selectAirlineListWithPage(page, queryWrapper);
-        List<Map> record = page.getRecords();
+        List<AirlineVO> record = page.getRecords();
         Map data = new HashMap();
         data.put("pageData", record);
         data.put("pageNum", page.getCurrent());

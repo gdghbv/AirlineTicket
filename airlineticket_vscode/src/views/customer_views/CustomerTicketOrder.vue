@@ -20,19 +20,20 @@
 
     <el-card class="airline-list-box">
       <el-table :data="airlines" stripe border style="width: 100%" v-loading="loading">
-        <el-table-column prop="airline_id" label="航班号" width="90" />
+        <el-table-column prop="airlineId" label="航班号" width="90" />
         <el-table-column prop="departure" label="起点" width="90" />
-        <el-table-column prop="departure_airport_name" label="起飞机场" min-width="120" />
+        <el-table-column prop="departureAirportName" label="起飞机场" min-width="120" />
         <el-table-column prop="arrival" label="终点" width="90" />
-        <el-table-column prop="arrival_airport_name" label="到达机场" min-width="120" />
+        <el-table-column prop="arrivalAirportName" label="到达机场" min-width="120" />
         <el-table-column prop="date" label="日期" width="110" />
-        <el-table-column prop="departure_time" label="起飞时间" width="90" />
-        <el-table-column prop="arrival_time" label="到达时间" width="90" />
+        <el-table-column prop="departureTime" label="起飞时间" width="90" />
+        <el-table-column prop="arrivalTime" label="到达时间" width="90" />
         <el-table-column prop="duration" label="时长" width="80" />
         <el-table-column prop="price" label="票价(元)" width="100" />
-        <el-table-column label="操作" width="110">
+        <el-table-column label="操作" width="180">
           <template #default="{ row }">
             <el-button type="success" size="small" @click="openOrderDialog(row)">购买</el-button>
+            <el-button type="primary" size="small" @click="openDetailDialog(row)" style="margin-left:8px;">查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -50,35 +51,60 @@
       </div>
     </el-card>
 
-    <el-dialog v-model="orderDialogVisible" title="填写乘客信息" width="420px" :close-on-click-modal="false">
+    <el-dialog v-model="detailDialogVisible" title="航班详情" width="480px" :close-on-click-modal="false">
+      <el-descriptions :column="1" border>
+        <el-descriptions-item label="航班号">{{ detailData.airlineId }}</el-descriptions-item>
+        <el-descriptions-item label="起点">{{ detailData.departure }}</el-descriptions-item>
+        <el-descriptions-item label="起飞机场">{{ detailData.departureAirportName }}</el-descriptions-item>
+        <el-descriptions-item label="终点">{{ detailData.arrival }}</el-descriptions-item>
+        <el-descriptions-item label="到达机场">{{ detailData.arrivalAirportName }}</el-descriptions-item>
+        <el-descriptions-item label="日期">{{ detailData.date }}</el-descriptions-item>
+        <el-descriptions-item label="起飞时间">{{ detailData.departureTime }}</el-descriptions-item>
+        <el-descriptions-item label="到达时间">{{ detailData.arrivalTime }}</el-descriptions-item>
+        <el-descriptions-item label="时长">{{ detailData.duration }}</el-descriptions-item>
+        <el-descriptions-item label="登机口">{{ detailData.boardingGate }}</el-descriptions-item>
+        <el-descriptions-item label="头等舱票价">{{ detailData.firstSeatPrice }} 元</el-descriptions-item>
+        <el-descriptions-item label="商务舱票价">{{ detailData.secondSeatPrice }} 元</el-descriptions-item>
+        <el-descriptions-item label="经济舱票价">{{ detailData.thirdSeatPrice }} 元</el-descriptions-item>
+        <el-descriptions-item label="起飞机场电话">{{ detailData.departureAirportPhone }}</el-descriptions-item>
+        <el-descriptions-item label="降落机场电话">{{ detailData.arrivalAirportPhone }}</el-descriptions-item>
+      </el-descriptions>
+      <template #footer>
+        <el-button @click="detailDialogVisible = false">关闭</el-button>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="orderDialogVisible" title="填写购票信息" width="420px" :close-on-click-modal="false">
       <el-form :model="orderForm" label-width="90px" :rules="orderRules" ref="orderFormRef">
         <el-form-item label="身份证号" prop="citizenId">
-          <el-input v-model="orderForm.citizenId" maxlength="18" placeholder="请输入乘客身份证号" />
+          <el-input v-model="orderForm.citizenId" maxlength="18" placeholder="请输入乘机人身份证号" />
         </el-form-item>
-        <el-form-item label="乘客姓名" prop="citizenName">
-          <el-input v-model="orderForm.citizenName" maxlength="10" placeholder="请输入乘客姓名" />
+        <el-form-item label="乘机人姓名" prop="citizenName">
+          <el-input v-model="orderForm.citizenName" maxlength="10" placeholder="请输入乘机人姓名" />
         </el-form-item>
-        <el-form-item label="座位类型" prop="seatType">
-          <el-select v-model="orderForm.seatType" placeholder="请选择座位类型">
+        <el-form-item label="舱型" prop="seatType">
+          <el-select v-model="orderForm.seatType" placeholder="请选择舱型" @change="onSeatTypeChange">
             <el-option label="头等舱" value="头等舱" />
             <el-option label="商务舱" value="商务舱" />
             <el-option label="经济舱" value="经济舱" />
           </el-select>
+          <el-checkbox v-model="orderForm.useDiscount" style="margin-left:16px;" @change="onDiscountChange">使用优惠</el-checkbox>
         </el-form-item>
-        <el-form-item label="积分折扣">
-          <el-switch v-model="orderForm.useDiscount" active-text="使用" inactive-text="不使用" />
+        <el-form-item label="实际价格">
+          <span v-if="priceInfo.price !== null && priceInfo.price !== undefined">{{ priceInfo.price }} 元 <span v-if="priceInfo.discount && priceInfo.discount > 0">(已优惠 {{ priceInfo.discount }} 元)</span></span>
+          <span v-else>请选择舱型</span>
         </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="orderDialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="submitOrder">确认购买</el-button>
+        <el-button type="primary" :disabled="!canOrder" @click="handleOrder">确认购买</el-button>
       </template>
     </el-dialog>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as customerApi from '@/api/customer'
 import CustomerNavBar from '@/components/CustomerNavBar.vue'
@@ -91,17 +117,26 @@ const searchForm = reactive({
   pageSize: 10,
 })
 const airlines = ref([{
-  airline_id:'',
-  departure:'',
-  departure_airport_name:'',
-  arrival:'',
-  arrival_airport_name:'',
-  date:'',
-  departure_time:'',
-  arrival_time:'',
-  duration:'',  
-  price:'',
-  
+  airlineId: '',
+  departure: '',
+  departureAirportName: '',
+  arrival: '',
+  arrivalAirportName: '',
+  date: '',
+  departureTime: '',
+  arrivalTime: '',
+  duration: '',
+  price: '',
+  boardingGate: '',
+  firstSeat: '',
+  secondSeat: '',
+  thirdSeat: '',
+  departureAirportPhone: '',
+  arrivalAirportPhone: '',
+  firstSeatPrice: '',
+  secondSeatPrice: '',
+  thirdSeatPrice: '',
+  // ...可补充其它字段
 }])
 const total = ref(0)
 const loading = ref(false)
@@ -113,8 +148,8 @@ function fetchAirlines() {
     pageNum: searchForm.pageNum,
     pageSize: searchForm.pageSize
   }).then(res => {
-    console.log('完整响应:', res)
-    // 直接使用res作为分页数据对象
+    // console.log('完整响应:', res)
+    // 直接使用res作为分页数据对象（不再做驼峰转换）
     if (Array.isArray(res.pageData)) {
       airlines.value = res.pageData
     } else {
@@ -141,7 +176,16 @@ function handlePageChange(page) {
   fetchAirlines()
 }
 
-// 购票弹窗
+// 航班详情弹窗
+const detailDialogVisible = ref(false)
+const detailData = reactive({})
+
+function openDetailDialog(row) {
+  Object.assign(detailData, row)
+  detailDialogVisible.value = true
+}
+
+// 购票弹窗相关逻辑
 const orderDialogVisible = ref(false)
 const orderForm = reactive({
   citizenId: '',
@@ -149,46 +193,111 @@ const orderForm = reactive({
   seatType: '',
   useDiscount: false,
 })
-const orderFormRef = ref()
-const orderRules = {
-  citizenId: [
-    { required: true, message: '请输入身份证号', trigger: 'blur' },
-    { min: 15, max: 18, message: '身份证号格式不正确', trigger: 'blur' }
-  ],
-  citizenName: [
-    { required: true, message: '请输入乘客姓名', trigger: 'blur' },
-    { min: 2, max: 10, message: '姓名格式不正确', trigger: 'blur' }
-  ],
-  seatType: [
-    { required: true, message: '请选择座位类型', trigger: 'change' }
-  ]
-}
-let currentAirlineId = null
+const priceInfo = reactive({
+  price: null,
+  discount: 0,
+  priceData: {}, // 保存后端返回的所有价格数据
+})
+const canOrder = computed(() => {
+  return !!(
+    orderForm.citizenId &&
+    orderForm.citizenName &&
+    orderForm.seatType &&
+    priceInfo.price !== null &&
+    priceInfo.price !== undefined
+  )
+})
+let currentOrderAirline = null
+
 function openOrderDialog(row) {
-  currentAirlineId = row.airline_id
+  currentOrderAirline = row
   orderForm.citizenId = ''
   orderForm.citizenName = ''
   orderForm.seatType = ''
   orderForm.useDiscount = false
+  priceInfo.price = null
+  priceInfo.discount = 0
+  priceInfo.priceData = {}
+  // 直接传递 row 给 getPrice
+  customerApi.getPrice(row).then(res => {
+    console.log('getPrice后端返回:', res)
+    const data = res || {}
+    priceInfo.priceData = data
+    // 默认选中经济舱
+    orderForm.seatType = '经济舱'
+    orderForm.useDiscount = true
+    updatePrice()
+  })
   orderDialogVisible.value = true
 }
-function submitOrder() {
-  orderFormRef.value.validate(async valid => {
-    if (!valid) return
-    try {
-      await customerApi.orderAirline({
-        airlineId: currentAirlineId,
-        seatType: orderForm.seatType,
-        citizenId: orderForm.citizenId,
-        citizenName: orderForm.citizenName
-      }, orderForm.useDiscount)
+
+function onSeatTypeChange() {
+  updatePrice()
+}
+function onDiscountChange() {
+  updatePrice()
+}
+
+function updatePrice() {
+  const data = priceInfo.priceData
+  if (!orderForm.seatType || !data) {
+    priceInfo.price = null
+    priceInfo.discount = 0
+    return
+  }
+  let price = 0, discount = 0, raw = 0
+  if (orderForm.seatType === '头等舱') {
+    raw = data.firstSeatPrice
+    price = orderForm.useDiscount ? data.firstSeatDiscountPrice : data.firstSeatPrice
+    discount = orderForm.useDiscount ? data.firstSeatDiscount : 0
+  } else if (orderForm.seatType === '商务舱') {
+    raw = data.secondSeatPrice
+    price = orderForm.useDiscount ? data.secondSeatDiscountPrice : data.secondSeatPrice
+    discount = orderForm.useDiscount ? data.secondSeatDiscount : 0
+  } else if (orderForm.seatType === '经济舱') {
+    raw = data.thirdSeatPrice
+    price = orderForm.useDiscount ? data.thirdSeatDiscountPrice : data.thirdSeatPrice
+    discount = orderForm.useDiscount ? data.thirdSeatDiscount : 0
+  }
+  priceInfo.price = price
+  priceInfo.discount = discount
+  // 控制台输出当前舱型价格信息
+  console.log(`当前舱型: ${orderForm.seatType}, 优惠前: ${raw}, 优惠后: ${price}, 优惠: ${discount}`)
+}
+
+const orderRules = {
+  citizenId: [
+    { required: true, message: '请输入身份证号', trigger: 'blur' },
+    { pattern: /^\d{17}[\dX]$/i, message: '身份证号格式不正确', trigger: 'blur' },
+  ],
+  citizenName: [
+    { required: true, message: '请输入乘机人姓名', trigger: 'blur' },
+    { min: 2, max: 10, message: '乘机人姓名长度在2到10个字符之间', trigger: 'blur' },
+  ],
+  seatType: [
+    { required: true, message: '请选择舱型', trigger: 'change' },
+  ],
+}
+
+function handleOrder() {
+  // 校验表单
+  const order = {
+    airlineId: currentOrderAirline.airlineId,
+    seatType: orderForm.seatType,
+    citizenId: orderForm.citizenId,
+    citizenName: orderForm.citizenName,
+    spending: priceInfo.price,
+    discount: orderForm.useDiscount ? priceInfo.discount : 0
+  }
+  customerApi.orderAirline(order)
+    .then(res => {
       ElMessage.success('购票成功！')
       orderDialogVisible.value = false
-      fetchAirlines()
-    } catch (e) {
-      ElMessage.error(e?.response?.data?.message || '购票失败')
-    }
-  })
+      fetchAirlines() // 刷新航班列表
+    })
+    .catch(err => {
+      ElMessage.error('购票失败：' + (err.message || '未知错误'))
+    })
 }
 </script>
 

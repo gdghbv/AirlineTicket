@@ -40,9 +40,13 @@ export const updateCustomerInfo=(customer) =>{
 export const getCustomerOrderList=(pageKeywords)=>{
     return request.post('/customer/getOrderList', pageKeywords)
 }
+//客户点击购买按钮是计算并返回价格
+export const getPrice=(airlineVO)=>{
+    return request.post('/customer/getPrice', airlineVO)
+}
 //客户订购机票
-export const orderAirline=(order,useDiscount)=>{
-    return request.post('/customer/orderAirline', {order, useDiscount})
+export const orderAirline = (order) => {
+    return request.post('/customer/orderAirline', order)
 }
 //客户进行票退订
 export const cancelOrder=(order)=>{

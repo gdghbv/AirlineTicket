@@ -12,13 +12,16 @@ import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
+import org.airlineticket_idea.pojo.dto.OrderDTO;
 import org.airlineticket_idea.pojo.dto.PageKeywords;
+import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.service.OrderService;
 import org.airlineticket_idea.utils.JwtHelper;
 import org.airlineticket_idea.utils.Result;
 import org.airlineticket_idea.utils.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -68,13 +71,42 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
                 "totalSize", resultPage.getTotal()
         ));
     }
+    @Override
+    public Result calculatePrice(String token, AirlineVO airlineVO) {
+        int userId = jwtHelper.getUserId(token).intValue();
+        int points=customerMapper.selectById(userId).getMilsPoints();
+        airlineVO.setFirstSeatDiscountPrice(getDiscountPrice(points,airlineVO.getFirstSeatPrice()));
+        airlineVO.setSecondSeatDiscountPrice(getDiscountPrice(points,airlineVO.getSecondSeatPrice()));
+        airlineVO.setThirdSeatDiscountPrice(getDiscountPrice(points,airlineVO.getThirdSeatPrice()));
+        airlineVO.setFirstSeatDiscount(airlineVO.getFirstSeatPrice().subtract(airlineVO.getFirstSeatDiscountPrice()));
+        airlineVO.setSecondSeatDiscount(airlineVO.getSecondSeatPrice().subtract(airlineVO.getSecondSeatDiscountPrice()));
+        airlineVO.setThirdSeatDiscount(airlineVO.getThirdSeatPrice().subtract(airlineVO.getThirdSeatDiscountPrice()));
+        System.out.println(airlineVO);
+        return Result.ok(airlineVO);
+
+    }
+
+    public BigDecimal getDiscountPrice(int points ,BigDecimal price){
+        int maxDiscount=price.multiply(BigDecimal.valueOf(0.2)).intValue();
+        int discount=points/100;
+        if(points>-1){
+            if(discount>maxDiscount){
+                price=price.subtract(BigDecimal.valueOf(maxDiscount));
+            } else if (discount>=10&&discount<maxDiscount) {
+               price=price.subtract(BigDecimal.valueOf(discount));
+            }
+        }
+        return price;
+    }
 
     @Override
-    public Result buyTicket(String token, Order order,boolean useDiscount) {
-        //前端往order传的值有airlineId,seatType,citizenId,citizenName;
+    @Transactional
+    public Result buyTicket(String token, OrderDTO orderDTO) {
+        //前端往order传的值有airlineId,seatType,citizenId,citizenName,spending;
         if (jwtHelper.isExpiration(token)) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
+        Order order=orderDTO.toOrder();
         int userId = jwtHelper.getUserId(token).intValue();
         order.setCustomerId(userId);
         //设置为现在的的日期时间
@@ -82,43 +114,34 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         //todo 后续需要根据用户选择的航空公司和座位类型设置价格以及位置的安排
         Airline airline = airlineMapper.selectById(order.getAirlineId());
         Airplane airplane = airplaneMapper.selectById(airline.getAirplaneId());
-        //根据座位类型设置价格和座位号，还需要根据用户的积分来设置折扣
-        order.setSpending(airline.getPrice());
+        //根据座位类型设置价格和座位号
+
         if (order.getSeatType().equals("头等舱")) {
+
             airline.setFirstSeat(airline.getFirstSeat()-1);
-            order.setSpending(order.getSpending().multiply(BigDecimal.valueOf(1.5)));
             int seatNum=airplane.getFirstSeat()-airline.getFirstSeat();
             order.setSeatId(getSeatId(seatNum,"A"));
         } else if (order.getSeatType().equals("商务舱")) {
             airline.setSecondSeat(airline.getSecondSeat()-1);
-            order.setSpending(order.getSpending().multiply(BigDecimal.valueOf(1.2)));
             int seatNum=airplane.getSecondSeat()-airline.getSecondSeat();
             order.setSeatId(getSeatId(seatNum,"B"));
         } else if (order.getSeatType().equals("经济舱")) {
             airline.setThirdSeat(airline.getThirdSeat()-1);
-            order.setSpending(order.getSpending().multiply(BigDecimal.valueOf(1.0)));
             int seatNum=airplane.getThirdSeat()-airline.getThirdSeat();
             order.setSeatId(getSeatId(seatNum,"C"));
         }
+        airlineMapper.updateById(airline);
         //todo 在下面来设置折扣并获取折扣后的价格并进行用户积分的计算
         Customer customer = customerMapper.selectById(userId);
         int points=customer.getMilsPoints();
         //折扣最多打8折，每100点积分可以抵扣1元
-        int discount=points/100;
-        int maxDiscount=order.getSpending().multiply(BigDecimal.valueOf(0.2)).intValue();
+
         //这里先检查是否是会员
         if(points>-1){
 //下面检测用户是否选择了进行折扣
-if (useDiscount){
-    //用户选择使用折扣，进行积分的抵扣,折扣最少要扣减10元
-    if(discount>10&&discount<=maxDiscount){
-        order.setSpending(order.getSpending().subtract(BigDecimal.valueOf(discount)));
-        customer.setMilsPoints(points-discount*100);
-    } else if (discount>maxDiscount) {
-        order.setSpending(order.getSpending().subtract(BigDecimal.valueOf(maxDiscount)));
-        customer.setMilsPoints(points-maxDiscount*100);
-    }
-} else if (useDiscount!=true) {
+if (orderDTO.isUseDiscount()){
+        customer.setMilsPoints(points - orderDTO.getDiscount().intValue() * 100);
+} else if (orderDTO.isUseDiscount()) {
     //客户选择不使用折扣，进行积分的添加，添加的积分和本次消费的积分相等
     customer.setMilsPoints(points+order.getSpending().intValue());
 }
@@ -126,6 +149,7 @@ customerMapper.updateById(customer);
         }
         //设置订单状态
         order.setOrderStat("已支付");
+
         orderMapper.insert(order);
 //可以修改为枚举类
         return Result.build(null, 200, "购买成功");
@@ -164,7 +188,6 @@ customerMapper.updateById(customer);
         String seatId=seatType+word+num;
         return seatId;
     }
-
     @Override
     public Result memberRegister(String token) {
         if (jwtHelper.isExpiration(token)) {
@@ -176,6 +199,8 @@ customerMapper.updateById(customer);
          customerMapper.updateById(customer);
          return Result.build(null,200,"会员注册成功");
     }
+
+
 }
 
 
