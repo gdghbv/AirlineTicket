@@ -5,16 +5,13 @@
 <mapper namespace="org.airlineticket_idea.mapper.AirportMapper">
 
     <resultMap id="BaseResultMap" type="org.airlineticket_idea.pojo.Airport">
-            <id property="airportUserId" column="airport_user_id" />
             <result property="airportName" column="airport_name" />
-            <result property="email" column="email" />
-            <result property="password" column="password" />
             <result property="phone" column="phone" />
             <result property="address" column="address" />
         <result property="airportId" column="airport_id"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        airport_id,airport_name,email,password,phone,address
+        airport_id,airport_name,phone,address
     </sql>
 </mapper>

@@ -1,0 +1,114 @@
+package org.airlineticket_idea.service.impl;
+
+import com.alibaba.druid.util.StringUtils;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.airlineticket_idea.pojo.Airport;
+import org.airlineticket_idea.pojo.AirportUser;
+import org.airlineticket_idea.service.AirportUserService;
+import org.airlineticket_idea.mapper.AirportUserMapper;
+import org.airlineticket_idea.utils.JwtHelper;
+import org.airlineticket_idea.utils.MD5Util;
+import org.airlineticket_idea.utils.Result;
+import org.airlineticket_idea.utils.ResultCodeEnum;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+* @author 35461
+* @description 针对表【airport_user】的数据库操作Service实现
+* @createDate 2025-05-24 14:32:47
+*/
+@Service
+public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, AirportUser>
+    implements AirportUserService{
+
+    @Autowired
+    private AirportUserMapper airportUserMapper;
+    @Autowired
+    private JwtHelper jwtHelper;
+    @Override
+    public Result register(AirportUser airportUser) {
+        LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AirportUser::getPhone, airportUser.getPhone());
+        if (airportUserMapper.selectCount(queryWrapper)>0){
+            return Result.build(null, ResultCodeEnum.PHONE_USED );
+        }
+        airportUser.setPassword(MD5Util.encrypt(airportUser.getPassword()));
+
+        airportUserMapper.insert(airportUser);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result login(AirportUser airportUser) {
+
+        LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AirportUser::getPhone, airportUser.getPhone());
+        AirportUser loginAirportUser = airportUserMapper.selectOne(queryWrapper);
+        if (loginAirportUser == null) {
+            return Result.build(null, ResultCodeEnum.PHONE_ERROR);
+        }
+        if (!StringUtils.isEmpty(airportUser.getPassword()) && MD5Util.encrypt(airportUser.getPassword()).equals(loginAirportUser.getPassword())) {
+            String token = jwtHelper.createToken(Long.valueOf(loginAirportUser.getAirportId()));
+            Map data = new HashMap();
+            data.put("token", token);
+            return Result.ok(data);
+        } else {
+            return Result.build(null, ResultCodeEnum.PASSWORD_ERROR);
+        }
+    }
+
+    @Override
+    public Result admin(String token) {
+        AirportUser airportUser = airportUserMapper.selectById(jwtHelper.getUserId(token));
+        LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper();
+        queryWrapper.eq(AirportUser::getUserId, airportUser.getUserId());
+
+        List<AirportUser> list =airportUserMapper.selectList(queryWrapper);
+        for(AirportUser a:list){
+            a.setPassword("******");
+        }
+        return Result.ok(list);
+    }
+
+    @Override
+    public Result updateAdmin(AirportUser airportUser) {
+        airportUserMapper.updateById(airportUser);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result deleteAdmin(Integer id) {
+        airportUserMapper.deleteById(id);
+        return Result.ok(null);
+    }
+
+
+
+    @Override
+    public Result deleteUser(Integer id) {
+        airportUserMapper.deleteById(id);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result getUserInfo(String token) {
+
+        int userId = jwtHelper.getUserId(token).intValue();
+
+        AirportUser airportUser=airportUserMapper.selectById(userId);
+        airportUser.setPassword("");
+
+        return Result.ok(airportUser);
+    }
+
+}
+
+
+
+

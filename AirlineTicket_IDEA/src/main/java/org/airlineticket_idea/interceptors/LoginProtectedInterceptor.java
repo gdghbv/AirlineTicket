@@ -3,6 +3,7 @@ package org.airlineticket_idea.interceptors;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.airlineticket_idea.utils.JwtHelper;
 import org.airlineticket_idea.utils.Result;
 import org.airlineticket_idea.utils.ResultCodeEnum;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
+@Slf4j
 public class LoginProtectedInterceptor implements HandlerInterceptor {
     @Autowired
     private JwtHelper jwtHelper;
@@ -26,6 +28,7 @@ public class LoginProtectedInterceptor implements HandlerInterceptor {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(result);
         response.getWriter().print(json);
+        log.error("拦截了一次请求");
         return false;
     }
 }

@@ -28,7 +28,7 @@
         third_seat,duration,departure,arrival
     </sql>
 <select id="selectAirlineListWithAirport" resultType="org.airlineticket_idea.pojo.vo.AirlineVO">
-SELECT a.*,
+SELECT   a.*,
        dep.airport_name AS departure_airport_name,
        arr.airport_name AS arrival_airport_name,
        dep.address AS departure_airport_address,
@@ -41,7 +41,7 @@ FROM airline a
 </select>
 
     <select id="selectAirlineListWithPage" resultType="java.util.Map">
-        SELECT a.*,
+        SELECT  a.*,
         dep.airport_name AS departure_airport_name,
         arr.airport_name AS arrival_airport_name,
         dep.address AS departure_airport_address,
@@ -51,7 +51,9 @@ FROM airline a
         FROM airline a
         LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
         LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
+
     ${ew.customSqlSegment}
+
     </select>
 
 </mapper>

@@ -67,8 +67,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Airline" />
-                  <option name="tableName" value="airline" />
+                  <option name="className" value="AirportUser" />
+                  <option name="tableName" value="airport_user" />
                 </TableUIInfo>
               </list>
             </option>

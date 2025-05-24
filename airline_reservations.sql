@@ -11,7 +11,7 @@
  Target Server Version : 80031 (8.0.31)
  File Encoding         : 65001
 
- Date: 22/05/2025 00:32:23
+ Date: 24/05/2025 15:55:35
 */
 
 SET NAMES utf8mb4;
@@ -78,7 +78,7 @@ INSERT INTO `airplane` VALUES (2, '空客A320', '运营中', '广州', 15, 40, 8
 INSERT INTO `airplane` VALUES (3, '波音787', '维护中', '上海', 25, 60, 120, 5);
 INSERT INTO `airplane` VALUES (4, '空客A330', '运营中', '深圳', 18, 45, 90, 4);
 INSERT INTO `airplane` VALUES (5, '波音747', '运营中', '北京', 22, 55, 110, 5);
-INSERT INTO `airplane` VALUES (6, '空客A380', '停飞', '广州', 30, 70, 150, 6);
+INSERT INTO `airplane` VALUES (6, '空客A380', '停飞', '广州', 30, 70, 150, 2);
 INSERT INTO `airplane` VALUES (7, '波音777', '运营中', '上海', 20, 50, 100, 1);
 INSERT INTO `airplane` VALUES (8, '空客A350', '运营中', '深圳', 25, 60, 120, 2);
 INSERT INTO `airplane` VALUES (9, '波音737 MAX', '维护中', '北京', 15, 40, 80, 3);
@@ -89,30 +89,38 @@ INSERT INTO `airplane` VALUES (10, '空客A321', '运营中', '广州', 18, 45, 
 -- ----------------------------
 DROP TABLE IF EXISTS `airport`;
 CREATE TABLE `airport`  (
-  `airport_user_id` int NOT NULL AUTO_INCREMENT,
   `airport_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `airport_id` int NULL DEFAULT NULL,
-  PRIMARY KEY (`airport_user_id`) USING BTREE
+  `airport_id` int NOT NULL,
+  PRIMARY KEY (`airport_id` DESC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of airport
 -- ----------------------------
-INSERT INTO `airport` VALUES (1, '北京首都国际机场', 'pekinairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '010-64541100', '北京市朝阳区机场西路', 1);
-INSERT INTO `airport` VALUES (2, '上海浦东国际机场', 'shanghaiairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '021-68341000', '上海市浦东新区机场大道', 2);
-INSERT INTO `airport` VALUES (3, '广州白云国际机场', 'guangzhouairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '020-36066999', '广州市花都区机场路', 3);
-INSERT INTO `airport` VALUES (4, '深圳宝安国际机场', 'shenzhenairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '0755-23456789', '深圳市宝安区机场一路', 4);
-INSERT INTO `airport` VALUES (5, '成都双流国际机场', 'chengduairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '028-85205555', '成都市双流区机场路', 5);
-INSERT INTO `airport` VALUES (6, '重庆江北国际机场', 'chongqingairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '023-67152345', '重庆市渝北区机场路', 6);
-INSERT INTO `airport` VALUES (7, '西安咸阳国际机场', 'xianairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '029-88796997', '西安市咸阳市机场专用高速', 1);
-INSERT INTO `airport` VALUES (8, '杭州萧山国际机场', 'hangzhouairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '0571-96299', '杭州市萧山区机场路', 2);
-INSERT INTO `airport` VALUES (9, '武汉天河国际机场', 'wuhanairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '027-96577', '武汉市黄陂区机场大道', 3);
-INSERT INTO `airport` VALUES (10, '南京禄口国际机场', 'nanjingairport@airport.com', '81dc9bdb52d04dc20036dbd8313ed055', '025-69820999', '南京市江宁区机场大道', 4);
-INSERT INTO `airport` VALUES (14, '成都双流国际机场', 'test', '81dc9bdb52d04dc20036dbd8313ed055', 'test2', '成都市双流区机场路', 5);
+INSERT INTO `airport` VALUES ('成都双流国际机场', '028-85205555', '成都市双流区机场路', 5);
+INSERT INTO `airport` VALUES ('深圳宝安国际机场', '0755-23456789', '深圳市宝安区机场一路', 4);
+INSERT INTO `airport` VALUES ('广州白云国际机场', '020-36066999', '广州市花都区机场路', 3);
+INSERT INTO `airport` VALUES ('上海浦东国际机场', '021-68341000', '上海市浦东新区机场大道', 2);
+INSERT INTO `airport` VALUES ('北京首都国际机场', '010-64541100', '北京市朝阳区机场西路', 1);
+
+-- ----------------------------
+-- Table structure for airport_user
+-- ----------------------------
+DROP TABLE IF EXISTS `airport_user`;
+CREATE TABLE `airport_user`  (
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `user_id` int NOT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `airport_id` int NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id` DESC) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of airport_user
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for customer
@@ -133,7 +141,7 @@ CREATE TABLE `customer`  (
 -- ----------------------------
 INSERT INTO `customer` VALUES (2, '13800138002', '王芳', '81dc9bdb52d04dc20036dbd8313ed055', 'wangfang@email.com', 800);
 INSERT INTO `customer` VALUES (3, '13800138003', '李强', '81dc9bdb52d04dc20036dbd8313ed055', 'liqiang@email.com', 2500);
-INSERT INTO `customer` VALUES (4, '13800138004', '刘洋', '81dc9bdb52d04dc20036dbd8313ed055', 'liuyang@email.com', 1200);
+INSERT INTO `customer` VALUES (4, '13800138004', '刘洋', '81dc9bdb52d04dc20036dbd8313ed055', 'liuyang@email.com', 0);
 INSERT INTO `customer` VALUES (5, '13800138005', '陈明', '81dc9bdb52d04dc20036dbd8313ed055', 'chenming@email.com', 3000);
 INSERT INTO `customer` VALUES (6, '13800138006', '杨丽', '81dc9bdb52d04dc20036dbd8313ed055', 'yangli@email.com', 500);
 INSERT INTO `customer` VALUES (7, '13800138007', '赵刚', '81dc9bdb52d04dc20036dbd8313ed055', 'zhaogang@email.com', 1800);
@@ -164,7 +172,7 @@ CREATE TABLE `order`  (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (1, '已完成', 1200.00, '2025-05-01 10:15:23', 1, 'S001', '头等舱', 1, '110101199001011234', '张伟');
+INSERT INTO `order` VALUES (1, '已退票', 1200.00, '2025-05-01 10:15:23', 1, 'S001', '头等舱', 1, '110101199001011234', '张伟');
 INSERT INTO `order` VALUES (2, '已完成', 800.00, '2025-05-02 14:30:45', 2, 'S101', '商务舱', 2, '110101199002022345', '王芳');
 INSERT INTO `order` VALUES (3, '已完成', 1500.00, '2025-05-03 09:20:12', 3, 'S201', '经济舱', 3, '110101199003033456', '李强');
 INSERT INTO `order` VALUES (4, '已完成', 900.00, '2025-05-04 16:45:33', 4, 'S002', '头等舱', 4, '110101199004044567', '刘洋');

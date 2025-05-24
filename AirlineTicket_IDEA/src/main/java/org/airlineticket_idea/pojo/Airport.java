@@ -12,16 +12,10 @@ import lombok.Data;
 @TableName(value ="airport")
 @Data
 public class Airport {
-    @TableId(value = "airport_user_id")
-    private Integer airportUserId;
-
+    @TableId(value = "airport_id")
     private Integer airportId;
 
     private String airportName;
-
-    private String email;
-
-    private String password;
 
     private String phone;
 

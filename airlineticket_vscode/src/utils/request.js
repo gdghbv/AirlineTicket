@@ -26,7 +26,9 @@ service.interceptors.request.use((config) => {
 // 添加响应拦截器
 service.interceptors.response.use(
   (response) => {
-
+   if (!response.data) {
+      return Promise.reject(new Error('Empty response from server'));
+    }
 
     if(response.data.code !== 200){
     // 判断响应状态码

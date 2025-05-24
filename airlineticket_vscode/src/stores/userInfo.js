@@ -19,7 +19,7 @@ export const useUserInfoStore = defineStore('userInfo', {
     phone: '',
     email:'',
     id: '',
-  
+    milsPoints:''
   }),
 
 	actions: {
@@ -46,6 +46,7 @@ export const useUserInfoStore = defineStore('userInfo', {
       this.phone = result.phone
       this.email = result.email
       this.id=result.customerId
+      this.milsPoints=result.milsPoints
     },
     //获取当前机场用户信息
     async getAirportInfo(){
@@ -62,6 +63,8 @@ export const useUserInfoStore = defineStore('userInfo', {
       this.phone = ''
       this.email = ''
       this.name = ''
+      this.id = ''
+      this.milsPoints = ''
       console.log('1111111111');
       
     }
