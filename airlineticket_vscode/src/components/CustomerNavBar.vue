@@ -13,16 +13,7 @@
     </div>
     <div class="navbar-right">
       <template v-if="isLogin">
-        <el-dropdown trigger="hover" @command="handleCommand">
-          <span class="el-dropdown-link user-avatar">
-            <el-icon><i-ep-user /></el-icon>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
+        <el-button type="primary" @click="logout" class="logout-btn">退出登录</el-button>
       </template>
       <template v-else>
         <router-link to="/login" class="navbar-auth-link">登录</router-link>
@@ -43,12 +34,10 @@ const router = useRouter()
 const userInfoStore = useUserInfoStore()
 const isLogin = computed(() => !!userInfoStore.token)
 
-const handleCommand = (command) => {
-  if (command === 'logout') {
-    userInfoStore.initUserInfo()
-    ElMessage.success('已退出登录')
-    router.push('/login')
-  }
+const logout = () => {
+  userInfoStore.initUserInfo()
+  ElMessage.success('已退出登录')
+  window.location.reload()
 }
 </script>
 
@@ -122,20 +111,10 @@ const handleCommand = (command) => {
   gap: 18px;
 }
 
-.user-avatar {
-  display: flex;
-  align-items: center;
-  font-size: 26px;
-  color: #1976d2;
-  cursor: pointer;
-  border-radius: 50%;
-  background: #f5f7fa;
-  padding: 6px 10px;
-  transition: background 0.2s;
-}
-
-.user-avatar:hover {
-  background: #e0e7ff;
+.logout-btn {
+  font-size: 16px;
+  padding: 6px 18px;
+  border-radius: 8px;
 }
 
 .navbar-auth-link {

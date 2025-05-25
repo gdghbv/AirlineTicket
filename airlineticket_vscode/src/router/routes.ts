@@ -36,6 +36,19 @@ export const staticRoutes=[
           path:'/customerCenter',
           name:'customerCenter',
           component:() => import('@/views/customer_views/CustomerCenter.vue'),
+          redirect: '/customerCenter/info',
+          children: [
+            {
+              path: 'info',
+              name: 'customerCenterInfo',
+              component: () => import('@/components/CustomerInfo.vue')
+            },
+            {
+              path: 'orders',
+              name: 'customerCenterOrders',
+              component: () => import('@/components/CustomerOrderList.vue')
+            }
+          ]
         },
         // Customer API测试页面
         {

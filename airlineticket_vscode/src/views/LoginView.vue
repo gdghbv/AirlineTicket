@@ -96,6 +96,7 @@ const onLogin = () => {
         res = await getAirportLogin({ phone: form.value.phone, password: form.value.password })
         setToken(res.token)
         ElMessage.success('机场用户登录成功')
+        
         router.push('/airportHome')
       }
     } catch (e) {

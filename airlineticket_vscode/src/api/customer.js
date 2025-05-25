@@ -29,17 +29,14 @@ export const getAirlineList=(pageKeywords)=>{
 }
 
 //获取客户的个人信息
-export const getCustomerInfo=(info) =>{
+export const getCustomerInfo=() =>{
     return request.get('/customer/getUserInfo')
 }
 //客户修改自己的信息
 export const updateCustomerInfo=(customer) =>{
     return request.put('/customer/updateUserInfo', customer)
 }
-//客户查询自己历史订单信息
-export const getCustomerOrderList=(pageKeywords)=>{
-    return request.post('/customer/getOrderList', pageKeywords)
-}
+
 //客户点击购买按钮是计算并返回价格
 export const getPrice=(airlineVO)=>{
     return request.post('/customer/getPrice', airlineVO)
@@ -51,6 +48,10 @@ export const orderAirline = (order) => {
 //客户进行票退订
 export const cancelOrder=(order)=>{
     return request.put('/customer/refundTicket', order)
+}
+//客户查询自己历史订单信息
+export const getCustomerOrderList=(pageKeywords)=>{
+    return request.post('/customer/getOrderList', pageKeywords)
 }
 //客户升级为会员(设置个按钮，按下按钮就升级为会员)
 export const memberRegister=()=>{
