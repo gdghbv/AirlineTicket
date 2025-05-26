@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="" />
+    <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/dto/userKeywords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/dto/UserKeywords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Airline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse$Choice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse$Choice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/ChatResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/dto/PageKeywords.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/dto/PageKeywords.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/DeepSeekServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/DeepSeekServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/MD5Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/utils/MD5Util.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,24 +36,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="customMavenHome" value="D:\WorkPlace\Maven\apache-maven-3.9.9" />
-        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
         <option name="userSettingsFile" value="D:\WorkPlace\Maven\apache-maven-3.9.9\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="2wdmnLVHW86bTUJbfzxhBZxOHha" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -46,38 +57,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AirlineticketIdeaApplicationTests.testGetSeatId.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AirlineticketIdeaApplicationTests.testSelectWithAirport.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.AirlineTicket_IDEA [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.AirlineTicket_IDEA [package].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AirlineticketIdeaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/AirlineTicket/airlineticket_idea/src/main/java/org/airlineticket_idea/pojo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -215,11 +211,25 @@
       <workItem from="1747998212969" duration="1481000" />
       <workItem from="1748026203551" duration="4355000" />
       <workItem from="1748065421202" duration="5776000" />
+      <workItem from="1748076707739" duration="4006000" />
+      <workItem from="1748088140817" duration="814000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
