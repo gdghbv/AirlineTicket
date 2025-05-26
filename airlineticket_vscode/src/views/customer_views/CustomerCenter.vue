@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 100vh; min-width: 100vw;">
-    <el-header style="padding:0;height:64px;line-height:64px;background:#fff;box-shadow:0 2px 8px #0001;z-index:10;">
+    <el-header >
       <CustomerNavBar />
     </el-header>
     <el-container style="height:calc(100vh - 64px);">

@@ -302,53 +302,261 @@ function handleOrder() {
 </script>
 
 <style scoped>
+/* 页面整体样式，与登录页面保持一致 */
 .ticket-order-root {
   width: 100vw;
   max-width: 100vw;
   min-width: 0;
   margin: 0;
-  padding: 80px 0 32px 0; /* 顶部留出80px空间，避免被导航栏遮挡 */
+  padding: 80px 20px 32px 20px; /* 顶部留出80px空间，避免被导航栏遮挡 */
   background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
   border-radius: 0;
   box-shadow: none;
   min-height: 100vh;
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  animation: fade-in-page 0.8s ease-out;
 }
+
+/* 页面淡入动画 */
+@keyframes fade-in-page {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 搜索框卡片样式 */
 .search-box {
   margin-bottom: 24px;
-  background: linear-gradient(90deg, #e0fff7 0%, #e0e7ff 100%);
-  border-radius: 18px;
-  box-shadow: 0 2px 12px #6a82fb22;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px 0 #6a82fb22, 0 1.5px 6px 0 #fc5c7d11;
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(106, 130, 251, 0.1);
+  animation: card-slide-in 0.6s ease-out;
 }
+
+/* 卡片滑入动画 */
+@keyframes card-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 搜索表单样式 */
 .search-form {
-  padding: 12px 0 0 0;
+  padding: 20px 0 10px 0;
 }
+
+/* 航班列表卡片样式 */
 .airline-list-box {
-  background: linear-gradient(90deg, #fff 0%, #e0e7ff 100%);
-  border-radius: 18px;
-  box-shadow: 0 2px 12px #6a82fb22;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px 0 #6a82fb22, 0 1.5px 6px 0 #fc5c7d11;
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(106, 130, 251, 0.1);
   margin-bottom: 18px;
-  padding-bottom: 8px;
+  padding-bottom: 20px;
+  animation: card-slide-in 0.8s ease-out;
 }
+
+/* 表格样式优化 */
 .el-table {
   background: transparent;
-  border-radius: 12px;
+  border-radius: 16px;
   font-size: 15px;
+  overflow: hidden;
 }
+
 .el-table th, .el-table td {
   background: transparent;
+  border-color: rgba(106, 130, 251, 0.1);
 }
+
 .el-table__header th {
-  background: #e0e7ff !important;
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%) !important;
+  color: white !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
+
 .el-table__body tr:hover > td {
-  background: #e6fff6 !important;
+  background: linear-gradient(90deg, rgba(106, 130, 251, 0.08) 0%, rgba(252, 92, 125, 0.08) 100%) !important;
+  transform: scale(1.01);
+  transition: all 0.2s ease;
 }
+
+/* 表格按钮样式 */
+.el-table .el-button--success {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(106, 130, 251, 0.3);
+  transition: all 0.2s ease;
+}
+
+.el-table .el-button--success:hover {
+  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(252, 92, 125, 0.4);
+}
+
+.el-table .el-button--primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s ease;
+}
+
+.el-table .el-button--primary:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(118, 75, 162, 0.4);
+}
+
+/* 分页栏样式 */
 .pagination-bar {
   display: flex;
   justify-content: flex-end;
   margin: 18px 0 0 0;
 }
+
+/* 对话框样式 */
 .el-dialog {
-  border-radius: 18px;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px 0 #6a82fb22, 0 1.5px 6px 0 #fc5c7d11;
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(106, 130, 251, 0.1);
+}
+
+/* 对话框头部样式 */
+.el-dialog__header {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  color: white;
+  border-radius: 32px 32px 0 0;
+  padding: 20px 24px;
+}
+
+.el-dialog__title {
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+/* 对话框内容样式 */
+.el-dialog__body {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* 表单标签样式 */
+.el-form-item__label {
+  font-weight: 600;
+  color: #6a82fb;
+}
+
+/* 输入框样式 */
+.el-input__wrapper {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(106, 130, 251, 0.1);
+  border: 1px solid rgba(106, 130, 251, 0.2);
+  transition: all 0.2s ease;
+}
+
+.el-input__wrapper:hover {
+  border-color: #6a82fb;
+  box-shadow: 0 4px 12px rgba(106, 130, 251, 0.2);
+}
+
+.el-input__wrapper.is-focus {
+  border-color: #fc5c7d;
+  box-shadow: 0 4px 12px rgba(252, 92, 125, 0.2);
+}
+
+/* 选择器样式 */
+.el-select .el-input__wrapper {
+  border-radius: 12px;
+}
+
+/* 日期选择器样式 */
+.el-date-editor .el-input__wrapper {
+  border-radius: 12px;
+}
+
+/* 按钮样式 */
+.el-button--primary {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(106, 130, 251, 0.3);
+  transition: all 0.2s ease;
+}
+
+.el-button--primary:hover {
+  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(252, 92, 125, 0.4);
+}
+
+/* 对话框底部按钮样式 */
+.el-dialog__footer .el-button {
+  border-radius: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+}
+
+.el-dialog__footer .el-button:not(.el-button--primary) {
+  border: 1px solid rgba(106, 130, 251, 0.3);
+  color: #6a82fb;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.el-dialog__footer .el-button:not(.el-button--primary):hover {
+  background: rgba(106, 130, 251, 0.1);
+  border-color: #6a82fb;
+}
+
+/* 复选框样式 */
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #6a82fb;
+  border-color: #6a82fb;
+}
+
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: #6a82fb;
+}
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+  .ticket-order-root {
+    padding: 80px 10px 20px 10px;
+  }
+  
+  .search-box,
+  .airline-list-box {
+    border-radius: 18px;
+  }
+  
+  .el-dialog {
+    border-radius: 18px;
+  }
+  
+  .el-dialog__header {
+    border-radius: 18px 18px 0 0;
+  }
 }
 </style>
