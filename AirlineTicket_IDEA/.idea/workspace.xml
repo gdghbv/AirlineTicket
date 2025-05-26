@@ -6,13 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/AirlineVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/AirlineVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/api/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/api/customer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/AirportUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/AirportUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirportUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirportUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirportUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirportUserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/api/airport.js" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/api/airport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerOrderList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerOrderList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/router/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/router/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerCenter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerCenter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerHomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/TestCustomerApi.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/../接口文档.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,6 +250,9 @@
       <workItem from="1748113286799" duration="290000" />
       <workItem from="1748159902312" duration="1876000" />
       <workItem from="1748181250286" duration="2273000" />
+      <workItem from="1748199769481" duration="612000" />
+      <workItem from="1748226300717" duration="5399000" />
+      <workItem from="1748256085255" duration="4655000" />
     </task>
     <servers />
   </component>

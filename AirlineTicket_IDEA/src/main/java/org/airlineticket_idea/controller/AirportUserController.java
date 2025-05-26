@@ -48,21 +48,21 @@ public class AirportUserController {
     }
 
     //机场查询所有同一机场的管理员信息接口
-    @GetMapping("/admin")
+    @GetMapping("/airportUsers")
     public Result admin(@RequestHeader String token) {
         Result result = airportUserService.admin(token);
         return result;
     }
 
     //机场修改管理员信息接口
-    @PutMapping("/updateAdmin")
+    @PutMapping("/updateAirportUser")
     public Result updateAdmin(@RequestBody AirportUser airportUser) {
         Result result = airportUserService.updateAdmin(airportUser);
         return result;
     }
 
     //机场删除管理员信息接口
-    @DeleteMapping("/deleteAdmin")
+    @DeleteMapping("/deleteAirportUser")
     public Result deleteAdmin(@RequestParam("id") Integer id) {
         Result result = airportUserService.deleteAdmin(id);
         return result;
@@ -98,21 +98,21 @@ public class AirportUserController {
 
 
     //机场查询所有用户的接口，可以根据id、name、phone来查询用户信息
-    @PostMapping("/users")
+    @PostMapping("/customers")
     public Result users(@RequestBody(required = false) UserKeywords userKeywords) {
         Result result = customerService.users(userKeywords);
         return result;
     }
 
     //机场修改用户信息接口
-    @PutMapping("/updateUser")
+    @PutMapping("/updateCustomer")
     public Result updateUser(@RequestBody Customer customer) {
         Result result = customerService.updateUser(customer);
         return result;
     }
 
     //机场删除用户信息接口
-    @DeleteMapping("/deleteUser")
+    @DeleteMapping("/deleteCustomer")
     public Result deleteUser(@RequestParam("id") Integer id) {
         Result result = customerService.deleteUser(id);
         return result;

@@ -96,7 +96,7 @@ public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, Airpo
     public Result getUserInfo(String token) {
 
         int userId = jwtHelper.getUserId(token).intValue();
-
+        System.out.println("--------------"+userId);
         AirportUser airportUser=airportUserMapper.selectById(userId);
         airportUser.setPassword("");
 
