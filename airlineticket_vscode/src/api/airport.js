@@ -8,6 +8,11 @@ export const getAirportInfo=() =>{
     return request.get('/airport/getUserInfo')
 }
 
+//机场获取当前管理员信息
+export const getCurrentAirportInfo=() =>{
+    return request.get('/airport/getCurrentAirportInfo')
+}
+
 //机场获得航班
 export const getAirlineList=(pageKeywords)=>{
     return request.post('/airport/airlines', pageKeywords)
@@ -37,16 +42,16 @@ export const deleteAirportUser=(id)=>{
     return request.delete('/airport/deleteAirportUser', {params:{id}})
 }
 //机场查询所有客户
-export const getAllCustomers=()=>{
-    return request.get('/airport/customers')
+export const getAllCustomers=(customerKeywords)=>{
+    return request.post('/airport/users', customerKeywords)
 }
 //机场修改客户信息
 export const updateCustomer=(customer)=>{
-    return request.put('/airport/updateCustomer', customer)
+    return request.put('/airport/updateUser', customer)
 }
 //机场删除客户
 export const deleteCustomer=(id)=>{
-    return request.delete('/airport/deleteCustomer', {params:{id}})
+    return request.post('/airport/deleteUser', null, {params:{id}})
 }
 //机场查询飞机
 export const getAllAirplanes=(planeKeywords)=>{
