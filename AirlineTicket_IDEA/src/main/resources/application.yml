@@ -8,6 +8,7 @@ server:
 
 # 连接池配置
 spring:
+
     application:
         name: airlineticket_idea
     datasource:

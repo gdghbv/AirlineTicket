@@ -90,17 +90,13 @@ public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, Airpo
 
 
 
-    @Override
-    public Result deleteUser(Integer id) {
-        airportUserMapper.deleteById(id);
-        return Result.ok(null);
-    }
+
 
     @Override
     public Result getUserInfo(String token) {
 
         int userId = jwtHelper.getUserId(token).intValue();
-
+        System.out.println("--------------"+userId);
         AirportUser airportUser=airportUserMapper.selectById(userId);
         airportUser.setPassword("");
 

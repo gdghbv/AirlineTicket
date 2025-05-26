@@ -20,7 +20,7 @@ import java.util.Map;
 public interface AirlineMapper extends BaseMapper<Airline> {
     List<AirlineVO> selectAirlineListWithAirport();
 
-    IPage<Map> selectAirlineListWithPage(IPage page,  @Param("ew") QueryWrapper<AirlineVO> wrapper);
+    IPage<AirlineVO> selectAirlineListWithPage(IPage page,  @Param("ew") QueryWrapper<AirlineVO> wrapper);
 }
 
 

@@ -22,8 +22,5 @@ public interface AirportUserService extends IService<AirportUser> {
     Result deleteAdmin(Integer id);
 
 
-    Result deleteUser(Integer id);
-
-
     Result getUserInfo(String token);
 }

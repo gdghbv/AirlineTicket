@@ -2,7 +2,9 @@ package org.airlineticket_idea.controller;
 
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
+import org.airlineticket_idea.pojo.dto.OrderDTO;
 import org.airlineticket_idea.pojo.dto.PageKeywords;
+import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.service.AirlineService;
 import org.airlineticket_idea.service.CustomerService;
 import org.airlineticket_idea.service.DeepSeekService;
@@ -11,6 +13,8 @@ import org.airlineticket_idea.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/customer")
@@ -48,8 +52,8 @@ public class CustomerController {
     }
     //根据分页条件和关键词来获取客户的航班信息
     @PostMapping("/getAirline")
-public Result getAirlines(@RequestBody PageKeywords pageKeywords){
-    Result result = airlineService.getAirlines(pageKeywords);
+    public Result getAirlines(@RequestBody PageKeywords pageKeywords){
+        Result result = airlineService.getAirlines(pageKeywords);
         return result;
     }
     //查询个人的客户信息
@@ -70,10 +74,16 @@ public Result getAirlines(@RequestBody PageKeywords pageKeywords){
         Result result=orderService.getHistoryOrder(token,pageKeywords);
         return result;
 }
+//在客户点击购买按钮后计算优惠并得出价格
+    @PostMapping("/getPrice")
+    public Result calculatePrice(@RequestHeader String token, @RequestBody AirlineVO airlineVO){
+         Result result=orderService.calculatePrice(token,airlineVO);
+        return result;
+    }
     //客户购买订单
 @PostMapping("/orderAirline")
-    public Result buyTicket(@RequestHeader String token,@RequestBody Order order,@RequestParam boolean useDiscount){
-        Result result=orderService.buyTicket(token,order,useDiscount);
+    public Result buyTicket(@RequestHeader String token, @RequestBody OrderDTO order){
+        Result result=orderService.buyTicket(token,order);
         return result;
 }
     //客户对订单进行退款

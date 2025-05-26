@@ -11,15 +11,8 @@
         <span>让出行更简单 · 更智能 · 更贴心</span>
       </div>
     </div>
-    <div class="carousel-box">
-      <el-carousel height="260px" indicator-position="outside" arrow="always" :interval="3500">
-        <el-carousel-item v-for="(img, idx) in images" :key="idx">
-          <img :src="img" class="carousel-img" />
-        </el-carousel-item>
-      </el-carousel>
-    </div>
     <div class="chat-box ai-card-style">
-      <div class="chat-header">
+      <div class="chat-header chat-header-center">
         <span class="chat-icon">🤖</span>
         <span class="chat-title">AI 订票助手</span>
       </div>
@@ -38,12 +31,6 @@ import CustomerNavBar from '@/components/CustomerNavBar.vue'
 import { ref } from 'vue'
 import { ElIcon } from 'element-plus'
 import { UserFilled } from '@element-plus/icons-vue'
-
-const images = ref([
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
-])
 </script>
 
 <style scoped>
@@ -126,32 +113,9 @@ const images = ref([
   margin-top: 6px;
   text-shadow: 0 2px 12px #377dff11;
 }
-.carousel-box {
-  width: 90vw;
-  max-width: 1200px;
-  margin: 18px 0 32px 0;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 2px 24px #377dff33;
-  background: rgba(255,255,255,0.97);
-  border: 3px solid;
-  border-image: linear-gradient(90deg, #6a9bff 0%, #377dff 60%, #fff 100%) 1;
-  z-index: 1;
-}
-.carousel-img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 18px;
-  transition: transform 0.7s cubic-bezier(.4,2,.6,1.2);
-  box-shadow: 0 2px 16px #377dff22;
-}
-.el-carousel__item.is-active .carousel-img {
-  transform: scale(1.04);
-}
 .chat-box {
   width: 90vw;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 32px 0 24px 0;
   background: rgba(255,255,255,0.97);
   border-radius: 22px;
@@ -159,11 +123,24 @@ const images = ref([
   padding: 0 0 18px 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 340px;
+  align-items: stretch;
+  min-height: 540px;
   border: 3px solid;
   border-image: linear-gradient(90deg, #6a9bff 0%, #377dff 60%, #fff 100%) 1;
   z-index: 1;
+}
+.ai-helper-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #377dff;
+  letter-spacing: 1px;
+  margin-top: 32px;
+  margin-bottom: 0;
+  animation: ai-bounce 1.2s infinite alternate;
 }
 .chat-header {
   display: flex;
@@ -175,6 +152,12 @@ const images = ref([
   color: #377dff;
   letter-spacing: 1px;
   margin-top: 18px;
+}
+.chat-header-center {
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 0;
+  font-size: 1.35rem;
 }
 .chat-icon {
   font-size: 1.7rem;

@@ -40,20 +40,35 @@ FROM airline a
          LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
 </select>
 
-    <select id="selectAirlineListWithPage" resultType="java.util.Map">
-        SELECT  a.*,
-        dep.airport_name AS departure_airport_name,
-        arr.airport_name AS arrival_airport_name,
-        dep.address AS departure_airport_address,
-        arr.address AS arrival_airport_address,
-        dep.phone AS departure_airport_phone,
-        arr.phone AS arrival_airport_phone
+    <select id="selectAirlineListWithPage" resultType="org.airlineticket_idea.pojo.vo.AirlineVO">
+        SELECT
+            a.airline_id AS airlineId,
+            a.airplane_id AS airplaneId,
+            a.arrival_airport_id AS arrivalAirportId,
+            a.departure_airport_id AS departureAirportId,
+            a.boarding_gate AS boardingGate,
+            a.price,
+            a.departure_time AS departureTime,
+            a.arrival_time AS arrivalTime,
+            a.date,
+            a.first_seat AS firstSeat,
+            a.second_seat AS secondSeat,
+            a.third_seat AS thirdSeat,
+            a.duration,
+            a.departure,
+            a.arrival,
+            dep.airport_name AS departureAirportName,
+            arr.airport_name AS arrivalAirportName,
+            dep.address AS departureAirportAddress,
+            arr.address AS arrivalAirportAddress,
+            dep.phone AS departureAirportPhone,
+            arr.phone AS arrivalAirportPhone,
+            FLOOR(a.price * 1.5) AS firstSeatPrice,
+            FLOOR(a.price * 1.3) AS secondSeatPrice,
+            FLOOR(a.price * 1.0) AS thirdSeatPrice
         FROM airline a
-        LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
-        LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
-
-    ${ew.customSqlSegment}
-
+                 LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
+                 LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
+            ${ew.customSqlSegment}
     </select>
-
 </mapper>

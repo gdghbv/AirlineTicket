@@ -22,16 +22,40 @@
       seat_id,seat_type,customer_id,citizen_id,citizen_name
     </sql>
     <select id="selectOrderListWithPage" resultType="java.util.Map">
-        SELECT o.*,
-        a.*,
-        dep.airport_name AS departure_airport_name,
-        arr.airport_name AS arrival_airport_name
+        SELECT
+            o.order_id AS orderId,
+            o.order_stat AS orderStat,
+            o.spending,
+            o.booking_time AS bookingTime,
+            o.airline_id AS airlineId,
+            o.seat_id AS seatId,
+            o.seat_type AS seatType,
+            o.customer_id AS customerId,
+            o.citizen_id AS citizenId,
+            o.citizen_name AS citizenName,
+
+            a.airplane_id AS airplaneId,
+            a.date,
+            a.arrival,
+            a.departure,
+            a.departure_airport_id AS departureAirportId,
+            a.arrival_airport_id AS arrivalAirportId,
+            a.duration,
+            a.boarding_gate AS boardingGate,
+            a.price,
+            a.third_seat AS thirdSeat,
+            a.departure_time AS departureTime,
+            a.first_seat AS firstSeat,
+            a.second_seat AS secondSeat,
+            a.arrival_time AS arrivalTime,
+
+            dep.airport_name AS departureAirportName,
+            arr.airport_name AS arrivalAirportName
         FROM `order` o
-        LEFT JOIN airline a ON o.airline_id = a.airline_id
-        LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
-        LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
-        <!-- 完全移除 <where> 标签，直接拼接条件 -->
-        ${ew.customSqlSegment}
+                 LEFT JOIN airline a ON o.airline_id = a.airline_id
+                 LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
+                 LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
+            ${ew.customSqlSegment}
     </select>
 
 </mapper>
