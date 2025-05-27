@@ -5,15 +5,63 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4233f3e-5e9f-49b3-9210-8bf6dc387d96" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/dto/OrderDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/dto/OrderDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/ShowAirlineStat.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/ShowAirplaneStat.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/ShowAirportStat.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportAirlineView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportAirplaneView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportApiTest.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportCenterView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportCustomerManageVIew.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportOrderView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportUser.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportUserAll.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerInfo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerOrderList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/config/WebMBVConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/config/WebMBVConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/AirportUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/AirportUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/mapper/AirlineMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/mapper/AirlineMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/AirlineVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/pojo/vo/AirlineVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/AirportUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/AirportUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirlineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirlineServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirportUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/AirportUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/airlineticket_idea/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/AirlineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/AirlineMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/OrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/airlineticket_idea/mapper/OrderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/airlineticket_idea/AirlineticketIdeaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/airlineticket_idea/AirlineticketIdeaApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/config/WebMBVConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/config/WebMBVConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/AirportUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/AirlineMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/OrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/mapper/OrderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/pojo/vo/AirlineVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirportUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/AirportUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirlineServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirlineServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirportUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/AirportUserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/DeepSeekServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/DeepSeekServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/airlineticket_idea/service/impl/OrderServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/org/airlineticket_idea/AirlineticketIdeaApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/airlineticket_idea/AirlineticketIdeaApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/api/airport.js" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/api/airport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerOrderList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerOrderList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/api/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/api/customer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/components/CustomerNavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/router/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/router/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/LoginView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/airport_views/AirportHomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerCenter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerCenter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerHomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerTicketOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/CustomerTicketOrder.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../airlineticket_vscode/src/views/customer_views/TestCustomerApi.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/../接口文档.md" afterDir="false" />
     </list>
@@ -32,24 +80,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="customMavenHome" value="D:\WorkPlace\Maven\apache-maven-3.9.9" />
-        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
         <option name="userSettingsFile" value="D:\WorkPlace\Maven\apache-maven-3.9.9\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="2wdmnLVHW86bTUJbfzxhBZxOHha" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -58,39 +101,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AirlineticketIdeaApplicationTests.getAirlineDiscount.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AirlineticketIdeaApplicationTests.testGetSeatId.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AirlineticketIdeaApplicationTests.testSelectWithAirport.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.AirlineTicket_IDEA [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.AirlineTicket_IDEA [package].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AirlineticketIdeaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/AirlineTicket/airlineticket_idea/src/main/java/org/airlineticket_idea/pojo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -258,6 +275,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
