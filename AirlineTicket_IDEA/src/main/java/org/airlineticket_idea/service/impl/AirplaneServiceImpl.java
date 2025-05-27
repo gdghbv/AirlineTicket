@@ -8,6 +8,7 @@ import org.airlineticket_idea.mapper.AirportMapper;
 import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Airport;
 import org.airlineticket_idea.pojo.dto.PlaneKeywords;
+import org.airlineticket_idea.pojo.vo.ShowAirplaneVO;
 import org.airlineticket_idea.service.AirplaneService;
 import org.airlineticket_idea.mapper.AirplaneMapper;
 import org.airlineticket_idea.utils.JwtHelper;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
 * @author 35461
@@ -83,6 +85,20 @@ public class AirplaneServiceImpl extends ServiceImpl<AirplaneMapper, Airplane>
     public Result deletePlane(Integer id) {
         airplaneMapper.deleteById(id);
         return Result.ok(null);
+    }
+
+    @Override
+    public Result showPlaneStat(String token) {
+        Integer airportId = jwtHelper.getUserId(token).intValue();
+        Map<String, Long>countPlanes=airplaneMapper.selectList(new LambdaQueryWrapper<Airplane>().eq(Airplane::getBelongedAirportId, airportId))
+                .stream().collect(Collectors.groupingBy(Airplane::getStatus, Collectors.counting()));
+         ShowAirplaneVO showAirplaneVO = new ShowAirplaneVO();
+         showAirplaneVO.setMaintaining(countPlanes.getOrDefault("维护中", 0L).intValue());
+         showAirplaneVO.setOnLand(countPlanes.getOrDefault("已着陆", 0L).intValue());
+         showAirplaneVO.setInFlight(countPlanes.getOrDefault("航行中", 0L).intValue());
+ /*       System.out.println(countPlanes);
+         System.out.println(showAirplaneVO);*/
+        return Result.ok(showAirplaneVO);
     }
 }
 

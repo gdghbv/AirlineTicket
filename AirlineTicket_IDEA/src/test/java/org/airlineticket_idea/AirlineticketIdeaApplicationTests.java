@@ -3,6 +3,7 @@ package org.airlineticket_idea;
 import org.airlineticket_idea.mapper.AirlineMapper;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.service.AirlineService;
+import org.airlineticket_idea.service.AirplaneService;
 import org.airlineticket_idea.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ class AirlineticketIdeaApplicationTests {
 	private AirlineMapper airlineMapper;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private AirplaneService	airplaneService;
+	@Autowired
+	private AirlineService airlineService;
 	@Test
 	void contextLoads() {
 	}
@@ -51,5 +56,14 @@ class AirlineticketIdeaApplicationTests {
 		airlineVO.setThirdSeatPrice(BigDecimal.valueOf(1000));
 		orderService.calculatePrice("eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDexMLAwMzU00FEqLU4t8kxRsjKpBQDl71jcLwAAAA.giplYjRZ542wsWPyMzwn1C0rCvzhmLtAiBmZLJPSaLsBUm9baqcorfB-vO_VIsyL1ed65cYGEuKPMlQq8lCVuQ",airlineVO);
 	 System.out.println(airlineVO);
+ }
+ @Test
+	public void testAirplaneStat(){
+		airplaneService.showPlaneStat("eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDexMDY2NDMx0VEqLU4t8kwBitUCAC9EvVYvAAAA.JQvfqf-bvtGtW6q6oF37aHtqSBMTe302qm-sLOJD7f_DO_DFbKOXqjsnusN_QPPxWTh81AvW53ngig8_L160Pg")
+		;
+ }
+ @Test
+	public void testAirlineStat(){
+		orderService.showAirlineStat();
  }
 }

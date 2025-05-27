@@ -25,6 +25,8 @@ public class AirportUserController {
     private AirplaneService airplaneService;
     @Autowired
     private AirportUserService airportUserService;
+    @Autowired
+    private OrderService orderService;
 
     //机场注册
     @PostMapping("/register")
@@ -146,4 +148,23 @@ public class AirportUserController {
         Result result = airplaneService.deletePlane(id);
         return result;
     }
+//获取机场前5名最多订单的航班信息
+    @GetMapping("/showAirlineStat")
+    public Result showAirlineStat(){
+        Result result =orderService.showAirlineStat();
+        return result;
+    }
+    //获取机场中所有飞机的情况
+    @GetMapping("/showPlaneStat")
+    public Result showPlaneStat(@RequestHeader String token){
+        Result result =airplaneService.showPlaneStat(token);
+        return result;
+    }
+    //获取机场的用户数量和订单数量
+   /* @GetMapping("/showAirportStat")
+    public Result showAirportStat(){
+
+        Result result =airportUserService.showAirportStat();
+        return result;
+    }*/
 }

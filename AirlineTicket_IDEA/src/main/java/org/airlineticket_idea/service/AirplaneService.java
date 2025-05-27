@@ -25,4 +25,6 @@ public interface AirplaneService extends IService<Airplane> {
     Result updatePlane(Airplane airplane);
 
     Result deletePlane(Integer id);
+
+    Result showPlaneStat(String token);
 }
