@@ -20,8 +20,15 @@
         third_seat
     </sql>
     <select id="selectAirplanesListWithPage" resultType="java.util.Map">
-         SELECT DISTINCT  ap.*,
-                a.airport_name as belonged_airport_name
+         SELECT DISTINCT  ap.airplane_id as airplaneId,
+                            ap.airplane_name as airplaneName,
+                            ap.status as status,
+                            ap.location as location,
+                            ap.first_seat as firstSeat,
+                            ap.second_seat as secondSeat,
+                            ap.third_seat as thirdSeat,
+                            a.airport_id as belongedAirportId,
+                            a.airport_name as belongedAirportName
                 FROM airplane ap
                 LEFT JOIN airport a ON ap.belonged_airport_id = a.airport_id
          ${ew.customSqlSegment}
