@@ -19,7 +19,7 @@
     </el-card>
 
     <el-card class="airline-list-box">
-      <el-table :data="airlines" stripe border style="width: 100%" v-loading="loading">
+      <el-table :data="airlines" stripe border style="width: 100%" v-loading="loading" :border="true" :fit="true" :resizable="false">
         <el-table-column prop="airlineId" label="航班号" width="90" />
         <el-table-column prop="departure" label="起点" width="90" />
         <el-table-column prop="departureAirportName" label="起飞机场" min-width="120" />
@@ -29,6 +29,16 @@
         <el-table-column prop="departureTime" label="起飞时间" width="90" />
         <el-table-column prop="arrivalTime" label="到达时间" width="90" />
         <el-table-column prop="duration" label="时长" width="80" />
+        <el-table-column prop="boardingGate" label="登机口" width="90" />
+        <el-table-column label="座位信息" min-width="120" :resizable="false">
+          <template #default="{ row }">
+            <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+              <el-tag size="small" type="success">头等舱: {{ row.firstSeat }}</el-tag>
+              <el-tag size="small" type="warning">商务舱: {{ row.secondSeat }}</el-tag>
+              <el-tag size="small" type="info">经济舱: {{ row.thirdSeat }}</el-tag>
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column prop="price" label="票价(元)" width="100" />
         <el-table-column label="操作" width="180">
           <template #default="{ row }">
@@ -63,6 +73,9 @@
         <el-descriptions-item label="到达时间">{{ detailData.arrivalTime }}</el-descriptions-item>
         <el-descriptions-item label="时长">{{ detailData.duration }}</el-descriptions-item>
         <el-descriptions-item label="登机口">{{ detailData.boardingGate }}</el-descriptions-item>
+        <el-descriptions-item label="头等舱座位">{{ detailData.firstSeat }}</el-descriptions-item>
+        <el-descriptions-item label="商务舱座位">{{ detailData.secondSeat }}</el-descriptions-item>
+        <el-descriptions-item label="经济舱座位">{{ detailData.thirdSeat }}</el-descriptions-item>
         <el-descriptions-item label="头等舱票价">{{ detailData.firstSeatPrice }} 元</el-descriptions-item>
         <el-descriptions-item label="商务舱票价">{{ detailData.secondSeatPrice }} 元</el-descriptions-item>
         <el-descriptions-item label="经济舱票价">{{ detailData.thirdSeatPrice }} 元</el-descriptions-item>

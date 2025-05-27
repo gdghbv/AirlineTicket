@@ -25,4 +25,6 @@ public interface OrderService extends IService<Order> {
     Result memberRegister(String token);
 
     Result calculatePrice(String token, AirlineVO airlineVO);
+
+    Result showAirlineStat();
 }

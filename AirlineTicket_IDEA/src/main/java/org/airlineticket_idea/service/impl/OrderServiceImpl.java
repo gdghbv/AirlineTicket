@@ -1,6 +1,7 @@
 package org.airlineticket_idea.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,6 +16,7 @@ import org.airlineticket_idea.pojo.Order;
 import org.airlineticket_idea.pojo.dto.OrderDTO;
 import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
+import org.airlineticket_idea.pojo.vo.ShowAirlineStatVO;
 import org.airlineticket_idea.service.OrderService;
 import org.airlineticket_idea.utils.JwtHelper;
 import org.airlineticket_idea.utils.Result;
@@ -25,6 +27,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -84,6 +88,35 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         System.out.println(airlineVO);
         return Result.ok(airlineVO);
 
+    }
+
+    @Override
+    public Result showAirlineStat() {
+        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("airline_id,COUNT(*) as order_count")
+                .groupBy("airline_id")
+                .orderByDesc("order_count")
+                .last("LIMIT 5");
+        List<Map<String, Object>> airlineOrderCounts=orderMapper.selectMaps(queryWrapper);
+
+        List<ShowAirlineStatVO> voList=new ArrayList<>();
+
+        for(Map<String, Object> map:airlineOrderCounts){
+            Integer airlineId=(Integer)map.get("airline_id");
+            Long orderCount=(Long)map.get("order_count");
+            Airline airline=airlineMapper.selectById(airlineId);
+            if(airline==null){
+                continue;
+            }
+            ShowAirlineStatVO vo=new ShowAirlineStatVO();
+            vo.setAirlineId(airline.getAirlineId());
+            vo.setAirlineDepartureCity(airline.getDeparture());
+            vo.setAirlineArrivalCity(airline.getArrival());
+            vo.setAirlineOrderCount(String.valueOf(orderCount));
+            voList.add(vo);
+        }
+        System.out.println(voList);
+        return Result.ok(voList);
     }
 
     public BigDecimal getDiscountPrice(int points ,BigDecimal price){
