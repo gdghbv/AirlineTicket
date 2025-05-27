@@ -79,12 +79,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
     public Result calculatePrice(String token, AirlineVO airlineVO) {
         int userId = jwtHelper.getUserId(token).intValue();
         int points=customerMapper.selectById(userId).getMilsPoints();
-        airlineVO.setFirstSeatDiscountPrice(getDiscountPrice(points,airlineVO.getFirstSeatPrice()));
+      /*  airlineVO.setFirstSeatDiscountPrice(getDiscountPrice(points,airlineVO.getFirstSeatPrice()));
         airlineVO.setSecondSeatDiscountPrice(getDiscountPrice(points,airlineVO.getSecondSeatPrice()));
         airlineVO.setThirdSeatDiscountPrice(getDiscountPrice(points,airlineVO.getThirdSeatPrice()));
         airlineVO.setFirstSeatDiscount(airlineVO.getFirstSeatPrice().subtract(airlineVO.getFirstSeatDiscountPrice()));
         airlineVO.setSecondSeatDiscount(airlineVO.getSecondSeatPrice().subtract(airlineVO.getSecondSeatDiscountPrice()));
-        airlineVO.setThirdSeatDiscount(airlineVO.getThirdSeatPrice().subtract(airlineVO.getThirdSeatDiscountPrice()));
+        airlineVO.setThirdSeatDiscount(airlineVO.getThirdSeatPrice().subtract(airlineVO.getThirdSeatDiscountPrice()));*/
         System.out.println(airlineVO);
         return Result.ok(airlineVO);
 

@@ -16,7 +16,7 @@ spring:
         druid:
             url: jdbc:mysql://localhost:3306/airline_reservations?useAffectedRows=true&rewriteBatchedStatements=true
             username: root
-            password: 123456
+            password: 1234
             driver-class-name: com.mysql.cj.jdbc.Driver
 
 # mybatis-plus的配置
