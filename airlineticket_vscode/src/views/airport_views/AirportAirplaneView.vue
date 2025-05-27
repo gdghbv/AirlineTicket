@@ -119,20 +119,17 @@
           @current-change="handleCurrentChange"
         />
       </div>
-    </el-card>
-
-    <!-- 添加/编辑飞机对话框 -->
+    </el-card>    <!-- 添加/编辑飞机对话框 -->
     <el-dialog 
       :title="dialogTitle" 
       v-model="dialogVisible" 
-      width="600px"
+      width="800px"
       :before-close="handleClose"
-    >
-      <el-form 
+    >      <el-form 
         :model="airplaneForm" 
         :rules="rules" 
         ref="airplaneFormRef"
-        label-width="100px"
+        label-width="120px"
       >
         <el-row :gutter="20">
           <el-col :span="12">
@@ -483,5 +480,17 @@ onMounted(() => {
 
 :deep(.el-form-item__label) {
   font-weight: 500;
+}
+
+:deep(.el-dialog__body) {
+  padding: 20px 24px;
+}
+
+:deep(.el-dialog .el-form-item) {
+  margin-bottom: 20px;
+}
+
+:deep(.el-input-number) {
+  width: 100% !important;
 }
 </style>
