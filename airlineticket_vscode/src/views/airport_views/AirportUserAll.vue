@@ -19,7 +19,7 @@
         stripe
         height="100%"
       >
-        <el-table-column prop="airportUserId" label="用户ID" width="80" />
+        <el-table-column prop="userId" label="用户ID" width="80" />
         <el-table-column prop="airportId" label="机场ID" width="80" />
         <el-table-column prop="airportName" label="机场名称" width="200" />
         <el-table-column prop="userName" label="用户名" width="120">
@@ -27,7 +27,7 @@
             {{ scope.row.userName || '未设置' }}
           </template>
         </el-table-column>
-        <el-table-column prop="email" label="邮箱" width="200" />
+        <el-table-column prop="airportPhone" label="机场电话" width="200" />
         <el-table-column prop="phone" label="电话" width="120" />
         <el-table-column prop="address" label="地址" min-width="200" />
         <el-table-column label="操作" width="180" fixed="right">

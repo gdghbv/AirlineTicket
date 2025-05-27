@@ -1,12 +1,11 @@
 package org.airlineticket_idea.controller;
 
-import org.airlineticket_idea.pojo.Airline;
-import org.airlineticket_idea.pojo.Airplane;
-import org.airlineticket_idea.pojo.AirportUser;
-import org.airlineticket_idea.pojo.Customer;
-import org.airlineticket_idea.pojo.dto.PageKeywords;
+import org.airlineticket_idea.pojo.*;
+import org.airlineticket_idea.pojo.dto.OrderKeywords;
+import org.airlineticket_idea.pojo.dto.AirlineKeywords;
 import org.airlineticket_idea.pojo.dto.PlaneKeywords;
 import org.airlineticket_idea.pojo.dto.UserKeywords;
+import org.airlineticket_idea.pojo.vo.ShowAirportStatVO;
 import org.airlineticket_idea.service.*;
 import org.airlineticket_idea.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +22,15 @@ public class AirportUserController {
     private CustomerService customerService;
     @Autowired
     private AirplaneService airplaneService;
+
     @Autowired
     private AirportUserService airportUserService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private AirportService airportService;
+
+
 
     //机场注册
     @PostMapping("/register")
@@ -72,8 +76,8 @@ public class AirportUserController {
 
     //机场查看航班
     @PostMapping("/airlines")
-    public Result airlines(@RequestBody PageKeywords pageKeywords) {
-        Result result = airlineService.getAirlines(pageKeywords);
+    public Result airlines(@RequestBody AirlineKeywords airlineKeywords) {
+        Result result = airlineService.getAirlines(airlineKeywords);
         return result;
     }
 
@@ -149,22 +153,35 @@ public class AirportUserController {
         return result;
     }
 //获取机场前5名最多订单的航班信息
-    @GetMapping("/showAirlineStat")
+    @GetMapping("/topFiveAirlines")
     public Result showAirlineStat(){
         Result result =orderService.showAirlineStat();
         return result;
     }
     //获取机场中所有飞机的情况
-    @GetMapping("/showPlaneStat")
+    @GetMapping("/airplanesStat")
     public Result showPlaneStat(@RequestHeader String token){
         Result result =airplaneService.showPlaneStat(token);
         return result;
     }
     //获取机场的用户数量和订单数量
-   /* @GetMapping("/showAirportStat")
+    @GetMapping("/userAndOrderCount")
     public Result showAirportStat(){
+        ShowAirportStatVO vo=new ShowAirportStatVO();
+        vo.setCustomerCount(customerService.count());
+        vo.setOrderCount(orderService.count());
+        vo.setAirportCount(airportService.count());
+        return Result.ok(vo);
 
-        Result result =airportUserService.showAirportStat();
+    }
+    @PostMapping("/orders")
+    public Result getOrders(@RequestBody OrderKeywords orderKeywords, @RequestHeader String token){
+        Result result=orderService.getOrders(orderKeywords,token);
         return result;
-    }*/
-}
+    }
+    @PutMapping("/updateOrder")
+    public Result updateOrder(@RequestBody Order order){
+        Result result=orderService.updateOrder(order);
+        return result;
+    }
+    }

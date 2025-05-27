@@ -1,11 +1,15 @@
 <template>
-  
+  <ShowAirlineStat/>
+  <ShowAirplaneStat/>
+  <ShowAirportStat/>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { House, Menu, User } from '@element-plus/icons-vue'
+import ShowAirlineStat from '@/components/ShowAirlineStat.vue'
+import ShowAirplaneStat from '@/components/ShowAirplaneStat.vue'
+import ShowAirportStat from '@/components/ShowAirportStat.vue'
 
 const route = useRoute()
 const activeMenu = ref(route.path)

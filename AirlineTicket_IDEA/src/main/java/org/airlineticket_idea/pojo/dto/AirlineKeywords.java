@@ -6,7 +6,7 @@ import java.sql.Date;
 
 
 @Data
-public class PageKeywords {
+public class AirlineKeywords {
     private String departureKeyword;
     private String arrivalKeyword;
     private Date dateKeyword;

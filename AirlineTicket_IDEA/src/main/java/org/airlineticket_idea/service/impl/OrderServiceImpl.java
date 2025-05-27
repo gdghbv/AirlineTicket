@@ -14,7 +14,8 @@ import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
 import org.airlineticket_idea.pojo.dto.OrderDTO;
-import org.airlineticket_idea.pojo.dto.PageKeywords;
+import org.airlineticket_idea.pojo.dto.OrderKeywords;
+import org.airlineticket_idea.pojo.dto.AirlineKeywords;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.pojo.vo.ShowAirlineStatVO;
 import org.airlineticket_idea.service.OrderService;
@@ -51,7 +52,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
     AirplaneMapper airplaneMapper;
 
     @Override
-    public Result getHistoryOrder(String token, PageKeywords pageKeywords) {
+    public Result getHistoryOrder(String token, AirlineKeywords airlineKeywords) {
         // 1. Token 验证
         if (jwtHelper.isExpiration(token)) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
@@ -63,7 +64,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         queryWrapper.eq(Order::getCustomerId, userId);
 
         // 3. 执行分页查询（关键修改：接收返回值）
-        IPage<Map<String, Object>> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
+        IPage<Map<String, Object>> page = new Page<>(airlineKeywords.getPageNum(), airlineKeywords.getPageSize());
         IPage<Map<String, Object>> resultPage = orderMapper.selectOrderListWithPage(page, queryWrapper);
 
         // 4. 返回结果
@@ -117,6 +118,42 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         }
         System.out.println(voList);
         return Result.ok(voList);
+    }
+
+    @Override
+    public Result getOrders(OrderKeywords orderKeywords, String token) {
+        IPage<Map<String, Object>> page = new Page<>(orderKeywords.getPageNum(), orderKeywords.getPageSize());
+        LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
+
+        if (orderKeywords.getOrderId() != null) {
+            queryWrapper.eq(Order::getOrderId, orderKeywords.getOrderId());
+        }
+        if (orderKeywords.getCustomerId() != null && !orderKeywords.getCustomerId().isEmpty()) {
+            queryWrapper.eq(Order::getCustomerId, orderKeywords.getCustomerId());
+        }
+        if (orderKeywords.getCitizenName() != null && !orderKeywords.getCitizenName().isEmpty()) {
+            queryWrapper.like(Order::getCitizenName, orderKeywords.getCitizenName());
+        }
+        if (orderKeywords.getAirlineId() != null && !orderKeywords.getAirlineId().isEmpty()) {
+            queryWrapper.eq(Order::getAirlineId, orderKeywords.getAirlineId());
+        }
+        queryWrapper.orderByDesc(Order::getOrderId);
+
+        IPage<Map<String, Object>> resultPage = orderMapper.selectOrderListWithPage(page, queryWrapper);
+
+        return Result.ok(Map.of(
+                "pageData", resultPage.getRecords(),
+                "pageNum", resultPage.getCurrent(),
+                "pageSize", resultPage.getSize(),
+                "totalPage", resultPage.getPages(),
+                "totalSize", resultPage.getTotal()
+        ));
+    }
+
+    @Override
+    public Result updateOrder(Order order) {
+       orderMapper.updateById(order);
+       return Result.build(null, 200, "订单更新成功");
     }
 
     public BigDecimal getDiscountPrice(int points ,BigDecimal price){
