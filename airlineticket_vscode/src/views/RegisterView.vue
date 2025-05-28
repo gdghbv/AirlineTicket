@@ -66,18 +66,14 @@
               <el-input v-model="form.password" type="password" maxlength="20" prefix-icon="i-ep-lock" />
             </el-form-item>
             <template v-if="userType==='airport'">
-              <el-form-item label="邮箱" prop="email">
-                <el-input v-model="form.email" maxlength="40" prefix-icon="i-ep-message" />
-              </el-form-item>
+          
               <el-form-item label="机场ID" prop="airportId">
                 <el-input v-model="form.airportId" maxlength="10" prefix-icon="i-ep-office-building" />
               </el-form-item>
               <el-form-item label="机场地址" prop="address">
                 <el-input v-model="form.address" maxlength="50" prefix-icon="i-ep-location" />
               </el-form-item>
-              <el-form-item label="机场名称" prop="airportName">
-                <el-input v-model="form.airportName" maxlength="30" prefix-icon="i-ep-takeaway-box" />
-              </el-form-item>
+          
             </template>
             <el-form-item>
               <el-button type="primary" @click="onRegister" :loading="loading" class="register-btn">注册</el-button>
@@ -169,7 +165,6 @@ const onRegister = () => {
       } else {
         await AirportRegister({
           phone: form.value.phone,
-          email: form.value.email,
           password: form.value.password,
           airportId: form.value.airportId,
           address: form.value.address,

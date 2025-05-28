@@ -34,7 +34,7 @@ private AirlineMapper airlineMapper;
 @Autowired
 private AirplaneMapper airplaneMapper;
     @Override
-    public Result getAirlines(AirlineKeywords airlineKeywords) {
+    public Result getAirlines(AirlineKeywords airlineKeywords,boolean isAirport) {
         IPage<AirlineVO> page = new Page<>(airlineKeywords.getPageNum(), airlineKeywords.getPageSize());
         QueryWrapper<AirlineVO> queryWrapper = new QueryWrapper<>();
         if (airlineKeywords.getDepartureKeyword() != null && airlineKeywords.getDepartureKeyword().length() > 0) {
@@ -47,11 +47,12 @@ private AirplaneMapper airplaneMapper;
             queryWrapper.eq("a.date", airlineKeywords.getDateKeyword());
         }
         // 排除起飞时间距离当前时间不足3小时的航班
+        if(!isAirport){
         queryWrapper.and(wrapper -> wrapper.eq("a.date", LocalDate.now())
                 .gt("a.departure_time", LocalTime.now().plusHours(3))
                 .or()
                 .gt("a.date", LocalDate.now())
-        );
+        );}
         // 排序
         queryWrapper.orderByAsc("a.date", "a.departure_time");
         airlineMapper.selectAirlineListWithPage(page, queryWrapper);

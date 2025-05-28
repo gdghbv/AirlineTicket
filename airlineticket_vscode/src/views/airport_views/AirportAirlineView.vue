@@ -1,25 +1,42 @@
 <template>
-  <div class="airline-view-root">
-    <el-card class="search-box">
-      <el-form :inline="true" :model="searchForm" class="search-form">
+  <div class="airline-management">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <h2>航班管理</h2>
+      <el-button type="primary" @click="addDialogVisible = true" class="add-btn">
+        <el-icon><Plus /></el-icon>
+        增加航班
+      </el-button>
+    </div>
+
+    <!-- 搜索区域 -->
+    <el-card class="search-card" shadow="never">
+      <el-form :model="searchForm" inline>
         <el-form-item label="起点">
-          <el-input v-model="searchForm.departureKeyword" placeholder="请输入起点" clearable />
+          <el-input v-model="searchForm.departureKeyword" placeholder="请输入起点" clearable style="width: 180px" />
         </el-form-item>
         <el-form-item label="终点">
-          <el-input v-model="searchForm.arrivalKeyword" placeholder="请输入终点" clearable />
+          <el-input v-model="searchForm.arrivalKeyword" placeholder="请输入终点" clearable style="width: 180px" />
         </el-form-item>
         <el-form-item label="起飞日期">
-          <el-date-picker v-model="searchForm.dateKeyword" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" clearable />
+          <el-date-picker v-model="searchForm.dateKeyword" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" clearable style="width: 180px" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="fetchAirlines">搜索</el-button>
+          <el-button type="primary" @click="searchAirlines">
+            <el-icon><Search /></el-icon>
+            搜索
+          </el-button>
+          <el-button @click="resetSearch">
+            <el-icon><Refresh /></el-icon>
+            重置
+          </el-button>
         </el-form-item>
       </el-form>
-      <el-button type="success" class="add-btn" @click="addDialogVisible = true">增加航班</el-button>
     </el-card>
 
-    <el-card class="airline-list-box">
-      <el-table :data="airlines" stripe border style="width: 100%" v-loading="loading">
+    <!-- 航班列表 -->
+    <el-card class="table-card" shadow="never">
+      <el-table :data="airlines" v-loading="loading" style="width: 100%" stripe class="airline-table">
         <el-table-column prop="airlineId" label="航班号" width="90" />
         <el-table-column prop="departure" label="起点" width="90" />
         <el-table-column prop="departureAirportName" label="起飞机场" min-width="120" />
@@ -30,17 +47,24 @@
         <el-table-column prop="arrivalTime" label="到达时间" width="90" />
         <el-table-column prop="duration" label="时长" width="80" />
         <el-table-column prop="price" label="票价(元)" width="100" />
-        <el-table-column label="操作" width="180">
+        <el-table-column label="操作" width="180" fixed="right">
           <template #default="{ row }">
-            <el-button type="primary" size="small" @click="openEditDialog(row)">修改</el-button>
-            <el-button type="danger" size="small" @click="handleDelete(row)" style="margin-left:8px;">删除</el-button>
+            <el-button type="primary" size="small" @click="openEditDialog(row)">
+              <el-icon><Edit /></el-icon>
+              修改
+            </el-button>
+            <el-button type="danger" size="small" @click="handleDelete(row)" style="margin-left:8px;">
+              <el-icon><Delete /></el-icon>
+              删除
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <div class="pagination-bar">
+      <!-- 分页 -->
+      <div class="pagination-wrapper">
         <el-pagination
           background
-          layout="sizes, prev, pager, next, jumper"
+          layout="total, sizes, prev, pager, next, jumper"
           :total="total"
           :page-size="searchForm.pageSize"
           :current-page="searchForm.pageNum"
@@ -143,8 +167,9 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
+import { Plus, Search, Refresh, Edit, Delete } from '@element-plus/icons-vue'
 import * as airportApi from '@/api/airport'
 
 const searchForm = reactive({
@@ -165,35 +190,26 @@ function fetchAirlines() {
     pageNum: searchForm.pageNum,
     pageSize: searchForm.pageSize
   }).then(res => {
-    if (Array.isArray(res.data?.pageData)) {
-      airlines.value = res.data.pageData.map(item => ({
-        airlineId: item.airline_id,
-        airplaneId: item.airplane_id,
-        arrivalAirportId: item.arrival_airport_id,
-        departureAirportId: item.departure_airport_id,
-        boardingGate: item.boarding_gate,
-        price: item.price,
-        departureTime: item.departure_time,
-        arrivalTime: item.arrival_time,
-        date: item.date,
-        duration: item.duration,
-        departure: item.departure,
-        arrival: item.arrival,
-        departureAirportName: item.departure_airport_name,
-        arrivalAirportName: item.arrival_airport_name
-      }))
-    } else {
-      airlines.value = []
-    }
-    total.value = res.data?.totalSize || 0
-  }).catch((err) => {
+    airlines.value = res.pageData || []
+    total.value = res.totalSize || 0
+  }).catch(() => {
     ElMessage.error('获取航班信息失败')
   }).finally(() => {
     loading.value = false
   })
 }
-fetchAirlines()
 
+function searchAirlines() {
+  searchForm.pageNum = 1
+  fetchAirlines()
+}
+function resetSearch() {
+  searchForm.departureKeyword = ''
+  searchForm.arrivalKeyword = ''
+  searchForm.dateKeyword = ''
+  searchForm.pageNum = 1
+  fetchAirlines()
+}
 function handleSizeChange(size) {
   searchForm.pageSize = size
   searchForm.pageNum = 1
@@ -282,28 +298,77 @@ function handleDelete(row) {
     ElMessage.error('删除失败')
   })
 }
+
+onMounted(() => {
+  fetchAirlines()
+})
 </script>
 
 <style scoped>
-.airline-view-root {
-  padding: 32px 0 0 0;
+.airline-management {
+  padding: 24px;
+  background: #f7fafc;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
-.search-box {
-  margin-bottom: 24px;
+.page-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.add-btn {
-  margin-left: auto;
-  margin-bottom: 12px;
-}
-.airline-list-box {
+  align-items: center;
+  gap: 20px;
   margin-bottom: 18px;
 }
-.pagination-bar {
+.page-header h2 {
+  color: #3a7afe;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+.add-btn {
+  margin-left: 16px;
+  font-size: 16px;
+  padding: 8px 20px;
+  background: #3a7afe;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(58,122,254,0.08);
+  transition: background 0.2s;
+}
+.add-btn:hover {
+  background: #2466d1;
+}
+.search-card {
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  box-shadow: 0 2px 12px 0 rgba(58,122,254,0.06);
+  margin-bottom: 18px;
+}
+.table-card {
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  box-shadow: 0 2px 18px 0 rgba(58,122,254,0.08);
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+.airline-table {
+  min-width: 900px;
+  width: 100%;
+  --el-table-header-bg-color: #f0f4fa;
+  --el-table-header-text-color: #3a7afe;
+  --el-table-row-hover-bg-color: #eaf3ff;
+  --el-table-border-color: #e3e8f0;
+  font-size: 15px;
+}
+.airline-table .el-table__cell {
+  color: #3a4664;
+  background: transparent;
+}
+.airline-table .el-table__row:hover {
+  background: #eaf3ff !important;
+}
+.pagination-wrapper {
   display: flex;
-  justify-content: flex-end;
-  margin: 18px 0 0 0;
+  justify-content: center;
+  margin-top: 16px;
 }
 </style>

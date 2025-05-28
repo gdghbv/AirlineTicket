@@ -51,7 +51,7 @@ public class CustomerController {
     //根据分页条件和关键词来获取客户的航班信息
     @PostMapping("/getAirline")
     public Result getAirlines(@RequestBody AirlineKeywords airlineKeywords){
-        Result result = airlineService.getAirlines(airlineKeywords);
+        Result result = airlineService.getAirlines(airlineKeywords,false);
         return result;
     }
     //查询个人的客户信息

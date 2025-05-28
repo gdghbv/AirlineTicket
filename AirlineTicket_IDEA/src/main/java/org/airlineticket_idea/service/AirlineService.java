@@ -12,7 +12,7 @@ import org.airlineticket_idea.utils.Result;
 */
 public interface AirlineService extends IService<Airline> {
 
-    Result getAirlines(AirlineKeywords airlineKeywords);
+    Result getAirlines(AirlineKeywords airlineKeywords,boolean isAirport);
 
     Result addAirline(Airline airline);
 

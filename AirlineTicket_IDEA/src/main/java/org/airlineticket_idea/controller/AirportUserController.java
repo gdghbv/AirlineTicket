@@ -77,7 +77,7 @@ public class AirportUserController {
     //机场查看航班
     @PostMapping("/airlines")
     public Result airlines(@RequestBody AirlineKeywords airlineKeywords) {
-        Result result = airlineService.getAirlines(airlineKeywords);
+        Result result = airlineService.getAirlines(airlineKeywords,true);
         return result;
     }
 
