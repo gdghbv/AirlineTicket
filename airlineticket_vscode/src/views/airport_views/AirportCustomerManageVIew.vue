@@ -206,20 +206,32 @@ const rules = {
 const getCustomerList = async () => {
   try {
     loading.value = true
+    // 根据接口文档，使用正确的参数名
     const params = {
-      customerId: searchForm.customerId || undefined,
-      userName: searchForm.userName || undefined,
-      phone: searchForm.phone || undefined,
-      pageNum: pagination.pageNum,
-      pageSize: pagination.pageSize
+      idKeywords: searchForm.customerId || '',
+      nameKeywords: searchForm.userName || '',
+      phoneKeywords: searchForm.phone || '',
+      emailKeywords: '',
+      pageNum: pagination.pageNum.toString(),
+      pageSize: pagination.pageSize.toString()
     }
     
+    console.log('搜索参数:', params) // 添加调试日志
+    
     const data = await airportApi.getAllCustomers(params)
+    console.log('API响应:', data) // 添加调试日志
+    
     customerList.value = data.pageData || []
     pagination.totalSize = data.totalSize || 0
+    
+    if (customerList.value.length === 0 && pagination.pageNum > 1) {
+      // 如果当前页没有数据且不是第一页，回到第一页
+      pagination.pageNum = 1
+      getCustomerList()
+    }
   } catch (error) {
     console.error('获取客户列表失败:', error)
-    ElMessage.error('获取客户列表失败')
+    ElMessage.error('获取客户列表失败: ' + (error.message || '未知错误'))
   } finally {
     loading.value = false
   }
@@ -227,6 +239,7 @@ const getCustomerList = async () => {
 
 // 搜索
 const handleSearch = () => {
+  console.log('执行搜索，参数:', searchForm)
   pagination.pageNum = 1
   getCustomerList()
 }
@@ -239,6 +252,7 @@ const resetSearch = () => {
     phone: ''
   })
   pagination.pageNum = 1
+  console.log('重置搜索参数')
   getCustomerList()
 }
 
@@ -288,13 +302,24 @@ const submitForm = () => {
   editFormRef.value.validate(async (valid) => {
     if (valid) {
       try {
-        await airportApi.updateCustomer(editForm)
+        // 确保提交的数据格式正确
+        const updateData = {
+          customerId: editForm.customerId,
+          userName: editForm.userName,
+          email: editForm.email,
+          phone: editForm.phone,
+          milsPoints: editForm.milsPoints,
+          password: '81dc9bdb52d04dc20036dbd8313ed055' // 默认密码哈希
+        }
+        
+        console.log('提交数据:', updateData)
+        await airportApi.updateCustomer(updateData)
         ElMessage.success('修改成功')
         dialogVisible.value = false
         getCustomerList()
       } catch (error) {
         console.error('修改失败:', error)
-        ElMessage.error('修改失败')
+        ElMessage.error('修改失败: ' + (error.message || '未知错误'))
       }
     }
   })
@@ -329,11 +354,13 @@ const handleSortChange = ({ column, prop, order }) => {
 
 // 刷新数据
 const refreshData = () => {
+  console.log('刷新数据')
   getCustomerList()
 }
 
 // 组件挂载时获取数据
 onMounted(() => {
+  console.log('组件挂载，获取客户列表')
   getCustomerList()
 })
 </script>
