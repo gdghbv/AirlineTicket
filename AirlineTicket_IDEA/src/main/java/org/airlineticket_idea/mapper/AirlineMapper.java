@@ -5,11 +5,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
-import org.airlineticket_idea.pojo.dto.PageKeywords;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author 35461

@@ -69,3 +69,22 @@ export const updateAirplane=(airplane)=>{
 export const deleteAirplane=(id)=>{
     return request.delete('/airport/deletePlane', {params:{id}})
 }
+
+//机场获取订单最多前五名的航班信息
+export const getTopFiveAirlines=()=>{
+    return request.get('/airport/topFiveAirlines')
+}
+//机场获取所有飞机的情况
+export const getAllAirplanesStat=()=>{
+    return request.get('/airport/airplanesStat')
+}
+//获取机场的用户数量和订单数量
+export const getAirportUserAndOrderCount=()=>{
+    return request.get('/airport/userAndOrderCount')
+}
+export const getAirportOrders=(orderKeywords)=>{
+    return request.post('/airport/orders', orderKeywords)
+}
+export const updateOrder=(order)=>{
+    return request.put('/airport/updateOrder', order)
+}

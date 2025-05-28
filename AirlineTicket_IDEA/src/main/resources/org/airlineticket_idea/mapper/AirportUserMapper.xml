@@ -15,4 +15,10 @@
     <sql id="Base_Column_List">
         user_id,phone,password,user_name,airport_id
     </sql>
+    <select id="selectAirportUserByQuery" resultType="airportUserVO">
+        SELECT au.phone,au.user_id AS userId,au.user_name AS userName,au.airport_id AS airportId,a.phone AS airportPhone,a.address,airport_name AS airportName
+        FROM airport_user au
+            LEFT JOIN airport a ON au.airport_id = a.airport_id
+        ${ew.customSqlSegment}
+    </select>
 </mapper>

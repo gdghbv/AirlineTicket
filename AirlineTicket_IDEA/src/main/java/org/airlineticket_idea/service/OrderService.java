@@ -3,11 +3,10 @@ package org.airlineticket_idea.service;
 import org.airlineticket_idea.pojo.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.airlineticket_idea.pojo.dto.OrderDTO;
-import org.airlineticket_idea.pojo.dto.PageKeywords;
+import org.airlineticket_idea.pojo.dto.OrderKeywords;
+import org.airlineticket_idea.pojo.dto.AirlineKeywords;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.utils.Result;
-
-import java.math.BigDecimal;
 
 /**
 * @author 35461
@@ -15,7 +14,7 @@ import java.math.BigDecimal;
 * @createDate 2025-05-05 23:50:51
 */
 public interface OrderService extends IService<Order> {
-    Result getHistoryOrder(String token, PageKeywords pageKeywords);
+    Result getHistoryOrder(String token, AirlineKeywords airlineKeywords);
 
     Result buyTicket(String token, OrderDTO order);
 
@@ -27,4 +26,8 @@ public interface OrderService extends IService<Order> {
     Result calculatePrice(String token, AirlineVO airlineVO);
 
     Result showAirlineStat();
+
+    Result getOrders(OrderKeywords orderKeywords, String token);
+
+    Result updateOrder(Order order);
 }

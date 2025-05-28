@@ -2,11 +2,13 @@ package org.airlineticket_idea.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.airlineticket_idea.pojo.Airport;
-import org.airlineticket_idea.pojo.AirportUser;
-import org.airlineticket_idea.service.AirportUserService;
 import org.airlineticket_idea.mapper.AirportUserMapper;
+import org.airlineticket_idea.pojo.AirportUser;
+import org.airlineticket_idea.pojo.vo.AirportUserVO;
+import org.airlineticket_idea.service.AirportUserService;
 import org.airlineticket_idea.utils.JwtHelper;
 import org.airlineticket_idea.utils.MD5Util;
 import org.airlineticket_idea.utils.Result;
@@ -19,24 +21,25 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* @author 35461
-* @description 针对表【airport_user】的数据库操作Service实现
-* @createDate 2025-05-24 14:32:47
-*/
+ * @author 35461
+ * @description 针对表【airport_user】的数据库操作Service实现
+ * @createDate 2025-05-24 14:32:47
+ */
 @Service
 public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, AirportUser>
-    implements AirportUserService{
+        implements AirportUserService {
 
     @Autowired
     private AirportUserMapper airportUserMapper;
     @Autowired
     private JwtHelper jwtHelper;
+
     @Override
     public Result register(AirportUser airportUser) {
         LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(AirportUser::getPhone, airportUser.getPhone());
-        if (airportUserMapper.selectCount(queryWrapper)>0){
-            return Result.build(null, ResultCodeEnum.PHONE_USED );
+        if (airportUserMapper.selectCount(queryWrapper) > 0) {
+            return Result.build(null, ResultCodeEnum.PHONE_USED);
         }
         airportUser.setPassword(MD5Util.encrypt(airportUser.getPassword()));
 
@@ -68,12 +71,11 @@ public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, Airpo
         AirportUser airportUser = airportUserMapper.selectById(jwtHelper.getUserId(token));
         LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper();
         queryWrapper.eq(AirportUser::getUserId, airportUser.getUserId());
+        IPage<AirportUserVO> page=new Page<>(1,Long.MAX_VALUE);
 
-        List<AirportUser> list =airportUserMapper.selectList(queryWrapper);
-        for(AirportUser a:list){
-            a.setPassword("******");
-        }
-        return Result.ok(list);
+        airportUserMapper.selectAirportUserByQuery(page,queryWrapper);
+
+        return Result.ok(page.getRecords());
     }
 
     @Override
@@ -89,18 +91,17 @@ public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, Airpo
     }
 
 
-
-
-
     @Override
     public Result getUserInfo(String token) {
 
         int userId = jwtHelper.getUserId(token).intValue();
-        System.out.println("--------------"+userId);
-        AirportUser airportUser=airportUserMapper.selectById(userId);
-        airportUser.setPassword("");
+        System.out.println("--------------" + userId);
+        IPage<AirportUserVO> page=new Page<>(1,10);
+        LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AirportUser::getUserId,userId);
+        airportUserMapper.selectAirportUserByQuery(page,queryWrapper);
 
-        return Result.ok(airportUser);
+        return Result.ok(page.getRecords());
     }
 
 }

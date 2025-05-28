@@ -11,7 +11,7 @@
         <div v-if="userInfo" class="info-section">
           <el-descriptions :column="2" size="large" border>
             <el-descriptions-item label="用户ID">
-              {{ userInfo.airportUserId }}
+              {{ userInfo.userId }}
             </el-descriptions-item>
             <el-descriptions-item label="机场ID">
               {{ userInfo.airportId }}
@@ -22,8 +22,8 @@
             <el-descriptions-item label="用户名">
               {{ userInfo.userName || '未设置' }}
             </el-descriptions-item>
-            <el-descriptions-item label="邮箱">
-              {{ userInfo.email }}
+            <el-descriptions-item label="机场电话">
+              {{ userInfo.airportPhone }}
             </el-descriptions-item>
             <el-descriptions-item label="电话">
               {{ userInfo.phone }}
@@ -59,9 +59,7 @@
         <el-form-item label="用户名" prop="userName">
           <el-input v-model="editForm.userName" placeholder="请输入用户名" />
         </el-form-item>
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="editForm.email" placeholder="请输入邮箱" />
-        </el-form-item>
+        
       </el-form>
 
       <template #footer>
@@ -113,8 +111,16 @@ const rules = {
 const getUserInfo = async () => {
   try {
     loading.value = true
-    const data = await airportApi.getAirportInfo()
-    userInfo.value = data
+    const res = await airportApi.getAirportInfo()
+    // 兼容后端直接返回数组的情况
+    if (Array.isArray(res) && res.length > 0) {
+      userInfo.value = res[0]
+    } else if (res && Array.isArray(res.data) && res.data.length > 0) {
+      userInfo.value = res.data[0]
+    } else {
+      userInfo.value = null
+    }
+    console.log('获取用户信息成功:', userInfo.value)
   } catch (error) {
     console.error('获取用户信息失败:', error)
     ElMessage.error('获取用户信息失败')

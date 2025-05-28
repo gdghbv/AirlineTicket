@@ -8,7 +8,7 @@ import org.airlineticket_idea.mapper.AirplaneMapper;
 import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
-import org.airlineticket_idea.pojo.dto.PageKeywords;
+import org.airlineticket_idea.pojo.dto.AirlineKeywords;
 import org.airlineticket_idea.service.AirlineService;
 import org.airlineticket_idea.mapper.AirlineMapper;
 import org.airlineticket_idea.utils.Result;
@@ -34,17 +34,17 @@ private AirlineMapper airlineMapper;
 @Autowired
 private AirplaneMapper airplaneMapper;
     @Override
-    public Result getAirlines(PageKeywords pageKeywords) {
-        IPage<AirlineVO> page = new Page<>(pageKeywords.getPageNum(), pageKeywords.getPageSize());
+    public Result getAirlines(AirlineKeywords airlineKeywords) {
+        IPage<AirlineVO> page = new Page<>(airlineKeywords.getPageNum(), airlineKeywords.getPageSize());
         QueryWrapper<AirlineVO> queryWrapper = new QueryWrapper<>();
-        if (pageKeywords.getDepartureKeyword() != null && pageKeywords.getDepartureKeyword().length() > 0) {
-            queryWrapper.like("a.departure", pageKeywords.getDepartureKeyword());
+        if (airlineKeywords.getDepartureKeyword() != null && airlineKeywords.getDepartureKeyword().length() > 0) {
+            queryWrapper.like("a.departure", airlineKeywords.getDepartureKeyword());
         }
-        if (pageKeywords.getArrivalKeyword() != null && pageKeywords.getArrivalKeyword().length() > 0) {
-            queryWrapper.like("a.arrival", pageKeywords.getArrivalKeyword());
+        if (airlineKeywords.getArrivalKeyword() != null && airlineKeywords.getArrivalKeyword().length() > 0) {
+            queryWrapper.like("a.arrival", airlineKeywords.getArrivalKeyword());
         }
-        if (pageKeywords.getDateKeyword() != null) {
-            queryWrapper.eq("a.date", pageKeywords.getDateKeyword());
+        if (airlineKeywords.getDateKeyword() != null) {
+            queryWrapper.eq("a.date", airlineKeywords.getDateKeyword());
         }
         // 排除起飞时间距离当前时间不足3小时的航班
         queryWrapper.and(wrapper -> wrapper.eq("a.date", LocalDate.now())
