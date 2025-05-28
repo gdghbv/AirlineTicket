@@ -2,22 +2,44 @@
   <div class="login-root fade-in-page">
     <div class="login-card card-pop">
       <div class="login-left">
-        <div class="login-graphic">
-          <svg id="plane-svg" width="120" height="120" viewBox="0 0 120 120">
+        <div class="login-graphic">          <svg id="plane-svg" width="120" height="120" viewBox="0 0 120 120">
             <defs>
               <linearGradient id="lg-login" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#6a82fb" />
-                <stop offset="100%" stop-color="#fc5c7d" />
+                <stop offset="0%" stop-color="#667eea" />
+                <stop offset="100%" stop-color="#764ba2" />
               </linearGradient>
+              <linearGradient id="plane-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="50%" stop-color="#f0f0f0" />
+                <stop offset="100%" stop-color="#e0e0e0" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge> 
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
-            <circle cx="60" cy="60" r="55" fill="url(#lg-login)" opacity="0.7" />
-            <circle cx="60" cy="60" r="40" fill="#fff" opacity="0.15" />
-            <circle cx="60" cy="60" r="25" fill="#fff" opacity="0.08" />
-            <!-- 飞机SVG -->
-            <g id="plane-group">
-              <polygon points="60,30 65,60 60,55 55,60" fill="#6a82fb" />
-              <rect x="57" y="60" width="6" height="18" rx="2" fill="#6a82fb" />
-              <rect x="54" y="78" width="12" height="4" rx="2" fill="#fc5c7d" />
+              <!-- 背景圆圈 -->
+            <circle cx="60" cy="60" r="55" fill="url(#lg-login)" opacity="0.7" style="--circle-opacity: 0.7" />
+            <circle cx="60" cy="60" r="40" fill="url(#lg-login)" opacity="0.25" style="--circle-opacity: 0.25" />
+            <circle cx="60" cy="60" r="25" fill="url(#lg-login)" opacity="0.15" style="--circle-opacity: 0.15" />
+            
+            <!-- 飞机图标 -->
+            <g id="plane-group" filter="url(#glow)">
+              <!-- 机身 -->
+              <ellipse cx="60" cy="60" rx="3" ry="20" fill="url(#plane-gradient)" />
+              <!-- 机翼 -->
+              <ellipse cx="60" cy="55" rx="18" ry="4" fill="url(#plane-gradient)" />
+              <!-- 尾翼 -->
+              <ellipse cx="60" cy="75" rx="8" ry="3" fill="url(#plane-gradient)" />
+              <!-- 机头 -->
+              <circle cx="60" cy="42" r="3" fill="#667eea" />
+              <!-- 窗户 -->
+              <circle cx="60" cy="50" r="1.5" fill="#667eea" opacity="0.6" />
+              <circle cx="60" cy="55" r="1.5" fill="#667eea" opacity="0.6" />
+              <circle cx="60" cy="60" r="1.5" fill="#667eea" opacity="0.6" />
             </g>
           </svg>
           <div class="login-title">欢迎登录</div>
@@ -109,215 +131,57 @@ const onLogin = () => {
 </script>
 
 <style scoped>
-/* 登录页面整体全屏居中背景 */
-.login-root {
-  position: fixed; /* 固定定位，始终覆盖全屏 */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex; /* 启用flex居中 */
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
-  background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%); /* 渐变背景 */
-  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-  z-index: 10;
-}
+/* 使用theme.css中定义的样式 */
 
-/* 登录卡片主容器，双栏布局 */
-.login-card {
-  display: flex; /* 横向排列左右两栏 */
-  width: 800px; /* 固定宽度，适中 */
-  max-width: 95vw; /* 小屏自适应 */
-  min-height: 440px;
-  border-radius: 32px; /* 圆角 */
-  box-shadow: 0 8px 32px 0 #6a82fb22, 0 1.5px 6px 0 #fc5c7d11; /* 阴影 */
-  background: rgba(255, 255, 255, 0.98); /* 半透明白底 */
-  overflow: hidden;
-  backdrop-filter: blur(18px) saturate(180%); /* 毛玻璃效果 */
-  animation: card-pop 0.8s cubic-bezier(.68, -0.55, .27, 1.55); /* 入场动画 */
-}
-
-/* 卡片入场动画 */
-@keyframes card-pop {
-  0% {
-    transform: scale(0.92) translateY(30px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-/* 左侧插画区，渐变背景+飞机SVG */
+/* 自定义登录页面特定样式 */
 .login-left {
-  flex: 1.1; /* 占比略小 */
-  background: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%); /* 蓝紫-粉红渐变 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  position: relative;
-  z-index: 1;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
 }
 
-/* 插画内容居中+入场动画 */
-.login-graphic {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: fade-in 1.2s;
+.login-graphic svg circle:first-of-type {
+  fill: url(#lg-login);
+  animation: pulse 4s ease-in-out infinite;
 }
 
-/* 欢迎标题 */
-.login-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-top: 18px;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 12px #6a82fb33;
+.login-graphic svg circle:nth-of-type(2) {
+  animation: pulse 4s ease-in-out infinite 0.5s;
 }
 
-/* 副标题描述 */
-.login-desc {
-  font-size: 1.1rem;
-  margin-top: 10px;
-  opacity: 0.85;
-  letter-spacing: 1px;
+.login-graphic svg circle:nth-of-type(3) {
+  animation: pulse 4s ease-in-out infinite 1s;
 }
 
-/* 右侧表单区 */
-.login-right {
-  flex: 1.2; /* 占比略大 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.94); /* 半透明白底 */
-  position: relative;
-  z-index: 2;
-  animation: fade-in-right 1.2s;
+.form-title .el-icon {
+  animation: float 3s ease-in-out infinite;
+  color: #667eea !important;
 }
 
-/* 插画fade-in动画 */
-@keyframes fade-in {
-  0% {
+/* 输入框获得焦点时的特殊效果 */
+.login-form .el-form-item:focus-within .el-form-item__label {
+  color: #667eea;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* 登录按钮加载状态动画 */
+.login-btn.is-loading {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* 页面切换动画 */
+@keyframes pageTransition {
+  from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: scale(0.95) translateY(20px);
   }
-
-  100% {
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }
 
-/* 右侧表单fade-in动画 */
-@keyframes fade-in-right {
-  0% {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animated-slide-in-right {
-  animation: fade-in-right 1.2s;
-}
-
-/* 去除el-card默认背景和阴影 */
-.login-el-card {
-  width: 100%;
-  box-shadow: none;
-  background: transparent;
-  border: none;
-}
-
-/* 表单标题 */
-.form-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #6a82fb;
-  text-align: center;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-  padding-top: 8px;
-}
-
-/* 用户类型切换按钮组 */
-.user-type-group {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 18px;
-}
-
-/* 登录表单整体间距 */
-.login-form {
-  margin-top: 10px;
-}
-
-/* 登录按钮美化 */
-.login-btn {
-  width: 100%;
-  padding: 13px 0;
-  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%); /* 渐变按钮 */
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 10px;
-  box-shadow: 0 2px 8px #fc5c7d22;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
-}
-
-/* 按钮悬浮高亮 */
-.login-btn:hover {
-  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
-  box-shadow: 0 4px 16px 0 #fc5c7d33;
-  transform: translateY(-2px) scale(1.03);
-}
-
-/* 注册跳转文字 */
-.to-register {
-  margin-top: 18px;
-  text-align: right;
-  font-size: 15px;
-}
-
-.to-register a {
-  color: #fc5c7d;
-  text-decoration: underline;
-  margin-left: 4px;
-  font-weight: 500;
-}
-
-/* 响应式：小屏下纵向排列 */
-@media (max-width: 900px) {
-  .login-card {
-    flex-direction: column;
-    width: 98vw;
-    min-width: 0;
-    border-radius: 18px;
-  }
-
-  .login-left,
-  .login-right {
-    flex: none;
-    width: 100%;
-    min-width: 0;
-    min-height: 180px;
-  }
+.login-root {
+  animation: pageTransition 0.6s ease-out;
 }
 </style>
