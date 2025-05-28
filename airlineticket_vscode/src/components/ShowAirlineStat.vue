@@ -1,7 +1,9 @@
 <template>
-  <el-card shadow="never" class="airline-stat-card">
-    <div ref="chartRef" style="width: 100%; height: 400px;"></div>
-  </el-card>
+  <div class="stat-flex-item">
+    <el-card shadow="never" class="airline-stat-card">
+      <div ref="chartRef" style="width: 100%; height: 400px;"></div>
+    </el-card>
+  </div>
 </template>
 
 <script setup>
@@ -82,10 +84,18 @@ function resizeChart() {
 </script>
 
 <style scoped>
+.stat-flex-item {
+  flex: 1 1 0;
+  min-width: 320px;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+}
 .airline-stat-card {
   width: 100%;
-  min-width: 320px;
-  margin: 0 auto;
+  min-width: 0;
+  max-width: 600px;
+  margin: 0 12px;
   padding: 0 0 10px 0;
   background: #fff;
   border-radius: 18px;

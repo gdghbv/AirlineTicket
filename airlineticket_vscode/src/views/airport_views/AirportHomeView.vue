@@ -1,7 +1,26 @@
 <template>
-  <ShowAirlineStat/>
-  <ShowAirplaneStat/>
-  <ShowAirportStat/>
+  <div class="airport-home-root">
+    <div class="welcome-section">
+      <h2>欢迎来到机场管理中心</h2>
+      <p>在这里你可以实时查看机场运营数据、航班动态、客户与订单统计等信息。</p>
+    </div>
+    <ShowAirportStat />
+    <div class="stat-flex-row">
+      <ShowAirlineStat />
+      <ShowAirplaneStat />
+    </div>
+    <div class="desc-section">
+      <el-card shadow="never">
+        <div class="desc-title">平台功能简介</div>
+        <ul class="desc-list">
+          <li>支持航班、飞机、订单、客户等多维度管理</li>
+          <li>可视化图表实时展示机场运营核心数据</li>
+          <li>一键切换各类管理页面，操作便捷高效</li>
+          <li>数据统计与分析助力机场决策优化</li>
+        </ul>
+      </el-card>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -26,5 +45,51 @@ const activeMenu = ref(route.path)
 }
 .el-menu {
   border-right: none;
+}
+.welcome-section {
+  text-align: center;
+  margin: 32px 0 18px 0;
+}
+.welcome-section h2 {
+  font-size: 2.1rem;
+  color: #4b5ae2;
+  margin-bottom: 8px;
+}
+.welcome-section p {
+  color: #666;
+  font-size: 1.1rem;
+}
+.stat-flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 24px;
+}
+.desc-section {
+  margin: 0 auto 24px auto;
+  max-width: 700px;
+}
+.desc-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4b5ae2;
+  margin-bottom: 10px;
+}
+.desc-list {
+  color: #555;
+  font-size: 1rem;
+  padding-left: 18px;
+  margin: 0;
+}
+.desc-list li {
+  margin-bottom: 6px;
+}
+@media (max-width: 1300px) {
+  .stat-flex-row {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

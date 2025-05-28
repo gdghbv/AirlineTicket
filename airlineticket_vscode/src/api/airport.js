@@ -82,3 +82,9 @@ export const getAllAirplanesStat=()=>{
 export const getAirportUserAndOrderCount=()=>{
     return request.get('/airport/userAndOrderCount')
 }
+export const getAirportOrders=(orderKeywords)=>{
+    return request.post('/airport/orders', orderKeywords)
+}
+export const updateOrder=(order)=>{
+    return request.put('/airport/updateOrder', order)
+}
