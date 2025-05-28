@@ -108,7 +108,7 @@
       </el-table>
 
       <!-- 分页 -->
-      <div class="pagination-wrapper">
+      <div >
         <el-pagination
           v-model:current-page="pagination.pageNum"
           v-model:page-size="pagination.pageSize"
@@ -426,19 +426,41 @@ onMounted(() => {
 
 <style scoped>
 .airplane-management {
-  padding: 20px;
+  padding: 24px;
+  background: #f7fafc;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .page-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 20px;
   margin-bottom: 20px;
 }
 
 .page-header h2 {
   margin: 0;
-  color: #333;
+  color: #3a7afe;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* 让添加按钮更显眼 */
+.page-header .el-button {
+  margin-left: 16px;
+  font-size: 16px;
+  padding: 8px 20px;
+  background: #3a7afe;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(58,122,254,0.08);
+  transition: background 0.2s;
+}
+.page-header .el-button:hover {
+  background: #2466d1;
 }
 
 .search-card {

@@ -1,6 +1,7 @@
 package org.airlineticket_idea.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.airlineticket_idea.pojo.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -18,7 +19,7 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     IPage<Map<String, Object>> selectOrderListWithPage(
             IPage<Map<String, Object>> page,
-            @Param("ew") LambdaQueryWrapper<Order> wrapper
+            @Param("ew") QueryWrapper<Order> wrapper
     );
 }
 

@@ -60,8 +60,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 
         // 2. 构建查询条件
         int userId = jwtHelper.getUserId(token).intValue();
-        LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Order::getCustomerId, userId);
+      QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("o.customer_id", userId);
 
         // 3. 执行分页查询（关键修改：接收返回值）
         IPage<Map<String, Object>> page = new Page<>(airlineKeywords.getPageNum(), airlineKeywords.getPageSize());
@@ -123,21 +123,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
     @Override
     public Result getOrders(OrderKeywords orderKeywords, String token) {
         IPage<Map<String, Object>> page = new Page<>(orderKeywords.getPageNum(), orderKeywords.getPageSize());
-        LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
+        QueryWrapper<Order> queryWrapper = new QueryWrapper<>(); // 改为 QueryWrapper
 
         if (orderKeywords.getOrderId() != null) {
-            queryWrapper.eq(Order::getOrderId, orderKeywords.getOrderId());
+            queryWrapper.eq("o.order_id", orderKeywords.getOrderId());
         }
         if (orderKeywords.getCustomerId() != null && !orderKeywords.getCustomerId().isEmpty()) {
-            queryWrapper.eq(Order::getCustomerId, orderKeywords.getCustomerId());
+            queryWrapper.eq("o.customer_id", orderKeywords.getCustomerId());
         }
         if (orderKeywords.getCitizenName() != null && !orderKeywords.getCitizenName().isEmpty()) {
-            queryWrapper.like(Order::getCitizenName, orderKeywords.getCitizenName());
+            queryWrapper.like("o.citizen_name", orderKeywords.getCitizenName());
         }
         if (orderKeywords.getAirlineId() != null && !orderKeywords.getAirlineId().isEmpty()) {
-            queryWrapper.eq(Order::getAirlineId, orderKeywords.getAirlineId());
+            queryWrapper.eq("o.airline_id", orderKeywords.getAirlineId());
         }
-        queryWrapper.orderByDesc(Order::getOrderId);
+        queryWrapper.orderByDesc("o.order_id");
 
         IPage<Map<String, Object>> resultPage = orderMapper.selectOrderListWithPage(page, queryWrapper);
 

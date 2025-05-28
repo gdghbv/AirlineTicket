@@ -25,8 +25,9 @@ const activeTab = ref('personal')
 
 <style scoped>
 .airport-center {
-  padding: 20px;
+  padding: 24px;
   height: 100%;
+  background: #f7fafc;
 }
 
 .page-header {
@@ -35,15 +36,42 @@ const activeTab = ref('personal')
 
 .page-header h2 {
   margin: 0;
-  color: #333;
+  color: #3a7afe;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .center-tabs {
   height: calc(100% - 80px);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(58,122,254,0.08);
+  padding: 16px 12px 0 12px;
+}
+
+:deep(.el-tabs__header) {
+  background: #f0f4fa;
+  border-radius: 8px 8px 0 0;
+}
+
+:deep(.el-tabs__item.is-active) {
+  color: #3a7afe !important;
+  font-weight: bold;
+  background: #eaf3ff;
+  border-radius: 8px 8px 0 0;
+}
+
+:deep(.el-tabs__item) {
+  color: #6b7b8d;
+  font-size: 16px;
+  padding: 12px 28px;
 }
 
 :deep(.el-tabs__content) {
   height: calc(100% - 60px);
+  background: #fff;
+  border-radius: 0 0 12px 12px;
 }
 
 :deep(.el-tab-pane) {

@@ -104,21 +104,21 @@ public class AirportUserController {
 
 
     //机场查询所有用户的接口，可以根据id、name、phone来查询用户信息
-    @PostMapping("/customers")
+    @PostMapping("/users")
     public Result users(@RequestBody(required = false) UserKeywords userKeywords) {
         Result result = customerService.users(userKeywords);
         return result;
     }
 
     //机场修改用户信息接口
-    @PutMapping("/updateCustomer")
+    @PutMapping("/updateUser")
     public Result updateUser(@RequestBody Customer customer) {
         Result result = customerService.updateUser(customer);
         return result;
     }
 
     //机场删除用户信息接口
-    @DeleteMapping("/deleteCustomer")
+    @DeleteMapping("/deleteUser")
     public Result deleteUser(@RequestParam("id") Integer id) {
         Result result = customerService.deleteUser(id);
         return result;

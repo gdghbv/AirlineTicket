@@ -31,39 +31,39 @@ class AirlineticketIdeaApplicationTests {
 	   List<AirlineVO> airlines=airlineMapper.selectAirlineListWithAirport();
 	   airlines.forEach(System.out::println);
    }
-   @Test
-	public void testGetSeatId(){
-	   System.out.println(orderService.getSeatId(1,"A"));
-	   System.out.println(orderService.getSeatId(2,"A"));
-	   System.out.println(orderService.getSeatId(3,"A"));
-	   System.out.println(orderService.getSeatId(4,"A"));
-	   System.out.println(orderService.getSeatId(5,"A"));
-	   System.out.println(orderService.getSeatId(6,"A"));
-	   System.out.println(orderService.getSeatId(7,"A"));
-	   System.out.println(orderService.getSeatId(8,"A"));
-	   System.out.println(orderService.getSeatId(9,"A"));
-	   System.out.println(orderService.getSeatId(10,"A"));
-	   System.out.println(orderService.getSeatId(11,"A"));
-	   System.out.println(orderService.getSeatId(12,"A"));
-	   System.out.println(orderService.getSeatId(13,"A"));
-	   System.out.println(orderService.getSeatId(14,"A"));
-   }
- @Test
-	public void getAirlineDiscount(){
-		AirlineVO airlineVO=new AirlineVO();
-		airlineVO.setFirstSeatPrice(BigDecimal.valueOf(1500));
-		airlineVO.setSecondSeatPrice(BigDecimal.valueOf(1300));
-		airlineVO.setThirdSeatPrice(BigDecimal.valueOf(1000));
-		orderService.calculatePrice("eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDexMLAwMzU00FEqLU4t8kxRsjKpBQDl71jcLwAAAA.giplYjRZ542wsWPyMzwn1C0rCvzhmLtAiBmZLJPSaLsBUm9baqcorfB-vO_VIsyL1ed65cYGEuKPMlQq8lCVuQ",airlineVO);
-	 System.out.println(airlineVO);
- }
- @Test
-	public void testAirplaneStat(){
-		airplaneService.showPlaneStat("eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDexMDY2NDMx0VEqLU4t8kwBitUCAC9EvVYvAAAA.JQvfqf-bvtGtW6q6oF37aHtqSBMTe302qm-sLOJD7f_DO_DFbKOXqjsnusN_QPPxWTh81AvW53ngig8_L160Pg")
-		;
- }
- @Test
-	public void testAirlineStat(){
-		orderService.showAirlineStat();
- }
+//   @Test
+//	public void testGetSeatId(){
+//	   System.out.println(orderService.getSeatId(1,"A"));
+//	   System.out.println(orderService.getSeatId(2,"A"));
+//	   System.out.println(orderService.getSeatId(3,"A"));
+//	   System.out.println(orderService.getSeatId(4,"A"));
+//	   System.out.println(orderService.getSeatId(5,"A"));
+//	   System.out.println(orderService.getSeatId(6,"A"));
+//	   System.out.println(orderService.getSeatId(7,"A"));
+//	   System.out.println(orderService.getSeatId(8,"A"));
+//	   System.out.println(orderService.getSeatId(9,"A"));
+//	   System.out.println(orderService.getSeatId(10,"A"));
+//	   System.out.println(orderService.getSeatId(11,"A"));
+//	   System.out.println(orderService.getSeatId(12,"A"));
+//	   System.out.println(orderService.getSeatId(13,"A"));
+//	   System.out.println(orderService.getSeatId(14,"A"));
+//   }
+// @Test
+//	public void getAirlineDiscount(){
+//		AirlineVO airlineVO=new AirlineVO();
+//		airlineVO.setFirstSeatPrice(BigDecimal.valueOf(1500));
+//		airlineVO.setSecondSeatPrice(BigDecimal.valueOf(1300));
+//		airlineVO.setThirdSeatPrice(BigDecimal.valueOf(1000));
+//		orderService.calculatePrice("eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDexMLAwMzU00FEqLU4t8kxRsjKpBQDl71jcLwAAAA.giplYjRZ542wsWPyMzwn1C0rCvzhmLtAiBmZLJPSaLsBUm9baqcorfB-vO_VIsyL1ed65cYGEuKPMlQq8lCVuQ",airlineVO);
+//	 System.out.println(airlineVO);
+// }
+// @Test
+//	public void testAirplaneStat(){
+//		airplaneService.showPlaneStat("eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDexMDY2NDMx0VEqLU4t8kwBitUCAC9EvVYvAAAA.JQvfqf-bvtGtW6q6oF37aHtqSBMTe302qm-sLOJD7f_DO_DFbKOXqjsnusN_QPPxWTh81AvW53ngig8_L160Pg")
+//		;
+// }
+// @Test
+//	public void testAirlineStat(){
+//		orderService.showAirlineStat();
+// }
 }

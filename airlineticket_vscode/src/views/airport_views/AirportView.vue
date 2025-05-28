@@ -34,11 +34,11 @@
         </el-menu>
       </el-aside>
       <el-container>
-        <!-- <el-header>Header</el-header> -->
+        <el-header>Header</el-header>
         <el-main>
           <router-view />
         </el-main>
-        <el-footer>Footer</el-footer>
+     
       </el-container>
     </el-container>
   </div>
@@ -54,15 +54,12 @@ const activeMenu = ref(route.path)
 </script>
 
 <style scoped>
-.common-layout {
-  height: 100vh;
-}
+
 .el-aside {
   background: #f5f7fa;
   min-height: 100vh;
   box-shadow: 2px 0 8px #e0e7ef33;
 }
-.el-menu {
-  border-right: none;
-}
+
+
 </style>
