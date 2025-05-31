@@ -19,8 +19,8 @@
       <chatWindows />
     </div>
     <footer class="footer-signature">
-      <el-icon style="vertical-align:middle;color:#00e6e6;"><i-ep-UserFilled /></el-icon>
-      <span>© 2025 航空订票系统 | 作者：YourName</span>
+      <el-icon style="vertical-align:middle;"><i-ep-UserFilled /></el-icon>
+      <span>© 2025 航空订票系统 | 作者：张家圣、杨健铭、吴仙勇</span>
     </footer>
   </div>
 </template>
@@ -114,8 +114,8 @@ import { UserFilled } from '@element-plus/icons-vue'
   text-shadow: 0 2px 12px #377dff11;
 }
 .chat-box {
-  width: 90vw;
-  max-width: 1200px;
+  width: 75vw;
+  max-width: 1400px;
   margin: 32px 0 24px 0;
   background: rgba(255,255,255,0.97);
   border-radius: 22px;
@@ -124,10 +124,20 @@ import { UserFilled } from '@element-plus/icons-vue'
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  min-height: 540px;
+  min-height: 600px;
   border: 3px solid;
   border-image: linear-gradient(90deg, #6a9bff 0%, #377dff 60%, #fff 100%) 1;
   z-index: 1;
+  max-height: 900px;
+  overflow: hidden;
+}
+
+/* 保证 ChatWindow 填满 chat-box 并不超出 */
+.chat-box > * {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  /* 让子组件高度自适应且不撑出父容器 */
 }
 .ai-helper-header {
   display: flex;
@@ -170,7 +180,7 @@ import { UserFilled } from '@element-plus/icons-vue'
 .footer-signature {
   margin-top: auto;
   padding: 18px 0 12px 0;
-  color: #377dff;
+  color: #bbc2cf;
   font-size: 15px;
   letter-spacing: 2px;
   text-align: center;

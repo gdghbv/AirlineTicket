@@ -39,7 +39,7 @@
 import { ref, onMounted, reactive, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 
-import { getCustomerInfo, updateCustomerInfo } from '@/api/customer'
+import { getCustomerInfo, updateCustomerInfo ,memberRegister} from '@/api/customer'
 const userInfo = ref(null)
 const editDialogVisible = ref(false)
 const editForm = reactive({ userName: '', email: '' })
@@ -59,6 +59,13 @@ watch(editDialogVisible, (val) => {
 })
 function registerMember() {
   // 这里可以调用会员注册API，或弹窗提示
+memberRegister().then(() => {
+    ElMessage.success('会员注册成功')
+    userInfo.value.milsPoints = 0 //注册后积分为0
+    editDialogVisible.value = false
+  }).catch(() => {
+    ElMessage.error('会员注册失败，请稍后再试')
+  })
   ElMessage.info('请前往会员注册页面或调用注册接口')
 }
 function submitEdit() {

@@ -32,7 +32,7 @@
         <el-table-column prop="price" label="票价(元)" width="100" />
         <el-table-column label="操作" width="180">
           <template #default="{ row }">
-            <el-button type="success" size="small" @click="openOrderDialog(row)">购买</el-button>
+            <el-button type="success" size="small" @click="handleBuyClick(row)">购买</el-button>
             <el-button type="primary" size="small" @click="openDetailDialog(row)" style="margin-left:8px;">查看详情</el-button>
           </template>
         </el-table-column>
@@ -97,17 +97,20 @@
       </el-form>
       <template #footer>
         <el-button @click="orderDialogVisible = false">取消</el-button>
-        <el-button type="primary" :disabled="!canOrder" @click="handleOrder">确认购买</el-button>
+        <el-button type="primary" :disabled="!canOrder || orderFormError" @click="handleOrder" :class="{'disabled-btn': !canOrder || orderFormError}">确认购买</el-button>
       </template>
     </el-dialog>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as customerApi from '@/api/customer'
 import CustomerNavBar from '@/components/CustomerNavBar.vue'
+import { getToken } from '@/utils/token-utils'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const searchForm = reactive({
   departureKeyword: '',
@@ -209,6 +212,22 @@ const canOrder = computed(() => {
 })
 let currentOrderAirline = null
 
+// 校验表单错误状态
+const orderFormRef = ref()
+const orderFormError = ref(false)
+
+function handleBuyClick(row) {
+  const token = getToken()
+  if (!token) {
+    ElMessage.warning('请先登录！')
+    setTimeout(() => {
+      router.push('/login')
+    }, 800)
+    return
+  }
+  openOrderDialog(row)
+}
+
 function openOrderDialog(row) {
   currentOrderAirline = row
   orderForm.citizenId = ''
@@ -265,6 +284,14 @@ function updatePrice() {
   console.log(`当前舱型: ${orderForm.seatType}, 优惠前: ${raw}, 优惠后: ${price}, 优惠: ${discount}`)
 }
 
+// 监听表单校验
+watch(orderForm, () => {
+  if (!orderFormRef.value) return
+  orderFormRef.value.validate((valid) => {
+    orderFormError.value = !valid
+  })
+}, { deep: true })
+
 const orderRules = {
   citizenId: [
     { required: true, message: '请输入身份证号', trigger: 'blur' },
@@ -280,24 +307,28 @@ const orderRules = {
 }
 
 function handleOrder() {
-  // 校验表单
-  const order = {
-    airlineId: currentOrderAirline.airlineId,
-    seatType: orderForm.seatType,
-    citizenId: orderForm.citizenId,
-    citizenName: orderForm.citizenName,
-    spending: priceInfo.price,
-    discount: orderForm.useDiscount ? priceInfo.discount : 0
-  }
-  customerApi.orderAirline(order)
-    .then(res => {
-      ElMessage.success('购票成功！')
-      orderDialogVisible.value = false
-      fetchAirlines() // 刷新航班列表
-    })
-    .catch(err => {
-      ElMessage.error('购票失败：' + (err.message || '未知错误'))
-    })
+  if (!orderFormRef.value) return
+  orderFormRef.value.validate((valid) => {
+    if (!valid) return
+    // 校验表单
+    const order = {
+      airlineId: currentOrderAirline.airlineId,
+      seatType: orderForm.seatType,
+      citizenId: orderForm.citizenId,
+      citizenName: orderForm.citizenName,
+      spending: priceInfo.price,
+      discount: orderForm.useDiscount ? priceInfo.discount : 0
+    }
+    customerApi.orderAirline(order)
+      .then(res => {
+        ElMessage.success('购票成功！')
+        orderDialogVisible.value = false
+        fetchAirlines() // 刷新航班列表
+      })
+      .catch(err => {
+        ElMessage.error('购票失败：' + (err.message || '未知错误'))
+      })
+  })
 }
 </script>
 
@@ -350,5 +381,11 @@ function handleOrder() {
 }
 .el-dialog {
   border-radius: 18px;
+}
+.disabled-btn {
+  background: #e0e0e0 !important;
+  color: #aaa !important;
+  border-color: #e0e0e0 !important;
+  cursor: not-allowed !important;
 }
 </style>

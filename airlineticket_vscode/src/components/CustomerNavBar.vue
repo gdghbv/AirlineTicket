@@ -26,13 +26,14 @@
 
 <script setup>
 import { useUserInfoStore } from '@/stores/userInfo'
+import { getToken } from '@/utils/token-utils'
 import { ElMessage } from 'element-plus'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const userInfoStore = useUserInfoStore()
-const isLogin = computed(() => !!userInfoStore.token)
+const isLogin = computed(() => !!getToken())
 
 const logout = () => {
   userInfoStore.initUserInfo()

@@ -50,7 +50,7 @@
   
   <style scoped>
   .chat-container {
-    max-width: 1000px;
+    max-width: 1400px;
     width: 100%;
     margin: 0 auto;
     padding: 28px 24px 20px 24px;
@@ -59,17 +59,21 @@
     border-radius: 18px;
     background: rgba(255,255,255,0.98);
     box-shadow: 0 2px 24px #377dff22;
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
   }
   
   .messages {
     margin-bottom: 20px;
-    min-height: 300px;
-    max-height: 500px;
+    min-height: 350px;
+    max-height: 600px;
     overflow-y: auto;
     padding: 18px 18px 10px 18px;
     background: #f4f8ff;
     border-radius: 10px;
     box-shadow: 0 1.5px 6px 0 #377dff11;
+    flex: 1 1 auto;
   }
   
   .message {
@@ -94,6 +98,7 @@
     display: flex;
     gap: 10px;
     margin-top: 8px;
+    flex-shrink: 0;
   }
   
   .input-area input {

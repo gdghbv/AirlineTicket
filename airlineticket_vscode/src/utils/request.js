@@ -2,6 +2,7 @@ import axios from "axios";
 import { ElMessage } from 'element-plus';
 import pinia from '../stores/index';
 import { useUserInfoStore } from '../stores/userInfo';
+import { getToken } from "./token-utils";
 
 
 // 配置新建一个 axios 实例
@@ -14,8 +15,7 @@ const service = axios.create({
 service.interceptors.request.use((config) => {
 
   // 如果有token, 通过请求头携带给后台
-  const userInfoStore = useUserInfoStore(pinia) // 如果不是在组件中调用,必须传入pinia
-  const token = userInfoStore.token
+  const token = getToken()
      if (token) {
       // config.headers['token'] = token  // 报错: headers对象并没有声明有token, 不能随便添加
       (config.headers)['token'] = token

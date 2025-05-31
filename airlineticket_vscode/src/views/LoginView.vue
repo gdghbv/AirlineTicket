@@ -48,6 +48,12 @@
       </div>
       <div class="login-right animated-slide-in-right">
         <el-card class="login-el-card">
+          <div class="login-el-card-header">
+            <span class="go-home-link" @click="goHome">
+              <el-icon style="vertical-align: middle; font-size: 18px; color: #3a7afe; margin-right: 3px;"><i-ep-house /></el-icon>
+              <span>去首页</span>
+            </span>
+          </div>
           <div class="form-title">
             <el-icon style="vertical-align: middle; font-size: 22px; color: #6a82fb;"><i-ep-user /></el-icon>
             用户登录
@@ -128,6 +134,10 @@ const onLogin = () => {
     }
   })
 }
+
+const goHome = () => {
+  router.push('/customerHome')
+}
 </script>
 
 <style scoped>
@@ -183,5 +193,33 @@ const onLogin = () => {
 
 .login-root {
   animation: pageTransition 0.6s ease-out;
+}
+
+.login-el-card-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 32px;
+  margin-bottom: 2px;
+  padding-right: 2px;
+}
+.go-home-link {
+  color: #3a7afe;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: linear-gradient(90deg, #e6fff6 0%, #d2ffe6 100%);
+  border-radius: 12px;
+  padding: 3px 16px 3px 10px;
+  box-shadow: 0 1.5px 6px 0 #6a9bff11;
+  transition: background 0.18s, color 0.18s;
+}
+.go-home-link:hover {
+  color: #fff;
+  background: linear-gradient(90deg, #6a9bff 0%, #377dff 100%);
+  text-decoration: none;
 }
 </style>
