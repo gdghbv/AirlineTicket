@@ -3,6 +3,7 @@ import { ElMessage } from 'element-plus';
 import pinia from '../stores/index';
 import { useUserInfoStore } from '../stores/userInfo';
 import { getToken } from "./token-utils";
+import 'element-plus/theme-chalk/el-message.css'
 
 
 // 配置新建一个 axios 实例
@@ -35,7 +36,7 @@ service.interceptors.response.use(
     if (response.data.code == 501)  return  Promise.reject(ElMessage.error("用户名有误"))
     else if (response.data.code == 503) return  Promise.reject(ElMessage.error("密码有误"))
     else if (response.data.code == 504) return  Promise.reject(ElMessage.error("登录已过期"))
-    else if (response.data.code == 505) return  Promise.reject(ElMessage.error("用户名占用"))
+    else if (response.data.code == 505) return  Promise.reject(ElMessage.error("手机号已经被注册"))
     } else {
       return response.data.data; /* 返回成功响应数据中的data属性数据 */
     }

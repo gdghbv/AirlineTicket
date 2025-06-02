@@ -70,8 +70,8 @@
               <el-form-item label="机场ID" prop="airportId">
                 <el-input v-model="form.airportId" maxlength="10" prefix-icon="i-ep-office-building" />
               </el-form-item>
-              <el-form-item label="机场地址" prop="address">
-                <el-input v-model="form.address" maxlength="50" prefix-icon="i-ep-location" />
+              <el-form-item label="用户名" prop="userName">
+                <el-input v-model="form.userName" maxlength="50" prefix-icon="i-ep-location" />
               </el-form-item>
           
             </template>
@@ -104,7 +104,7 @@ const form = ref({
   password: '',
   email: '',
   airportId: '',
-  address: '',
+  
   airportName: ''
 })
 const rules = ref({
@@ -126,9 +126,7 @@ const rules = ref({
   airportId: [
     { required: true, message: '请输入机场ID', trigger: 'blur' }
   ],
-  address: [
-    { required: true, message: '请输入机场地址', trigger: 'blur' }
-  ],
+ 
   airportName: [
     { required: true, message: '请输入机场名称', trigger: 'blur' }
   ]
@@ -144,7 +142,7 @@ watch(userType, (val) => {
     password: '',
     email: '',
     airportId: '',
-    address: '',
+   
     airportName: ''
   }
 })
@@ -167,7 +165,7 @@ const onRegister = () => {
           phone: form.value.phone,
           password: form.value.password,
           airportId: form.value.airportId,
-          address: form.value.address,
+          userName: form.value.userName,
           airportName: form.value.airportName
         })
         ElMessage.success('机场用户注册成功，请登录')

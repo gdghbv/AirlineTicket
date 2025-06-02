@@ -503,19 +503,29 @@
 
 /* 消息提示样式增强 */
 .el-message {
-  border-radius: 12px !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-  backdrop-filter: blur(10px) !important;
+  color: #222 !important;
+  font-weight: 600;
+  text-shadow: 0 1px 4px #fff8 !important;
 }
 
 .el-message--success {
-  background: linear-gradient(135deg, rgba(67, 233, 123, 0.9), rgba(56, 249, 215, 0.9)) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: linear-gradient(135deg, #e0fff7 0%, #b2f7ef 100%) !important;
+  color: #1a4d3a !important;
 }
 
 .el-message--error {
-  background: linear-gradient(135deg, rgba(245, 87, 108, 0.9), rgba(240, 147, 251, 0.9)) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: linear-gradient(135deg, #fff0f3 0%, #ffd6e0 100%) !important;
+  color: #a8002c !important;
+}
+
+.el-message--warning {
+  background: linear-gradient(135deg, #fffbe0 0%, #ffe9a7 100%) !important;
+  color: #b88600 !important;
+}
+
+.el-message--info {
+  background: linear-gradient(135deg, #eaf4ff 0%, #d6eaff 100%) !important;
+  color: #1a237e !important;
 }
 
 /* 响应式设计 */
