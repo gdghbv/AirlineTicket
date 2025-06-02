@@ -4,22 +4,12 @@
       <h2>欢迎来到机场管理中心</h2>
       <p>在这里你可以实时查看机场运营数据、航班动态、客户与订单统计等信息。</p>
     </div>
-    <ShowAirportStat />
+   
     <div class="stat-flex-row">
       <ShowAirlineStat />
       <ShowAirplaneStat />
     </div>
-    <div class="desc-section">
-      <el-card shadow="never">
-        <div class="desc-title">平台功能简介</div>
-        <ul class="desc-list">
-          <li>支持航班、飞机、订单、客户等多维度管理</li>
-          <li>可视化图表实时展示机场运营核心数据</li>
-          <li>一键切换各类管理页面，操作便捷高效</li>
-          <li>数据统计与分析助力机场决策优化</li>
-        </ul>
-      </el-card>
-    </div>
+ <ShowAirportStat />
   </div>
 </template>
 
@@ -49,6 +39,7 @@ const activeMenu = ref(route.path)
 .welcome-section {
   text-align: center;
   margin: 32px 0 18px 0;
+  transform: translateX(-100px);
 }
 .welcome-section h2 {
   font-size: 2.1rem;
@@ -66,6 +57,7 @@ const activeMenu = ref(route.path)
   align-items: flex-start;
   gap: 0;
   margin-bottom: 24px;
+  margin-left: -180px;
 }
 .desc-section {
   margin: 0 auto 24px auto;
@@ -90,6 +82,7 @@ const activeMenu = ref(route.path)
   .stat-flex-row {
     flex-direction: column;
     align-items: center;
+    margin-left: 0;
   }
 }
 </style>

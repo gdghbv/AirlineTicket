@@ -14,16 +14,11 @@
         <el-form-item label="乘客姓名">
           <el-input v-model="searchForm.citizenName" placeholder="请输入乘客姓名" clearable style="width: 180px" />
         </el-form-item>
-        <el-form-item label="证件号">
-          <el-input v-model="searchForm.citizenId" placeholder="请输入证件号" clearable style="width: 180px" />
+        <el-form-item label="客户用户Id">
+          <el-input v-model="searchForm.customerId" placeholder="请输入客户用户Id" clearable style="width: 180px" />
         </el-form-item>
-        <el-form-item label="订单状态">
-          <el-select v-model="searchForm.orderStat" placeholder="请选择订单状态" clearable style="width: 180px">
-            <el-option label="已预订" value="已预订" />
-            <el-option label="已支付" value="已支付" />
-            <el-option label="已完成" value="已完成" />
-            <el-option label="已取消" value="已取消" />
-          </el-select>
+        <el-form-item label="航线Id">
+          <el-input v-model="searchForm.airlineId" placeholder="请输入航线Id" clearable style="width: 180px" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="searchOrders">
@@ -169,8 +164,8 @@ const editOrderForm = reactive({})
 const searchForm = reactive({
   orderId: '',
   citizenName: '',
-  citizenId: '',
-  orderStat: '',
+  customerId: '',
+  airlineId: '',
   pageNum: 1,
   pageSize: 10
 })
@@ -188,8 +183,8 @@ const getOrderList = async () => {
     const params = {
       orderId: searchForm.orderId,
       citizenName: searchForm.citizenName,
-      citizenId: searchForm.citizenId,
-      orderStat: searchForm.orderStat,
+      customerId: searchForm.customerId,
+      airlineId: searchForm.airlineId,
       pageNum: pagination.pageNum,
       pageSize: pagination.pageSize
     }
@@ -211,8 +206,8 @@ const searchOrders = () => {
 const resetSearch = () => {
   searchForm.orderId = ''
   searchForm.citizenName = ''
-  searchForm.citizenId = ''
-  searchForm.orderStat = ''
+  searchForm.customerId = ''
+  searchForm.airlineId = ''
   pagination.pageNum = 1
   getOrderList()
 }

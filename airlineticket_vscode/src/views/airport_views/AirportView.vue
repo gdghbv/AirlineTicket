@@ -110,4 +110,9 @@ function handleLogout() {
   display: flex;
   align-items: center;
 }
+.el-main {
+  background: #f7fafc;
+  min-height: 100vh;
+  padding: 0;
+}
 </style>
