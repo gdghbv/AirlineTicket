@@ -37,6 +37,7 @@ const isLogin = computed(() => !!getToken())
 
 const logout = () => {
   userInfoStore.initUserInfo()
+  localStorage.removeItem('vue_admin_template_token')
   ElMessage.success('已退出登录')
   window.location.reload()
 }
