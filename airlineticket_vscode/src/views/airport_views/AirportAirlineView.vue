@@ -39,21 +39,21 @@
       <el-table :data="airlines" v-loading="loading" style="width: 100%" stripe class="airline-table">
         <el-table-column prop="airlineId" label="航班号" width="90" />
         <el-table-column prop="departure" label="起点" width="90" />
-        <el-table-column prop="departureAirportName" label="起飞机场" min-width="120" />
+        <el-table-column prop="departureAirportName" label="起飞机场" width="240" />
         <el-table-column prop="arrival" label="终点" width="90" />
-        <el-table-column prop="arrivalAirportName" label="到达机场" min-width="120" />
+        <el-table-column prop="arrivalAirportName" label="到达机场" width="240" />
         <el-table-column prop="date" label="日期" width="110" />
         <el-table-column prop="departureTime" label="起飞时间" width="90" />
         <el-table-column prop="arrivalTime" label="到达时间" width="90" />
         <el-table-column prop="duration" label="时长" width="80" />
         <el-table-column prop="price" label="票价(元)" width="100" />
         <el-table-column label="操作" width="180" fixed="right">
-          <template #default="{ row }">
-            <el-button type="primary" size="small" @click="openEditDialog(row)">
+          <template #default="scope">
+            <el-button size="small" @click="openEditDialog(scope.row)">
               <el-icon><Edit /></el-icon>
-              修改
+              编辑
             </el-button>
-            <el-button type="danger" size="small" @click="handleDelete(row)" style="margin-left:8px;">
+            <el-button size="small" type="danger" @click="handleDelete(scope.row)" style="margin-left:8px;">
               <el-icon><Delete /></el-icon>
               删除
             </el-button>
@@ -344,20 +344,22 @@ onMounted(() => {
   margin-bottom: 18px;
 }
 .table-card {
+  width: 100vw;
+  max-width: 100vw;
+  min-width: 0;
+  overflow-x: auto;
+  box-sizing: border-box;
   background: #fff;
   border: 1px solid #e3e8f0;
   box-shadow: 0 2px 18px 0 rgba(58,122,254,0.08);
-  overflow-x: auto;
   margin-bottom: 20px;
 }
 .airline-table {
-  min-width: 900px;
-  width: 100%;
-  --el-table-header-bg-color: #f0f4fa;
-  --el-table-header-text-color: #3a7afe;
-  --el-table-row-hover-bg-color: #eaf3ff;
-  --el-table-border-color: #e3e8f0;
-  font-size: 15px;
+  min-width: 0;
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+  /* 让表格自适应屏幕宽度 */
 }
 .airline-table .el-table__cell {
   color: #3a4664;

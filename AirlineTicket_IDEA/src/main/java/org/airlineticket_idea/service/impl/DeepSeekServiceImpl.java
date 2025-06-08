@@ -1,7 +1,9 @@
 package org.airlineticket_idea.service.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.airlineticket_idea.mapper.AirlineMapper;
+import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.ChatRequest;
 import org.airlineticket_idea.pojo.ChatResponse;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -35,8 +39,14 @@ public class DeepSeekServiceImpl implements DeepSeekService {
     }
     @Override
     public Mono<Result<String>> getAIResponse(String question) {
+        QueryWrapper<Airline> queryWrapper = new QueryWrapper<>();
+        queryWrapper.and(wrapper -> wrapper.eq("a.date", LocalDate.now())
+                .gt("a.departure_time", LocalTime.now().plusHours(3))
+                .or()
+                .gt("a.date", LocalDate.now())
+        );
         //通过提示词工程prompt来自定义系统
-        List<AirlineVO> tickets = airlineMapper.selectAirlineListWithAirport();
+        List<AirlineVO> tickets = airlineMapper.selectAirlineListWithAirport(queryWrapper);
         StringBuilder data = new StringBuilder();
         for (AirlineVO ticket : tickets) {  //给ai发送数据库的机票信息
             data.append(String.format(

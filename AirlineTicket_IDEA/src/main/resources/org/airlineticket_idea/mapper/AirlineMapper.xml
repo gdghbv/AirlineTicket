@@ -38,6 +38,7 @@ SELECT   a.*,
 FROM airline a
          LEFT JOIN airport dep ON a.departure_airport_id = dep.airport_id
          LEFT JOIN airport arr ON a.arrival_airport_id = arr.airport_id
+    ${ew.customSqlSegment}
 </select>
 
     <select id="selectAirlineListWithPage" resultType="org.airlineticket_idea.pojo.vo.AirlineVO">

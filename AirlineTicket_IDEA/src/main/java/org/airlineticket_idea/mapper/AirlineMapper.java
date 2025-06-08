@@ -16,7 +16,8 @@ import java.util.List;
  * @Entity org.airlineticket_idea.pojo.Airline
  */
 public interface AirlineMapper extends BaseMapper<Airline> {
-    List<AirlineVO> selectAirlineListWithAirport();
+
+    List<AirlineVO> selectAirlineListWithAirport(@Param("ew") QueryWrapper<Airline> wrapper);
 
     IPage<AirlineVO> selectAirlineListWithPage(IPage page,  @Param("ew") QueryWrapper<AirlineVO> wrapper);
 }
