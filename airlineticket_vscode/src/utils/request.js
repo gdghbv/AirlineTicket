@@ -33,7 +33,7 @@ service.interceptors.response.use(
 
     if(response.data.code !== 200){
     // 判断响应状态码
-    if (response.data.code == 501)  return  Promise.reject(ElMessage.error("用户名有误"))
+    if (response.data.code == 501)  return  Promise.reject(ElMessage.error("手机号未注册"))
     else if (response.data.code == 503) return  Promise.reject(ElMessage.error("密码有误"))
     else if (response.data.code == 504) return  Promise.reject(ElMessage.error("登录已过期"))
     else if (response.data.code == 505) return  Promise.reject(ElMessage.error("手机号已经被注册"))

@@ -2,6 +2,7 @@ package org.airlineticket_idea.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -57,7 +58,7 @@ public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, Airpo
             return Result.build(null, ResultCodeEnum.PHONE_ERROR);
         }
         if (!StringUtils.isEmpty(airportUser.getPassword()) && MD5Util.encrypt(airportUser.getPassword()).equals(loginAirportUser.getPassword())) {
-            String token = jwtHelper.createToken(Long.valueOf(loginAirportUser.getAirportId()));
+            String token = jwtHelper.createToken(Long.valueOf(loginAirportUser.getUserId()));
             Map data = new HashMap();
             data.put("token", token);
             return Result.ok(data);
@@ -68,9 +69,10 @@ public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, Airpo
 
     @Override
     public Result admin(String token) {
+        System.out.println("-------!!!------"+jwtHelper.getUserId(token));
         AirportUser airportUser = airportUserMapper.selectById(jwtHelper.getUserId(token));
-        LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper();
-        queryWrapper.eq(AirportUser::getUserId, airportUser.getUserId());
+       QueryWrapper<AirportUser> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("au.airport_id", airportUser.getAirportId());
         IPage<AirportUserVO> page=new Page<>(1,Long.MAX_VALUE);
 
         airportUserMapper.selectAirportUserByQuery(page,queryWrapper);
@@ -97,8 +99,8 @@ public class AirportUserServiceImpl extends ServiceImpl<AirportUserMapper, Airpo
         int userId = jwtHelper.getUserId(token).intValue();
         System.out.println("--------------" + userId);
         IPage<AirportUserVO> page=new Page<>(1,10);
-        LambdaQueryWrapper<AirportUser> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(AirportUser::getUserId,userId);
+        QueryWrapper<AirportUser> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId);
         airportUserMapper.selectAirportUserByQuery(page,queryWrapper);
 
         return Result.ok(page.getRecords());

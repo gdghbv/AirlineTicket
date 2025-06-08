@@ -15,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
 * @Entity org.airlineticket_idea.pojo.AirportUser
 */
 public interface AirportUserMapper extends BaseMapper<AirportUser> {
-IPage<AirportUserVO> selectAirportUserByQuery(IPage page, @Param("ew") LambdaQueryWrapper<AirportUser> queryWrapper);
+IPage<AirportUserVO> selectAirportUserByQuery(IPage page, @Param("ew") QueryWrapper<AirportUser> queryWrapper);
 }
 
 

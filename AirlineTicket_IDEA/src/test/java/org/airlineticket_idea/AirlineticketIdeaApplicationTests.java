@@ -1,6 +1,8 @@
 package org.airlineticket_idea;
 
 import org.airlineticket_idea.mapper.AirlineMapper;
+import org.airlineticket_idea.mapper.AirportUserMapper;
+import org.airlineticket_idea.pojo.AirportUser;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.service.AirlineService;
 import org.airlineticket_idea.service.AirplaneService;
@@ -23,8 +25,16 @@ class AirlineticketIdeaApplicationTests {
 	private AirplaneService	airplaneService;
 	@Autowired
 	private AirlineService airlineService;
+    @Autowired
+    private AirportUserMapper airportUserMapper;
+
 	@Test
 	void contextLoads() {
+	}
+	@Test
+	public void getUser(){
+		AirportUser user=airportUserMapper.selectById(2);
+		System.out.println(user);
 	}
 /*   @Test
 	public void testSelectWithAirport(){
