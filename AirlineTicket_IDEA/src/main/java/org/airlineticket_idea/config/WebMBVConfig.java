@@ -11,10 +11,10 @@ public class WebMBVConfig implements WebMvcConfigurer {
     @Autowired
     private LoginProtectedInterceptor loginProtectedInterceptor;
 
-  /*  @Override
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginProtectedInterceptor)
                 .addPathPatterns("/airport/**")
                 .excludePathPatterns("/airport/login", "/airport/register");
-    }*/
+    }
 }

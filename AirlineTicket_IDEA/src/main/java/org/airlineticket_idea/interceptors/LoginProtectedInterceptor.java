@@ -16,7 +16,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class LoginProtectedInterceptor implements HandlerInterceptor {
     @Autowired
     private JwtHelper jwtHelper;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader("token");

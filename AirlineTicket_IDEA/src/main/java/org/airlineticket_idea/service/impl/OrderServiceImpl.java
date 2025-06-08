@@ -13,9 +13,9 @@ import org.airlineticket_idea.pojo.Airline;
 import org.airlineticket_idea.pojo.Airplane;
 import org.airlineticket_idea.pojo.Customer;
 import org.airlineticket_idea.pojo.Order;
+import org.airlineticket_idea.pojo.dto.AirlineKeywords;
 import org.airlineticket_idea.pojo.dto.OrderDTO;
 import org.airlineticket_idea.pojo.dto.OrderKeywords;
-import org.airlineticket_idea.pojo.dto.AirlineKeywords;
 import org.airlineticket_idea.pojo.vo.AirlineVO;
 import org.airlineticket_idea.pojo.vo.ShowAirlineStatVO;
 import org.airlineticket_idea.service.OrderService;
@@ -60,7 +60,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 
         // 2. 构建查询条件
         int userId = jwtHelper.getUserId(token).intValue();
-      QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("o.customer_id", userId);
 
         // 3. 执行分页查询（关键修改：接收返回值）
@@ -76,13 +76,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
                 "totalSize", resultPage.getTotal()
         ));
     }
+
     @Override
     public Result calculatePrice(String token, AirlineVO airlineVO) {
         int userId = jwtHelper.getUserId(token).intValue();
-        int points=customerMapper.selectById(userId).getMilsPoints();
-        airlineVO.setFirstSeatDiscountPrice(getDiscountPrice(points,airlineVO.getFirstSeatPrice()));
-        airlineVO.setSecondSeatDiscountPrice(getDiscountPrice(points,airlineVO.getSecondSeatPrice()));
-        airlineVO.setThirdSeatDiscountPrice(getDiscountPrice(points,airlineVO.getThirdSeatPrice()));
+        int points = customerMapper.selectById(userId).getMilsPoints();
+        airlineVO.setFirstSeatDiscountPrice(getDiscountPrice(points, airlineVO.getFirstSeatPrice()));
+        airlineVO.setSecondSeatDiscountPrice(getDiscountPrice(points, airlineVO.getSecondSeatPrice()));
+        airlineVO.setThirdSeatDiscountPrice(getDiscountPrice(points, airlineVO.getThirdSeatPrice()));
         airlineVO.setFirstSeatDiscount(airlineVO.getFirstSeatPrice().subtract(airlineVO.getFirstSeatDiscountPrice()));
         airlineVO.setSecondSeatDiscount(airlineVO.getSecondSeatPrice().subtract(airlineVO.getSecondSeatDiscountPrice()));
         airlineVO.setThirdSeatDiscount(airlineVO.getThirdSeatPrice().subtract(airlineVO.getThirdSeatDiscountPrice()));
@@ -98,18 +99,18 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
                 .groupBy("airline_id")
                 .orderByDesc("order_count")
                 .last("LIMIT 5");
-        List<Map<String, Object>> airlineOrderCounts=orderMapper.selectMaps(queryWrapper);
+        List<Map<String, Object>> airlineOrderCounts = orderMapper.selectMaps(queryWrapper);
 
-        List<ShowAirlineStatVO> voList=new ArrayList<>();
+        List<ShowAirlineStatVO> voList = new ArrayList<>();
 
-        for(Map<String, Object> map:airlineOrderCounts){
-            Integer airlineId=(Integer)map.get("airline_id");
-            Long orderCount=(Long)map.get("order_count");
-            Airline airline=airlineMapper.selectById(airlineId);
-            if(airline==null){
+        for (Map<String, Object> map : airlineOrderCounts) {
+            Integer airlineId = (Integer) map.get("airline_id");
+            Long orderCount = (Long) map.get("order_count");
+            Airline airline = airlineMapper.selectById(airlineId);
+            if (airline == null) {
                 continue;
             }
-            ShowAirlineStatVO vo=new ShowAirlineStatVO();
+            ShowAirlineStatVO vo = new ShowAirlineStatVO();
             vo.setAirlineId(airline.getAirlineId());
             vo.setAirlineDepartureCity(airline.getDeparture());
             vo.setAirlineArrivalCity(airline.getArrival());
@@ -152,18 +153,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 
     @Override
     public Result updateOrder(Order order) {
-       orderMapper.updateById(order);
-       return Result.build(null, 200, "订单更新成功");
+        orderMapper.updateById(order);
+        return Result.build(null, 200, "订单更新成功");
     }
 
-    public BigDecimal getDiscountPrice(int points ,BigDecimal price){
-        int maxDiscount=price.multiply(BigDecimal.valueOf(0.2)).intValue();
-        int discount=points/100;
-        if(points>-1){
-            if(discount>maxDiscount){
-                price=price.subtract(BigDecimal.valueOf(maxDiscount));
-            } else if (discount>=10&&discount<maxDiscount) {
-               price=price.subtract(BigDecimal.valueOf(discount));
+    //获取经过用户积分折扣后优惠的价格
+    public BigDecimal getDiscountPrice(int points, BigDecimal price) {
+        int maxDiscount = price.multiply(BigDecimal.valueOf(0.2)).intValue();
+        int discount = points / 100;
+        if (points > -1) {
+            if (discount > maxDiscount) {
+                price = price.subtract(BigDecimal.valueOf(maxDiscount));
+            } else if (discount >= 10 && discount < maxDiscount) {
+                price = price.subtract(BigDecimal.valueOf(discount));
             }
         }
         return price;
@@ -176,7 +178,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         if (jwtHelper.isExpiration(token)) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
-        Order order=orderDTO.toOrder();
+        Order order = orderDTO.toOrder();
         int userId = jwtHelper.getUserId(token).intValue();
         order.setCustomerId(userId);
         //设置为现在的的日期时间
@@ -185,41 +187,37 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
         Airline airline = airlineMapper.selectById(order.getAirlineId());
         Airplane airplane = airplaneMapper.selectById(airline.getAirplaneId());
         //根据座位类型设置价格和座位号
-
         if (order.getSeatType().equals("头等舱")) {
-
-            airline.setFirstSeat(airline.getFirstSeat()-1);
-            int seatNum=airplane.getFirstSeat()-airline.getFirstSeat();
-            order.setSeatId(getSeatId(seatNum,"A"));
+            airline.setFirstSeat(airline.getFirstSeat() - 1);
+            int seatNum = airplane.getFirstSeat() - airline.getFirstSeat();
+            order.setSeatId(getSeatId(seatNum, "A"));
         } else if (order.getSeatType().equals("商务舱")) {
-            airline.setSecondSeat(airline.getSecondSeat()-1);
-            int seatNum=airplane.getSecondSeat()-airline.getSecondSeat();
-            order.setSeatId(getSeatId(seatNum,"B"));
+            airline.setSecondSeat(airline.getSecondSeat() - 1);
+            int seatNum = airplane.getSecondSeat() - airline.getSecondSeat();
+            order.setSeatId(getSeatId(seatNum, "B"));
         } else if (order.getSeatType().equals("经济舱")) {
-            airline.setThirdSeat(airline.getThirdSeat()-1);
-            int seatNum=airplane.getThirdSeat()-airline.getThirdSeat();
-            order.setSeatId(getSeatId(seatNum,"C"));
+            airline.setThirdSeat(airline.getThirdSeat() - 1);
+            int seatNum = airplane.getThirdSeat() - airline.getThirdSeat();
+            order.setSeatId(getSeatId(seatNum, "C"));
         }
         airlineMapper.updateById(airline);
         //todo 在下面来设置折扣并获取折扣后的价格并进行用户积分的计算
         Customer customer = customerMapper.selectById(userId);
-        int points=customer.getMilsPoints();
+        int points = customer.getMilsPoints();
         //折扣最多打8折，每100点积分可以抵扣1元
-
         //这里先检查是否是会员
-        if(points>-1){
+        if (points > -1) {
 //下面检测用户是否选择了进行折扣
-if (orderDTO.isUseDiscount()){
-        customer.setMilsPoints(points - orderDTO.getDiscount().intValue() * 100);
-} else if (orderDTO.isUseDiscount()) {
-    //客户选择不使用折扣，进行积分的添加，添加的积分和本次消费的积分相等
-    customer.setMilsPoints(points+order.getSpending().intValue());
-}
-customerMapper.updateById(customer);
+            if (orderDTO.isUseDiscount()) {
+                customer.setMilsPoints(points - orderDTO.getDiscount().intValue() * 100);
+            } else if (orderDTO.isUseDiscount()) {
+                //客户选择不使用折扣，进行积分的添加，添加的积分和本次消费的积分相等
+                customer.setMilsPoints(points + order.getSpending().intValue());
+            }
+            customerMapper.updateById(customer);
         }
         //设置订单状态
         order.setOrderStat("已支付");
-
         orderMapper.insert(order);
 //可以修改为枚举类
         return Result.build(null, 200, "购买成功");
@@ -230,44 +228,46 @@ customerMapper.updateById(customer);
         if (jwtHelper.isExpiration(token)) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
-       int userId = jwtHelper.getUserId(token).intValue();
+        int userId = jwtHelper.getUserId(token).intValue();
 
-        Order newOrder=orderMapper.selectById(order.getOrderId());
+        Order newOrder = orderMapper.selectById(order.getOrderId());
 
         newOrder.setOrderStat("已退票");
 
-        orderMapper.update(newOrder,new LambdaQueryWrapper<Order>().eq(Order::getOrderId,order.getOrderId()));
+        orderMapper.update(newOrder, new LambdaQueryWrapper<Order>().eq(Order::getOrderId, order.getOrderId()));
         //todo 退票后需要将用户积分扣除
-        Customer customer=customerMapper.selectById(userId);
-        int point=customer.getMilsPoints();
-        int refundPoint=newOrder.getSpending().intValue();
-        if(point!=-1){
-            if(point<=refundPoint){
-                point=0;
-            } else if (point>refundPoint) {
-                point-=refundPoint;
+        Customer customer = customerMapper.selectById(userId);
+        int point = customer.getMilsPoints();
+        int refundPoint = newOrder.getSpending().intValue();
+        if (point != -1) {
+            if (point <= refundPoint) {
+                point = 0;
+            } else if (point > refundPoint) {
+                point -= refundPoint;
             }
             customer.setMilsPoints(point);
             customerMapper.updateById(customer);
         }
         return Result.build(null, 200, "退票成功");
     }
-    public String getSeatId(int seatNum,String seatType){
-        char word=(char)(seatNum%10+'A');
-        int num=(seatNum/10)+1;
-        String seatId=seatType+word+num;
+
+    public String getSeatId(int seatNum, String seatType) {
+        char word = (char) (seatNum % 10 + 'A');
+        int num = (seatNum / 10) + 1;
+        String seatId = seatType + word + num;
         return seatId;
     }
+
     @Override
     public Result memberRegister(String token) {
         if (jwtHelper.isExpiration(token)) {
             return Result.build(null, ResultCodeEnum.NOTLOGIN);
         }
         int userId = jwtHelper.getUserId(token).intValue();
-         Customer customer=customerMapper.selectById(userId);
-         customer.setMilsPoints(0);
-         customerMapper.updateById(customer);
-         return Result.build(null,200,"会员注册成功");
+        Customer customer = customerMapper.selectById(userId);
+        customer.setMilsPoints(0);
+        customerMapper.updateById(customer);
+        return Result.build(null, 200, "会员注册成功");
     }
 
 

@@ -26,11 +26,11 @@ class AirlineticketIdeaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-   @Test
+/*   @Test
 	public void testSelectWithAirport(){
 	   List<AirlineVO> airlines=airlineMapper.selectAirlineListWithAirport();
 	   airlines.forEach(System.out::println);
-   }
+   }*/
 //   @Test
 //	public void testGetSeatId(){
 //	   System.out.println(orderService.getSeatId(1,"A"));

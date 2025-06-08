@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.justworking</groupId>
     <artifactId>AirlineTicket_IDEA</artifactId>
-    <version>v1.0.0</version>
+    <version>v1</version>
     <name>AirlineTicket_IDEA</name>
     <description>AirlineTicket_IDEA</description>
 

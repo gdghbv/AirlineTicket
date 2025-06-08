@@ -2,7 +2,7 @@ export const staticRoutes=[
       {
           path: '/',
           name: 'home',
-          redirect: '/login',
+          redirect: '/customerHome',
         },
         {
           path:'/login',

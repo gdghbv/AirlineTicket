@@ -1,0 +1,1 @@
+import{a as t}from"./request-DuNoOhOk.js";const s=r=>t.post("/airport/login",r),e=r=>t.post("/customer/login",r),i=r=>t.post("/customer/register",r),n=r=>t.post("/airport/register",r);export{n as A,i as C,s as a,e as g};

@@ -2,7 +2,7 @@
   <div class="customer-home">
     <CustomerNavBar />
     <div class="project-title-box">
-      <img src="/favicon.ico" class="project-logo" alt="logo" />
+      <div class="project-logo-bg"></div>
       <h1>航空订票系统</h1>
       <div class="project-desc">
         <el-icon style="color:#00e6e6;font-size:1.5em;">
@@ -36,7 +36,8 @@ import { UserFilled } from '@element-plus/icons-vue'
 <style scoped>
 .customer-home {
   min-height: 100vh;
-  background: linear-gradient(120deg, #6a9bff 0%, #377dff 100%);
+  /* 背景叠加：底层为图片，上层为蓝色渐变，提升风格统一 */
+  background: linear-gradient(120deg, #6a9bffcc 0%, #377dffcc 100%), url('@/assets/background.png') center/cover no-repeat;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -68,11 +69,11 @@ import { UserFilled } from '@element-plus/icons-vue'
   filter: blur(12px);
 }
 .project-title-box {
-  margin: 64px 0 32px 0;
-  background: linear-gradient(90deg, #e6fff6 0%, #d2ffe6 100%);
+  margin: 28px 0 18px 0;
+  padding: 18px 0 12px 0;
+  background: linear-gradient(90deg, #ffe6fa 0%, #e6e6ff 100%);
   border-radius: 26px;
   box-shadow: 0 4px 32px #377dff33;
-  padding: 38px 0 30px 0;
   text-align: center;
   position: relative;
   display: flex;
@@ -88,18 +89,21 @@ import { UserFilled } from '@element-plus/icons-vue'
   border-image: linear-gradient(90deg, #6a9bff 0%, #377dff 60%, #fff 100%) 1;
   z-index: 1;
 }
-.project-logo {
-  width: 72px;
-  height: 72px;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 2px 12px #6a82fb55);
+.project-logo-bg {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background: url('@/assets/logo.svg') center/cover no-repeat, #fff;
+  box-shadow: 0 2px 12px #6a82fb55;
+  display: inline-block;
 }
 .project-title-box h1 {
-  font-size: 3.2rem;
+  font-size: 2.2rem;
+  margin: 0 0 10px 0;
   color: #377dff;
   letter-spacing: 6px;
   font-family: 'JetBrains Mono', 'Consolas', monospace;
-  margin: 0 0 14px 0;
   text-shadow: 0 2px 24px #377dff22;
   font-weight: 900;
 }
@@ -198,17 +202,21 @@ import { UserFilled } from '@element-plus/icons-vue'
     max-width: 100vw;
   }
   .project-title-box {
+    margin: 10px 0 8px 0;
+    padding: 8px 0 6px 0;
+    background: linear-gradient(90deg, #ffe6fa 0%, #e6e6ff 100%);
     width: 100vw;
     max-width: 100vw;
-    padding: 18px 0 14px 0;
   }
   .project-title-box h1 {
-    font-size: 2.1rem;
+    font-size: 1.3rem;
+    margin-bottom: 6px;
     letter-spacing: 2px;
   }
-  .project-logo {
-    width: 48px;
-    height: 48px;
+  .project-logo-bg {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
   }
   .project-desc {
     font-size: 1.05rem;
